@@ -1,4 +1,4 @@
-class Hashttp::Model
+class Hashttp::Resource
   module Resources
     autoload :Property,     'lib/model/resources/property'
     autoload :Relation,     'lib/model/resources/relation'

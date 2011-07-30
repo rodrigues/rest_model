@@ -1,5 +1,5 @@
 module Hashttp
-  class Model
+  class Resource
     autoload :Properties,    'lib/model/properties'
     autoload :Relations,     'lib/model/relations'
     autoload :Parsing,       'lib/model/parsing'

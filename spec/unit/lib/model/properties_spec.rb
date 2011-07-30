@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Hashttp::Model::Properties do
+describe Hashttp::Resource::Properties do
   class Example
-    extend Hashttp::Model::Properties
+    extend Hashttp::Resource::Properties
   end
 
   before { Example.properties.clear }
@@ -32,7 +32,7 @@ describe Hashttp::Model::Properties do
         property :login
       end
 
-      Example.properties.first.serializer.should == Hashttp::Model::Serialization::String
+      Example.properties.first.serializer.should == Hashttp::Resource::Serialization::String
     end
 
     it "configures a default field" do
@@ -45,10 +45,10 @@ describe Hashttp::Model::Properties do
 
     it "sets property type if defined" do
       class Example
-        property :login, type: Hashttp::Model::Serialization::Date
+        property :login, type: Hashttp::Resource::Serialization::Date
       end
 
-      Example.properties.first.serializer.should == Hashttp::Model::Serialization::Date
+      Example.properties.first.serializer.should == Hashttp::Resource::Serialization::Date
     end
 
     it "sets property values if defined" do

@@ -1,4 +1,4 @@
-class Hashttp::Model
+class Hashttp::Resource
   module Resources
     module Property
       def resource_property(result, properties)

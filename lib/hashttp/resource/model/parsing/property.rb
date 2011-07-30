@@ -1,4 +1,4 @@
-class Hashttp::Model
+class Hashttp::Resource
   module Parsing
     module Property
       def parse_properties(params, item)

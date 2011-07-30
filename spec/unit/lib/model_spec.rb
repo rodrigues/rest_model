@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Hashttp::Model do
+describe Hashttp::Resource do
 
 end

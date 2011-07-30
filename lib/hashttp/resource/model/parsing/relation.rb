@@ -1,4 +1,4 @@
-class Hashttp::Model
+class Hashttp::Resource
   module Parsing
     module Relation
       def parse_relations(params, item)

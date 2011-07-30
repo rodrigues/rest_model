@@ -1,5 +1,5 @@
 module Hashttp
-  class Model
+  class Resource
     module Responses
       def respond_with(model, options = {})
         response = model.kind_of?(Array) ?

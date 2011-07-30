@@ -1,4 +1,4 @@
-class Hashttp::Model
+class Hashttp::Resource
   module Parsing
     autoload :Property,     'lib/model/parsing/property'
     autoload :Relation,     'lib/model/parsing/relation'

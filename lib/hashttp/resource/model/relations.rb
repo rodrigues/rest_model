@@ -1,5 +1,5 @@
 module Hashttp
-  class Model
+  class Resource
     module Relations
       def relations
         @relations ||= []

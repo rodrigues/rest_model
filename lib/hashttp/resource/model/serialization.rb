@@ -1,5 +1,5 @@
 module Hashttp
-  class Model
+  class Resource
     module Serialization
       autoload :Boolean, 'lib/model/serialization/boolean'
       autoload :Date,    'lib/model/serialization/date'

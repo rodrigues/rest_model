@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Hashttp::Model::Parsing do
-  class Example < Hashttp::Model
+describe Hashttp::Resource::Parsing do
+  class Example < Hashttp::Resource
   end
 
   before { Example.properties.clear }
 
   describe '.parse' do
     it 'parses simple properties' do
-      class Example < Hashttp::Model
+      class Example < Hashttp::Resource
         property :login
       end
 
@@ -18,7 +18,7 @@ describe Hashttp::Model::Parsing do
     end
 
     it 'uses different field name if defined' do
-      class Example < Hashttp::Model
+      class Example < Hashttp::Resource
         property :login, field: :customer_login
       end
 
@@ -30,7 +30,7 @@ describe Hashttp::Model::Parsing do
     context "uses type defined" do
       context 'boolean' do
         before do
-          class Example < Hashttp::Model
+          class Example < Hashttp::Resource
             property :can_merge, type: Boolean
           end
         end
@@ -48,7 +48,7 @@ describe Hashttp::Model::Parsing do
 
       context "date" do
         it "parse" do
-          class Example < Hashttp::Model
+          class Example < Hashttp::Resource
             property :issue_date, type: Date
           end
 
@@ -59,7 +59,7 @@ describe Hashttp::Model::Parsing do
 
       context "float" do
         it "parse" do
-          class Example < Hashttp::Model
+          class Example < Hashttp::Resource
             property :amount, type: Float
           end
 
@@ -71,7 +71,7 @@ describe Hashttp::Model::Parsing do
 
     context "maps values if defined" do
       before do
-        class Example < Hashttp::Model
+        class Example < Hashttp::Resource
           property :status, values: {paid: '01', unpaid: '02'}
         end
       end

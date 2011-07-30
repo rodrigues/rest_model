@@ -1,4 +1,4 @@
-class Hashttp::Model
+class Hashttp::Resource
   module Resources
     module Relation
       def resource_relation(result, relations)

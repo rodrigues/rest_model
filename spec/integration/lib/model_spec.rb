@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe "Something" do
   it "returns a hash with properties and its values for complex tree" do
-    class CustomerExample < Hashttp::Model
+    class CustomerExample < Hashttp::Resource
       property   :login
       property   :name
       embeds_one :address, class_name: "CustomerAddressExample"
     end
 
-    class CustomerAddressExample< Hashttp::Model
+    class CustomerAddressExample< Hashttp::Resource
       property :street
       property :number, type: Float
       property :complement

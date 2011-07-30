@@ -1,5 +1,5 @@
 module Hashttp
-  class Model
+  class Resource
     module Serialization
       class Boolean
         def self.serialize(value)

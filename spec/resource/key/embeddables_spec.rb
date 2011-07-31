@@ -60,20 +60,6 @@ describe Transcriber::Resource::Embeddables do
 
         RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Entry
       end
-
-      it "uses relation name if class_name option not defined" do
-        module RelationsExample
-          class Item < Transcriber::Resource
-            property :id
-          end
-
-          class Root < Transcriber::Resource
-            embeds_one :item
-          end
-        end
-
-        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
-      end
     end
 
     it "configures relation start key if defined" do
@@ -161,20 +147,6 @@ describe Transcriber::Resource::Embeddables do
 
           class Root < Transcriber::Resource
             embeds_many :item, class_name: 'relations_example/item'
-          end
-        end
-
-        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
-      end
-
-      it "uses relation name if class_name option not defined" do
-        module RelationsExample
-          class Item < Transcriber::Resource
-            property :id
-          end
-
-          class Root < Transcriber::Resource
-            embeds_many :item
           end
         end
 

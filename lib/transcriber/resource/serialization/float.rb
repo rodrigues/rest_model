@@ -2,7 +2,9 @@ class Transcriber::Resource
   module Serialization
     class Float
       def self.serialize(value)
-        value.to_f
+        Float(value)
+      rescue
+        raise "value not serializable: #{{value: value}}"
       end
     end
   end

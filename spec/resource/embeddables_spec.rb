@@ -90,7 +90,7 @@ describe Transcriber::Resource::Embeddables do
       RelationsExample::Root.keys.first.start_key.should == :item_sap
     end
 
-    it "sets relation.one to true and relation.many to false" do
+    it "relation.one? => true and relation.many? => false" do
       module RelationsExample
         class Item < Transcriber::Resource
           property :id
@@ -101,8 +101,8 @@ describe Transcriber::Resource::Embeddables do
         end
       end
 
-      RelationsExample::Root.keys.first.one.should be_true
-      RelationsExample::Root.keys.first.many.should be_false
+      RelationsExample::Root.keys.first.should be_one
+      RelationsExample::Root.keys.first.should_not be_many
     end
 
     it "sets extra options if defined" do
@@ -196,7 +196,7 @@ describe Transcriber::Resource::Embeddables do
       RelationsExample::Root.keys.first.start_key.should == :item_sap
     end
 
-    it "sets relation.one to false and relation.many to true" do
+    it "relation.one? => false and relation.many? => true" do
       module RelationsExample
         class Item < Transcriber::Resource
           property :id
@@ -207,8 +207,8 @@ describe Transcriber::Resource::Embeddables do
         end
       end
 
-      RelationsExample::Root.keys.first.one.should be_false
-      RelationsExample::Root.keys.first.many.should be_true
+      RelationsExample::Root.keys.first.should_not be_one
+      RelationsExample::Root.keys.first.should be_many
     end
 
     it "sets extra options if defined" do

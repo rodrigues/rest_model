@@ -39,7 +39,7 @@ describe Transcriber::Resource::Properties do
         property :login
       end
 
-      Example.keys.first.field.should == "LOGIN"
+      Example.keys.first.field_path.should == "LOGIN"
     end
 
     it "sets property type if defined" do

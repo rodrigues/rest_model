@@ -6,19 +6,19 @@ class Transcriber::Resource
 
     private
 
-    def entries(input, options)
-      start_key = options[:start_key]
-      entries = input
-      if entries.kind_of?(Hash)
-        entries = entries[start_key.to_s.upcase] if start_key
-        entries = [entries]
+    def entries(entries, options)
+      if start_key = options.fetch(:start_key)
+        start_key = start_key.to_s.split('/')
+        entries = entries[convert_input_keys(start_key)]
       end
+      entries = [entries] if entries.kind_of?(Hash)
       entries
     end
 
     def parse_one(item)
       params = keys.inject({}) do |buffer, key|
-        buffer.merge key.name => key.parse(item)
+        value = digg_to_key(item)
+        buffer.merge key.name => key.parse(value)
       end
       self.new(params)
     end

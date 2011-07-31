@@ -2,9 +2,9 @@ module Transcriber
   class Resource
     autoload :Serialization, 'transcriber/resource/serialization'
     autoload :Properties,    'transcriber/resource/properties'
-    autoload :Property,      'transcriber/resource/properties/property'
+    autoload :Property,      'transcriber/resource/property/property'
     autoload :Embeddables,   'transcriber/resource/embeddables'
-    autoload :Embeddable,    'transcriber/resource/embeddables/embeddable'
+    autoload :Embeddable,    'transcriber/resource/embeddable/embeddable'
     autoload :Parser,        'transcriber/resource/parser'
     autoload :Responses,     'transcriber/resource/responses'
 

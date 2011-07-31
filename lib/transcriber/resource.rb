@@ -26,8 +26,8 @@ module Transcriber
       @convert_input_keys || Key::Converter::DefaultHandler
     end
 
-    def self.convert_input_keys=(&block)
-      @convert_input_keys = block
+    def self.convert_input_keys=(converter)
+      @convert_input_keys = converter
     end
 
     def self.resources(entries)

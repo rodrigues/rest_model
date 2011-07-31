@@ -9,6 +9,7 @@ class Transcriber::Resource
     attr_accessor :values
 
     def initialize(name, options = {})
+      super
       @serializer = options.fetch(:type, Serialization::String)
       @values     = options[:values]
     end

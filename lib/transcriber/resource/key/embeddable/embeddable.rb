@@ -9,6 +9,7 @@ class Transcriber::Resource
     attr_accessor :many
 
     def initialize(name, options = {})
+      super
       @name = name
       @many = options.fetch(:many, false)
     end

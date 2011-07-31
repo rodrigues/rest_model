@@ -22,6 +22,14 @@ module Transcriber
       @keys ||= []
     end
 
+    def self.convert_input_keys
+      @convert_input_keys || Key::Converter::DefaultHandler
+    end
+
+    def self.convert_input_keys=(&block)
+      @convert_input_keys = block
+    end
+
     def self.resources(entries)
       {entries: entries.map(&:resource)}
     end

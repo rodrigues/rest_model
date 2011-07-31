@@ -21,12 +21,12 @@ module Transcriber
       @keys ||= []
     end
 
-    def resource
-      self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource(self)}
-    end
-
     def self.resources(entries)
       {entries: entries.map(&:resource)}
+    end
+
+    def resource
+      self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource(self)}
     end
   end
 end

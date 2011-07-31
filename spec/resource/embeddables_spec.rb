@@ -58,7 +58,7 @@ describe Transcriber::Resource::Embeddables do
           end
         end
 
-        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
+        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Entry
       end
 
       it "uses relation name if class_name option not defined" do
@@ -164,7 +164,7 @@ describe Transcriber::Resource::Embeddables do
           end
         end
 
-        RelationsExample::Root.keys.first.class_name.should == 'RelationsExample::Item'
+        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
       end
 
       it "uses relation name if class_name option not defined" do
@@ -178,7 +178,7 @@ describe Transcriber::Resource::Embeddables do
           end
         end
 
-        RelationsExample::Root.keys.first.class_name.should == 'Item'
+        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
       end
     end
 

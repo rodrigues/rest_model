@@ -17,10 +17,14 @@ class Transcriber::Resource
 
     def parse_one(item)
       params = keys.inject({}) do |buffer, key|
-        value = key.digg_to_key(item)
+        value = digg(item, key)
         buffer.merge key.name => key.parse(value)
       end
       self.new(params)
+    end
+
+    def digg(item, key)
+      key.input_path.inject(item) {|buffer, key| buffer = buffer[key]}
     end
   end
 end

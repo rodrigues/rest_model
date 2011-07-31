@@ -10,9 +10,5 @@ class Transcriber::Resource::Key
                         convert_input_keys.call(path)
                       end
     end
-
-    def digg_to_key(item)
-      input_path.inject(item) {|buffer, key| buffer = buffer[key]}
-    end
   end
 end

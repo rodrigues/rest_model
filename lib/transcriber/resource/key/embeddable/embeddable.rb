@@ -20,14 +20,5 @@ class Transcriber::Resource
     def many?
       @many
     end
-
-    def default_class_name
-      puts "one?: #{one?}, name: #{name}, name.to_s.singularize: #{name.to_s.singularize}"
-      one? ? name : name.to_s.singularize
-    end
-
-    def resource_class
-      @class_name.constantize
-    end
   end
 end

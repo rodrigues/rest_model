@@ -5,12 +5,12 @@ module Transcriber
     autoload :Property,      'transcriber/resource/properties/property'
     autoload :Embeddables,   'transcriber/resource/embeddables'
     autoload :Embeddable,    'transcriber/resource/embeddables/embeddable'
-    autoload :Parsing,       'transcriber/resource/parsing'
+    autoload :Parser,        'transcriber/resource/parser'
     autoload :Responses,     'transcriber/resource/responses'
 
     extend  Properties
     extend  Embeddables
-    extend  Parsing
+    extend  Parser
     include Serialization
 
     def initialize(attrs = {})

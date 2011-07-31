@@ -1,5 +1,5 @@
 class Transcriber::Resource
-  module Parsing
+  module Parser
     def parse(input, options = {})
       entries(input, options).collect {|item| parse_one(item)}
     end

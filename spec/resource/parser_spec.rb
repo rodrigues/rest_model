@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Parsing do
+describe Transcriber::Resource::Parser do
   class Example < Transcriber::Resource
   end
 

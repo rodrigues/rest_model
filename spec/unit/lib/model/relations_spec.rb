@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Hashttp::Resource::Relations do
+describe Transcriber::Resource::Relations do
   module RelationsExample
-    class Item < Hashttp::Resource
+    class Item < Transcriber::Resource
     end
 
-    class Root < Hashttp::Resource
+    class Root < Transcriber::Resource
     end
   end
 
@@ -17,11 +17,11 @@ describe Hashttp::Resource::Relations do
   describe ".embeds_one" do
     it "creates a relation" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_one :item
         end
       end
@@ -31,11 +31,11 @@ describe Hashttp::Resource::Relations do
 
     it "defines an attr_accessor with relation name" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_one :item
         end
       end
@@ -49,11 +49,11 @@ describe Hashttp::Resource::Relations do
     context "configures class name" do
       it "uses class_name option if defined" do
         module RelationsExample
-          class Item < Hashttp::Resource
+          class Item < Transcriber::Resource
             property :id
           end
 
-          class Root < Hashttp::Resource
+          class Root < Transcriber::Resource
             embeds_one :item, class_name: 'relations_example/item'
           end
         end
@@ -63,11 +63,11 @@ describe Hashttp::Resource::Relations do
 
       it "uses relation name if class_name option not defined" do
         module RelationsExample
-          class Item < Hashttp::Resource
+          class Item < Transcriber::Resource
             property :id
           end
 
-          class Root < Hashttp::Resource
+          class Root < Transcriber::Resource
             embeds_one :item
           end
         end
@@ -78,11 +78,11 @@ describe Hashttp::Resource::Relations do
 
     it "configures relation start key if defined" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_one :item, start_key: :item_sap
         end
       end
@@ -92,11 +92,11 @@ describe Hashttp::Resource::Relations do
 
     it "sets relation.one to true and relation.many to false" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_one :item
         end
       end
@@ -107,11 +107,11 @@ describe Hashttp::Resource::Relations do
 
     it "sets extra options if defined" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_one :item, restricted: 'admin'
         end
       end
@@ -123,11 +123,11 @@ describe Hashttp::Resource::Relations do
   describe ".embeds_many" do
     it "creates a relation" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_many :item
         end
       end
@@ -137,11 +137,11 @@ describe Hashttp::Resource::Relations do
 
     it "defines an attr_accessor with relation name" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_many :item
         end
       end
@@ -155,11 +155,11 @@ describe Hashttp::Resource::Relations do
     context "configures class name" do
       it "uses class_name option if defined" do
         module RelationsExample
-          class Item < Hashttp::Resource
+          class Item < Transcriber::Resource
             property :id
           end
 
-          class Root < Hashttp::Resource
+          class Root < Transcriber::Resource
             embeds_many :item, class_name: 'relations_example/item'
           end
         end
@@ -169,11 +169,11 @@ describe Hashttp::Resource::Relations do
 
       it "uses relation name if class_name option not defined" do
         module RelationsExample
-          class Item < Hashttp::Resource
+          class Item < Transcriber::Resource
             property :id
           end
 
-          class Root < Hashttp::Resource
+          class Root < Transcriber::Resource
             embeds_many :item
           end
         end
@@ -184,11 +184,11 @@ describe Hashttp::Resource::Relations do
 
     it "configures relation start key if defined" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_many :item, start_key: :item_sap
         end
       end
@@ -198,11 +198,11 @@ describe Hashttp::Resource::Relations do
 
     it "sets relation.one to false and relation.many to true" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_many :item
         end
       end
@@ -213,11 +213,11 @@ describe Hashttp::Resource::Relations do
 
     it "sets extra options if defined" do
       module RelationsExample
-        class Item < Hashttp::Resource
+        class Item < Transcriber::Resource
           property :id
         end
 
-        class Root < Hashttp::Resource
+        class Root < Transcriber::Resource
           embeds_many :item, restricted: 'admin'
         end
       end

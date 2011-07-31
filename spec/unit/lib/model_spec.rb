@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Hashttp::Resource do
+describe Transcriber::Resource do
 
 end

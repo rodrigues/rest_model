@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Hashttp::Resource::Resources do
+describe Transcriber::Resource::Resources do
 
-  class ExampleResources < Hashttp::Resource
+  class ExampleResources < Transcriber::Resource
     property :login
     property :name
     property :age, type: Float

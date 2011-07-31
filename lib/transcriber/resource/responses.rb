@@ -1,4 +1,4 @@
-module Hashttp
+module Transcriber
   class Resource
     module Responses
       def respond_with(model, options = {})

@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "reshttp/version"
+require "transcriber/version"
 
 Gem::Specification.new do |s|
-  s.name        = ""
-  s.version     = RestServer::VERSION
+  s.name        = "Transcriber"
+  s.version     = Transcriber::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Victor Rodrigues",           "William Yokoi"]
-  s.email       = ["victorcrodrigues@gmail.com", "thekina@gmail.com"]
-  s.homepage    = "http://github.com/rodrigues/reshttp"
+  s.authors     = ["Victor Rodrigues",              "William Yokoi"]
+  s.email       = ["victorcrodrigues@gmail.com",    "thekina@gmail.com"]
+  s.homepage    = "http://github.com/rodrigues/transcriber"
   s.summary     = %q{}
-  s.description = %q{TODO: Write a gem description}
+  s.description = %q{}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

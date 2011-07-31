@@ -1,0 +1,3 @@
+module Transcriber
+
+end

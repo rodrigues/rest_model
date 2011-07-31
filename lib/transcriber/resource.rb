@@ -1,12 +1,13 @@
 module Transcriber
   class Resource
-    autoload :Serialization, 'transcriber/resource/serialization'
-    autoload :Properties,    'transcriber/resource/properties'
-    autoload :Property,      'transcriber/resource/property/property'
-    autoload :Embeddables,   'transcriber/resource/embeddables'
-    autoload :Embeddable,    'transcriber/resource/embeddable/embeddable'
     autoload :Parser,        'transcriber/resource/parser'
     autoload :Responses,     'transcriber/resource/responses'
+    autoload :Serialization, 'transcriber/resource/serialization'
+    autoload :Key,           'transcriber/resource/key'
+    autoload :Properties,    'transcriber/resource/key/properties'
+    autoload :Property,      'transcriber/resource/key/property/property'
+    autoload :Embeddables,   'transcriber/resource/key/embeddables'
+    autoload :Embeddable,    'transcriber/resource/key/embeddable/embeddable'
 
     extend  Properties
     extend  Embeddables

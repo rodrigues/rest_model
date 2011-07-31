@@ -1,7 +1,7 @@
 class Transcriber::Resource
   class Embeddable < Key
-    autoload :Parser,   'transcriber/resource/embeddable/parser'
-    autoload :Resource, 'transcriber/resource/embeddable/resource'
+    autoload :Parser,   'transcriber/resource/key/embeddable/parser'
+    autoload :Resource, 'transcriber/resource/key/embeddable/resource'
     include   Parser
     include   Resource
 

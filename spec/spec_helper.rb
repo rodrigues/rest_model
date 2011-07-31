@@ -1,1 +1,3 @@
+$:.push '../lib'
+
 require 'transcriber'

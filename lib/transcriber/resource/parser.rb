@@ -7,7 +7,7 @@ class Transcriber::Resource
     private
 
     def entries(entries, options)
-      if start_key = options.fetch(:start_key)
+      if start_key = options[:start_key]
         start_key = start_key.to_s.split('/')
         entries = entries[convert_input_keys(start_key)]
       end
@@ -17,7 +17,7 @@ class Transcriber::Resource
 
     def parse_one(item)
       params = keys.inject({}) do |buffer, key|
-        value = digg_to_key(item)
+        value = key.digg_to_key(item)
         buffer.merge key.name => key.parse(value)
       end
       self.new(params)

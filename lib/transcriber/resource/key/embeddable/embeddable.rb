@@ -9,8 +9,8 @@ class Transcriber::Resource
 
     def initialize(name, options = {})
       super
-      @many           = options.fetch(:many, false)
       @class_name     = options.fetch(:class_name, default_class_name).to_s.camelize
+      @many           = options.fetch(:many, false)
     end
 
     def one?

@@ -22,7 +22,7 @@ module Transcriber
     end
 
     def resource
-      self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource}
+      self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource(self)}
     end
 
     def self.resources(entries)

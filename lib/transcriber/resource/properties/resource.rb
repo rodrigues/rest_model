@@ -1,7 +1,7 @@
 class Transcriber::Resource::Property
   module Resource
-    def to_resource
-      {name => __send__(name)}
+    def to_resource(resource)
+      {name => resource.__send__(name)}
     end
   end
 end

@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "transcriber/version"
 
 Gem::Specification.new do |s|
-  s.name        = "Transcriber"
+  s.name        = "transcriber"
   s.version     = Transcriber::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Victor Rodrigues",              "William Yokoi"]

@@ -3,7 +3,6 @@ class Transcriber::Resource::Key
     def input_path(options = self.options)
       @input_path ||= case path = options.slice(:start_key, :field)
                       when {} then
-                        puts "name: #{name}"
                         convert_input_keys.call([name])
                       when Hash then
                         convert_input_keys.call(path.values.first.to_s.split('/'))

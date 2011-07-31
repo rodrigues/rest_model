@@ -2,7 +2,7 @@ class Transcriber::Resource::Key
   module Converter
     extend ActiveSupport::Concern
 
-    DefaultHandler = lambda {|keys| puts "keys: #{keys}"; keys.map(&:to_s)}
+    DefaultHandler = lambda {|keys| keys.map(&:to_s)}
 
     attr_writer   :convert_input_keys
 

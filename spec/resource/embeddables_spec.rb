@@ -49,16 +49,16 @@ describe Transcriber::Resource::Embeddables do
     context "configures class name" do
       it "uses class_name option if defined" do
         module RelationsExample
-          class Item < Transcriber::Resource
+          class Entry < Transcriber::Resource
             property :id
           end
 
           class Root < Transcriber::Resource
-            embeds_one :item, class_name: 'relations_example/item'
+            embeds_one :item, class_name: 'relations_example/entry'
           end
         end
 
-        RelationsExample::Root.keys.first.class_name.should == 'RelationsExample::Item'
+        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
       end
 
       it "uses relation name if class_name option not defined" do
@@ -72,7 +72,7 @@ describe Transcriber::Resource::Embeddables do
           end
         end
 
-        RelationsExample::Root.keys.first.class_name.should == 'Item'
+        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
       end
     end
 
@@ -87,7 +87,7 @@ describe Transcriber::Resource::Embeddables do
         end
       end
 
-      RelationsExample::Root.keys.first.start_key.should == :item_sap
+      RelationsExample::Root.keys.first.input_path.should == ['item_sap']
     end
 
     it "relation.one? => true and relation.many? => false" do
@@ -193,7 +193,7 @@ describe Transcriber::Resource::Embeddables do
         end
       end
 
-      RelationsExample::Root.keys.first.start_key.should == :item_sap
+      RelationsExample::Root.keys.first.input_path.should == ['item_sap']
     end
 
     it "relation.one? => false and relation.many? => true" do

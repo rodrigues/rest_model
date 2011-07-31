@@ -5,13 +5,12 @@ class Transcriber::Resource
     include   Parser
     include   Resource
 
-    attr_accessor :name
-    attr_accessor :many
+    attr_reader :many
 
     def initialize(name, options = {})
       super
-      @name = name
-      @many = options.fetch(:many, false)
+      @many           = options.fetch(:many, false)
+      @class_name     = options.fetch(:class_name, name).to_s.camelize
     end
 
     def one?
@@ -20,6 +19,10 @@ class Transcriber::Resource
 
     def many?
       @many
+    end
+
+    def resource_class
+      @class_name.constantize
     end
   end
 end

@@ -1,10 +1,12 @@
 module Transcriber
   class Resource
-    autoload :Serialization, 'lib/transcriber/resource/serialization'
-    autoload :Properties,    'lib/transcriber/resource/properties'
-    autoload :Embeddables,   'lib/transcriber/resource/embeddables'
-    autoload :Parsing,       'lib/transcriber/resource/parsing'
-    autoload :Responses,     'lib/transcriber/resource/responses'
+    autoload :Serialization, 'transcriber/resource/serialization'
+    autoload :Properties,    'transcriber/resource/properties'
+    autoload :Property,      'transcriber/resource/properties/property'
+    autoload :Embeddables,   'transcriber/resource/embeddables'
+    autoload :Embeddable,    'transcriber/resource/embeddables/embeddable'
+    autoload :Parsing,       'transcriber/resource/parsing'
+    autoload :Responses,     'transcriber/resource/responses'
 
     extend  Properties
     extend  Embeddables
@@ -15,12 +17,12 @@ module Transcriber
       attrs.map {|name, value| send("#{name}=", value)}
     end
 
-    def keys
+    def self.keys
       @keys ||= []
     end
 
     def resource
-      keys.inject({}) {|buffer, key| buffer.merge key.to_resource}
+      self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource}
     end
 
     def self.resources(entries)

@@ -4,7 +4,7 @@ describe Transcriber::Resource::Parsing do
   class Example < Transcriber::Resource
   end
 
-  before { Example.properties.clear }
+  before { Example.keys.clear }
 
   describe '.parse' do
     it 'parses simple properties' do

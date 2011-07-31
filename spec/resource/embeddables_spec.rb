@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Relations do
+describe Transcriber::Resource::Embeddables do
   module RelationsExample
     class Item < Transcriber::Resource
     end
@@ -10,8 +10,8 @@ describe Transcriber::Resource::Relations do
   end
 
   before do
-    RelationsExample::Root.relations.clear
-    RelationsExample::Item.relations.clear
+    RelationsExample::Root.keys.clear
+    RelationsExample::Item.keys.clear
   end
 
   describe ".embeds_one" do
@@ -26,7 +26,7 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.name.should == :item
+      RelationsExample::Root.keys.first.name.should == :item
     end
 
     it "defines an attr_accessor with relation name" do
@@ -58,7 +58,7 @@ describe Transcriber::Resource::Relations do
           end
         end
 
-        RelationsExample::Root.relations.first.class_name.should == 'RelationsExample::Item'
+        RelationsExample::Root.keys.first.class_name.should == 'RelationsExample::Item'
       end
 
       it "uses relation name if class_name option not defined" do
@@ -72,7 +72,7 @@ describe Transcriber::Resource::Relations do
           end
         end
 
-        RelationsExample::Root.relations.first.class_name.should == 'Item'
+        RelationsExample::Root.keys.first.class_name.should == 'Item'
       end
     end
 
@@ -87,7 +87,7 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.start_key.should == :item_sap
+      RelationsExample::Root.keys.first.start_key.should == :item_sap
     end
 
     it "sets relation.one to true and relation.many to false" do
@@ -101,8 +101,8 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.one.should be_true
-      RelationsExample::Root.relations.first.many.should be_false
+      RelationsExample::Root.keys.first.one.should be_true
+      RelationsExample::Root.keys.first.many.should be_false
     end
 
     it "sets extra options if defined" do
@@ -116,7 +116,7 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.options[:restricted].should == 'admin'
+      RelationsExample::Root.keys.first.options[:restricted].should == 'admin'
     end
   end
 
@@ -132,7 +132,7 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.name.should == :item
+      RelationsExample::Root.keys.first.name.should == :item
     end
 
     it "defines an attr_accessor with relation name" do
@@ -164,7 +164,7 @@ describe Transcriber::Resource::Relations do
           end
         end
 
-        RelationsExample::Root.relations.first.class_name.should == 'RelationsExample::Item'
+        RelationsExample::Root.keys.first.class_name.should == 'RelationsExample::Item'
       end
 
       it "uses relation name if class_name option not defined" do
@@ -178,7 +178,7 @@ describe Transcriber::Resource::Relations do
           end
         end
 
-        RelationsExample::Root.relations.first.class_name.should == 'Item'
+        RelationsExample::Root.keys.first.class_name.should == 'Item'
       end
     end
 
@@ -193,7 +193,7 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.start_key.should == :item_sap
+      RelationsExample::Root.keys.first.start_key.should == :item_sap
     end
 
     it "sets relation.one to false and relation.many to true" do
@@ -207,8 +207,8 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.one.should be_false
-      RelationsExample::Root.relations.first.many.should be_true
+      RelationsExample::Root.keys.first.one.should be_false
+      RelationsExample::Root.keys.first.many.should be_true
     end
 
     it "sets extra options if defined" do
@@ -222,7 +222,7 @@ describe Transcriber::Resource::Relations do
         end
       end
 
-      RelationsExample::Root.relations.first.options[:restricted].should == 'admin'
+      RelationsExample::Root.keys.first.options[:restricted].should == 'admin'
     end
   end
 end

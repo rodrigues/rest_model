@@ -1,7 +1,9 @@
 class Transcriber::Resource
   class Embeddable
-    autoload :Parser, 'transcriber/resource/embeddables/parser'
+    autoload :Parser,   'transcriber/resource/embeddables/parser'
+    autoload :Resource, 'transcriber/resource/embeddables/resource'
     include   Parser
+    include   Resource
 
     attr_accessor :name
     attr_accessor :class_name

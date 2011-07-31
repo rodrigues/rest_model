@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Properties do
-  class Example
-    extend Transcriber::Resource::Properties
+  class Example < Transcriber::Resource
   end
 
-  before { Example.properties.clear }
+  before { Example.keys.clear }
 
   describe ".property" do
     it "creates a property" do
@@ -13,7 +12,7 @@ describe Transcriber::Resource::Properties do
         property :login
       end
 
-      Example.properties.first.name.should == :login
+      Example.keys.first.name.should == :login
     end
 
     it "defines an attr_accessor with property name" do
@@ -32,7 +31,7 @@ describe Transcriber::Resource::Properties do
         property :login
       end
 
-      Example.properties.first.serializer.should == Transcriber::Resource::Serialization::String
+      Example.keys.first.serializer.should == Transcriber::Resource::Serialization::String
     end
 
     it "configures a default field" do
@@ -40,7 +39,7 @@ describe Transcriber::Resource::Properties do
         property :login
       end
 
-      Example.properties.first.field.should == "LOGIN"
+      Example.keys.first.field.should == "LOGIN"
     end
 
     it "sets property type if defined" do
@@ -48,7 +47,7 @@ describe Transcriber::Resource::Properties do
         property :login, type: Transcriber::Resource::Serialization::Date
       end
 
-      Example.properties.first.serializer.should == Transcriber::Resource::Serialization::Date
+      Example.keys.first.serializer.should == Transcriber::Resource::Serialization::Date
     end
 
     it "sets property values if defined" do
@@ -56,7 +55,7 @@ describe Transcriber::Resource::Properties do
         property :login, values: {a: '1', b: '2'}
       end
 
-      Example.properties.first.values.should == {a: '1', b: '2'}
+      Example.keys.first.values.should == {a: '1', b: '2'}
     end
 
     it "sets extra options if defined" do
@@ -64,7 +63,7 @@ describe Transcriber::Resource::Properties do
         property :login, restricted: 'admin'
       end
 
-      Example.properties.first.options[:restricted].should == 'admin'
+      Example.keys.first.options[:restricted].should == 'admin'
     end
   end
 end

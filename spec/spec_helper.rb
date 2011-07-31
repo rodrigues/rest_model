@@ -1,3 +1,1 @@
-$LOAD_PATH.push '.'
-
-require 'lib/transcriber'
+require 'transcriber'

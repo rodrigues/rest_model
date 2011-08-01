@@ -1,200 +1,36 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Embeddables do
-  module RelationsExample
-    class Item < Transcriber::Resource
-    end
-
-    class Root < Transcriber::Resource
-    end
-  end
-
-  before do
-    RelationsExample::Root.keys.clear
-    RelationsExample::Item.keys.clear
+  class Invoice < Transcriber::Resource
+    embeds_one  :contract,      some_option: 'what'
+    embeds_many :invoice_items, some_option: 'what'
   end
 
   describe ".embeds_one" do
-    it "creates a relation" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_one :item
-        end
-      end
-
-      RelationsExample::Root.keys.first.name.should == :item
-    end
-
-    it "defines an attr_accessor with relation name" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_one :item
-        end
-      end
-
-      RelationsExample::Root.new.tap do |r|
-        r.item = RelationsExample::Item.new(id: 2)
-        r.item.id.should == 2
+    it "defines an attr_accessor with embeddable name" do
+      Invoice.new.tap do |i|
+        i.contract = 1
+        i.contract.should == 1
       end
     end
 
-    context "configures class name" do
-      it "uses class_name option if defined" do
-        module RelationsExample
-          class Entry < Transcriber::Resource
-            property :id
-          end
-
-          class Root < Transcriber::Resource
-            embeds_one :item, class_name: 'relations_example/entry'
-          end
-        end
-
-        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Entry
-      end
-    end
-
-    it "configures relation start key if defined" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_one :item, start_key: :item_sap
-        end
-      end
-
-      RelationsExample::Root.keys.first.input_path.should == ['item_sap']
-    end
-
-    it "relation.one? => true and relation.many? => false" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_one :item
-        end
-      end
-
-      RelationsExample::Root.keys.first.should be_one
-      RelationsExample::Root.keys.first.should_not be_many
-    end
-
-    it "sets extra options if defined" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_one :item, restricted: 'admin'
-        end
-      end
-
-      RelationsExample::Root.keys.first.options[:restricted].should == 'admin'
+    it "puts a new embeddable in keys list" do
+      Invoice.keys[0].name.should == :contract
+      Invoice.keys[0].options.should == {some_option: 'what', many: false}
     end
   end
 
   describe ".embeds_many" do
-    it "creates a relation" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_many :item
-        end
-      end
-
-      RelationsExample::Root.keys.first.name.should == :item
-    end
-
-    it "defines an attr_accessor with relation name" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_many :item
-        end
-      end
-
-      RelationsExample::Root.new.tap do |r|
-        r.item = RelationsExample::Item.new(id: 2)
-        r.item.id.should == 2
+    it "defines an attr_accessor with embeddable name" do
+      Invoice.new.tap do |i|
+        i.invoice_items = []
+        i.invoice_items.should == []
       end
     end
 
-    context "configures class name" do
-      it "uses class_name option if defined" do
-        module RelationsExample
-          class Item < Transcriber::Resource
-            property :id
-          end
-
-          class Root < Transcriber::Resource
-            embeds_many :item, class_name: 'relations_example/item'
-          end
-        end
-
-        RelationsExample::Root.keys.first.resource_class.should == RelationsExample::Item
-      end
-    end
-
-    it "configures relation start key if defined" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_many :item, start_key: :item_sap
-        end
-      end
-
-      RelationsExample::Root.keys.first.input_path.should == ['item_sap']
-    end
-
-    it "relation.one? => false and relation.many? => true" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_many :item
-        end
-      end
-
-      RelationsExample::Root.keys.first.should_not be_one
-      RelationsExample::Root.keys.first.should be_many
-    end
-
-    it "sets extra options if defined" do
-      module RelationsExample
-        class Item < Transcriber::Resource
-          property :id
-        end
-
-        class Root < Transcriber::Resource
-          embeds_many :item, restricted: 'admin'
-        end
-      end
-
-      RelationsExample::Root.keys.first.options[:restricted].should == 'admin'
+    it "puts a new embeddable in keys list" do
+      Invoice.keys[1].name.should == :invoice_items
+      Invoice.keys[1].options.should == {some_option: 'what', many: true}
     end
   end
 end

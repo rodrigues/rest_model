@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'resource/converter_spec'
 
 describe Transcriber::Resource do
   class ExampleResources < Transcriber::Resource
@@ -13,5 +14,4 @@ describe Transcriber::Resource do
       example.resource.should ==    {login: 'jackiechan2010', name: 'Jackie Chan', age: 45}
     end
   end
-
 end

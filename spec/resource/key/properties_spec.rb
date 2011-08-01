@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Properties do
-
   class Receipt < Transcriber::Resource
     property :document_number, some_option: 'abab'
   end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Property::Parser do
-
   subject {Transcriber::Resource::Property.new(:login)}
 
   let(:value)           {"jackiechan2010"}
@@ -29,5 +28,4 @@ describe Transcriber::Resource::Property::Parser do
       subject.parse(value).should == :unpaid
     end
   end
-
 end

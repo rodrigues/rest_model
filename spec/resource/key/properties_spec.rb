@@ -1,6 +1,85 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Properties do
+  shared_examples_for "a property" do
+    it "defines an attr_accessor with property name" do
+      Example.new.tap do |example|
+        example.respond_to?("#{field}").should be_true
+        example.respond_to?("#{field}=").should be_true
+      end
+    end
+
+    it "puts a new property in keys list" do
+      Example.keys.find {|key| key.name == field}.name.should == field
+    end
+
+    it "supports option definition" do
+      Example.keys.find {|key| key.name == field}.options.should == options
+    end
+  end
+
+  describe ".id" do
+    context "when it's just 'id'" do
+      before do
+        class Example < Transcriber::Resource
+          id
+        end
+      end
+
+      let(:field)   {:id}
+      let(:options) {{id: true}}
+      it_behaves_like "a property"
+    end
+
+    context "when it has a different name" do
+      before do
+        class Example < Transcriber::Resource
+          id :different_name
+        end
+      end
+
+      let(:field)   {:different_name}
+      let(:options) {{id: true}}
+      it_behaves_like "a property"
+    end
+
+    context "when it has options" do
+      before do
+        class Example < Transcriber::Resource
+          id some_option: 'some option value'
+        end
+      end
+
+      let(:field)   {:id}
+      let(:options) {{some_option: 'some option value', id: true}}
+      it_behaves_like "a property"
+    end
+
+    context "when it has both different name and options" do
+      before do
+        class Example < Transcriber::Resource
+          id :different_name, some_option: 'some option value'
+        end
+      end
+
+      let(:field)   {:different_name}
+      let(:options) {{some_option: 'some option value', id: true}}
+      it_behaves_like "a property"
+    end
+
+    context "when it defines somehow the option id: false" do
+      before do
+        class Example < Transcriber::Resource
+          id id: false
+        end
+      end
+
+      let(:field)   {:id}
+      let(:options) {{id: true}}
+      it_behaves_like "a property"
+    end
+  end
+
   describe ".property" do
     before do
       class Example < Transcriber::Resource
@@ -8,17 +87,9 @@ describe Transcriber::Resource::Properties do
       end
     end
 
-    it "defines an attr_accessor with property name" do
-      Example.new.tap do |example|
-        example.respond_to?("document_number").should be_true
-        example.respond_to?("document_number=").should be_true
-      end
-    end
-
-    it "puts a new property in keys list" do
-      Example.keys.first.name.should == :document_number
-      Example.keys.first.options.should == {some_option: 'this is an option'}
-    end
+    let(:field)   {:document_number}
+    let(:options) {{some_option: 'this is an option'}}
+    it_behaves_like "a property"
   end
 
   describe ".properties" do
@@ -29,19 +100,19 @@ describe Transcriber::Resource::Properties do
       end
     end
 
-    it "defines an attr_accessor for each given name" do
-      Example.new.tap do |example|
-        example.respond_to?("id").should be_true
-        example.respond_to?("id=").should be_true
-        example.respond_to?("description").should be_true
-        example.respond_to?("description=").should be_true
+    [:id, :description].each do |item|
+      context "for #{item}" do
+        let(:field)   {item}
+        let(:options) {{}}
+        it_behaves_like "a property"
       end
     end
 
-    it "supports option definition" do
-      Example.keys.find_all{ |item| [:price, :quantity].include?(item.name) }.each do |key|
-        key.options[:firstoption].should == 'this is the first option'
-        key.options[:secondoption].should == 'this is the second option'
+    [:price, :quantity].each do |item|
+      context "for #{item}" do
+        let(:field)   {item}
+        let(:options) {{firstoption: 'this is the first option', secondoption: 'this is the second option'}}
+        it_behaves_like "a property"
       end
     end
   end

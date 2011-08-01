@@ -1,13 +1,13 @@
 class Transcriber::Resource::Key
   module InputPath
-    def input_path(options = self.options)
-      path = custom_path(options)
+    def input_path
+      path = custom_path
       @input_path ||= convert_input_keys.call keys_for_path(path)
     end
 
     private
 
-    def custom_path(options)
+    def custom_path
       options.slice(:start_key, :field)
     end
 

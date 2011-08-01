@@ -1,17 +1,17 @@
 class Transcriber::Resource
   module Parser
     def parse(input, options = {})
-      entries(input, options).collect {|item| parse_one(item)}
+      prepare_entries(input, options).collect &method(:parse_one)
     end
 
     private
 
-    def entries(entries, options)
+    def prepare_entries(input, options)
       if start_key = options[:start_key]
         start_key = start_key.to_s.split('/')
-        entries = entries[convert_input_keys(start_key)]
+        input = input[convert_input_keys(start_key)]
       end
-      Array.wrap(entries)
+      Array.wrap(input)
     end
 
     def parse_one(item)

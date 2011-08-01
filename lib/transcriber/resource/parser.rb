@@ -11,8 +11,7 @@ class Transcriber::Resource
         start_key = start_key.to_s.split('/')
         entries = entries[convert_input_keys(start_key)]
       end
-      entries = [entries] if entries.kind_of?(Hash)
-      entries
+      Array.wrap(entries)
     end
 
     def parse_one(item)

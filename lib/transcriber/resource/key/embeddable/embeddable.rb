@@ -9,16 +9,24 @@ class Transcriber::Resource
 
     def initialize(name, options = {})
       super
-      @class_name     = options.fetch(:class_name, default_class_name).to_s.camelize
-      @many           = options.fetch(:many, false)
+      @many       = options.fetch(:many, false)
+      @class_name = options.fetch(:class_name, default_class_name).to_s.camelize
     end
 
     def one?
-      !@many
+      !many?
     end
 
     def many?
       @many
+    end
+
+    def default_class_name
+      one? ? name : name.to_s.singularize
+    end
+
+    def resource_class
+      @class_name.constantize
     end
   end
 end

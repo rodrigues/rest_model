@@ -1,7 +1,7 @@
 $:.push 'lib'; require 'transcriber'
 
 Transcriber::Resource.convert_input_keys = lambda do |keys|
-  keys.map { |key| key.to_s.upcase }
+  keys.map {|key| key.to_s.upcase}
 end
 
 class Customer < Transcriber::Resource

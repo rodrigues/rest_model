@@ -1,8 +1,7 @@
 class Transcriber::Resource::Key
   module InputPath
     def input_path
-      path = custom_path
-      @input_path ||= convert_input_keys.call keys_for_path(path)
+      @input_path ||= convert_input_keys.call keys_for_path(custom_path)
     end
 
     private

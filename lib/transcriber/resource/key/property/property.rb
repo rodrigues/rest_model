@@ -11,7 +11,7 @@ class Transcriber::Resource
     def initialize(name, options = {})
       super
       @serializer   = options.fetch(:type, Serialization::String)
-      @translations = options[:values].invert if options[:values]
+      @translations = options[:values].try(:invert)
     end
   end
 end

@@ -1,5 +1,4 @@
 require 'date'
-require 'active_support/concern'
 require 'active_support/inflector'
 require 'active_support/core_ext/array/wrap'
 require 'active_support/core_ext/hash/slice'

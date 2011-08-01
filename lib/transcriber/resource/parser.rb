@@ -7,23 +7,21 @@ class Transcriber::Resource
     private
 
     def prepare_entries(input, options)
-      if start_key = options[:start_key]
-        start_key = start_key.to_s.split('/')
-        input = input[convert_input_keys(start_key)]
-      end
-      Array.wrap(input)
+      path = options[:start_key]
+      path = path ? path.to_s.split('/') : []
+      Array.wrap(digg(input, path))
     end
 
     def parse_one(item)
       params = keys.inject({}) do |buffer, key|
-        value = digg(item, key)
+        value = digg(item, key.input_path)
         buffer.merge key.name => key.parse(value)
       end
       self.new(params)
     end
 
-    def digg(item, key)
-      key.input_path.inject(item) {|buffer, key| buffer = buffer[key]}
+    def digg(input, path)
+      path.inject(input) {|buffer, key| buffer = buffer[key]}
     end
   end
 end

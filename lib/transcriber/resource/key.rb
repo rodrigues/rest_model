@@ -12,5 +12,9 @@ class Transcriber::Resource
       @name    = name
       @options = options
     end
+
+    def present?(resource)
+      resource.instance_eval &options.fetch(:when, proc{true})
+    end
   end
 end

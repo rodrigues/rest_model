@@ -1,7 +1,7 @@
 class Transcriber::Resource
   module Parser
     def parse(input, options = {})
-      prepare_entries(input, options).collect &method(:parse_one)
+      prepare_entries(input, options).collect &method(:parse_item)
     end
 
     private
@@ -12,12 +12,13 @@ class Transcriber::Resource
       Array.wrap digg(input, path)
     end
 
-    def parse_one(item)
-      params = keys.inject({}) do |buffer, key|
+    def parse_item(item)
+      resource = self.new
+      keys.each do |key|
         value = digg(item, key.input_path)
-        buffer.merge key.name => key.parse(value)
+        resource.__send__("#{key.name}=", key.parse(value)) if key.present?(resource)
       end
-      self.new(params)
+      resource
     end
 
     def digg(input, path)

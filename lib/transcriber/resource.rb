@@ -30,10 +30,6 @@ module Transcriber
       @convert_input_keys = converter
     end
 
-    def self.resources(entries)
-      {entries: entries.map(&:resource)}
-    end
-
     def resource
       self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource(self)}
     end

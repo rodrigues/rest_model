@@ -1,13 +1,34 @@
 class Transcriber::Resource
   module Serialization
     class Boolean
-      MAPPINGS = {true  => [true,  "true",  "TRUE",  "1", 1, 1.0, "x", "X", "t", "T"],
-                  false => [false, "false", "FALSE", "0", 0, 0.0,  "", " ", "f", "F", nil]}
+      MAPPINGS  = {
+        true    => true,
+        "true"  => true,
+        "TRUE"  => true,
+        "1"     => true,
+        1       => true,
+        1.0     => true,
+        "x"     => true,
+        "X"     => true,
+        "t"     => true,
+        "T"     => true,
+        false   => false,
+        "false" => false,
+        "FALSE" => false,
+        "0"     => false,
+        0       => false,
+        0.0     => false,
+        ""      => false,
+        " "     => false,
+        "f"     => false,
+        "F"     => false,
+        nil     => false
+      }.freeze
 
       def self.serialize(value)
-        return true  if MAPPINGS[true].include?(value)
-        return false if MAPPINGS[false].include?(value)
-        raise "value not serializable: #{{value: value, mappings: MAPPINGS}}"
+        MAPPINGS[value].tap do |bool|
+          raise "value not serializable: #{value}, mappings: #{MAPPINGS}" if bool.nil?
+        end
       end
     end
   end

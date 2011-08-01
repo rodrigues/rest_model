@@ -32,7 +32,7 @@ describe Transcriber::Resource::Property do
       end
 
       it "configures values" do
-        subject.values.should == values
+        subject.translations.should == values.invert
       end
     end
   end

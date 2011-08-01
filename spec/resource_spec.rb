@@ -14,14 +14,4 @@ describe Transcriber::Resource do
     end
   end
 
-  describe '.resources' do
-    it "returns a hash with entries" do
-      entries = [ExampleResources.new(login: 'jackiechan2010', name: 'Jackie Chan', age: 45),
-                 ExampleResources.new(login: 'brucelee',       name: 'Bruce Lee',   age: 10)]
-
-      resources = ExampleResources.resources(entries)
-      resources.should == {entries: [{login: 'jackiechan2010', name: 'Jackie Chan', age: 45},
-                                     {login: 'brucelee',       name: 'Bruce Lee',   age: 10}]}
-    end
-  end
 end

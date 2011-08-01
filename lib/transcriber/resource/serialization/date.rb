@@ -3,8 +3,8 @@ class Transcriber::Resource
     class Date
       def self.serialize(value)
         ::Date.parse value
-      rescue
-        raise "value not serializable: #{{value: value}}"
+      rescue ArgumentError
+        raise "value not serializable: #{value}"
       end
     end
   end

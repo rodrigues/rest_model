@@ -3,8 +3,8 @@ class Transcriber::Resource
     class Float
       def self.serialize(value)
         Float(value)
-      rescue
-        raise "value not serializable: #{{value: value}}"
+      rescue ArgumentError
+        raise "value not serializable: #{value}"
       end
     end
   end

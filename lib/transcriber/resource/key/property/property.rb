@@ -6,12 +6,12 @@ class Transcriber::Resource
     include   Resource
 
     attr_accessor :serializer
-    attr_accessor :values
+    attr_accessor :translations
 
     def initialize(name, options = {})
       super
-      @serializer = options.fetch(:type, Serialization::String)
-      @values     = options[:values]
+      @serializer   = options.fetch(:type, Serialization::String)
+      @translations = options[:values].invert if options[:values]
     end
   end
 end

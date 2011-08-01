@@ -9,7 +9,7 @@ class Transcriber::Resource
     def prepare_entries(input, options)
       path = options[:start_key]
       path = path ? path.to_s.split('/') : []
-      Array.wrap(digg(input, path))
+      Array.wrap digg(input, path)
     end
 
     def parse_one(item)

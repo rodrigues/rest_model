@@ -1,7 +1,8 @@
 module Transcriber
   class Resource
+    autoload :Converter,     'transcriber/resource/converter'
     autoload :Parser,        'transcriber/resource/parser'
-    autoload :Responses,     'transcriber/resource/responses'
+    autoload :Response,      'transcriber/resource/response'
     autoload :Serialization, 'transcriber/resource/serialization'
     autoload :Key,           'transcriber/resource/key'
     autoload :Properties,    'transcriber/resource/key/properties'
@@ -9,6 +10,7 @@ module Transcriber
     autoload :Embeddables,   'transcriber/resource/key/embeddables'
     autoload :Embeddable,    'transcriber/resource/key/embeddable/embeddable'
 
+    extend  Converter
     extend  Properties
     extend  Embeddables
     extend  Parser
@@ -20,14 +22,6 @@ module Transcriber
 
     def self.keys
       @keys ||= []
-    end
-
-    def self.convert_input_keys
-      @convert_input_keys || Key::Converter::DefaultHandler
-    end
-
-    def self.convert_input_keys=(converter)
-      @convert_input_keys = converter
     end
 
     def resource

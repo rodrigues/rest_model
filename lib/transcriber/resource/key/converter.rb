@@ -5,7 +5,7 @@ class Transcriber::Resource::Key
     attr_writer :convert_input_keys
 
     def convert_input_keys
-      options[:convert_input_keys] or Transcriber::Resource.convert_input_keys
+      options.fetch(:convert_input_keys, Transcriber::Resource.convert_input_keys)
     end
   end
 end

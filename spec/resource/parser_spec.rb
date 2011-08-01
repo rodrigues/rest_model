@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Parser do
-  class Example < Transcriber::Resource
-  end
-
-  before { Example.keys.clear }
 
   describe '.parse' do
     it 'parses simple properties' do

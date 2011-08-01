@@ -1,50 +1,52 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Embeddables do
-  class Invoice < Transcriber::Resource
-    embeds_one  :contract,      some_option: 'contract options'
-    embeds_many :invoice_items, some_option: 'invoice options'
+  before do
+    class Example < Transcriber::Resource
+      embeds_one  :contract,      some_option: 'contract options'
+      embeds_many :invoice_items, some_option: 'invoice options'
+    end
   end
 
   describe ".embeds_one" do
     it "defines an attr_accessor with embeddable name" do
-      Invoice.new.tap do |invoice|
-        invoice.respond_to?("contract").should be_true
-        invoice.respond_to?("contract=").should be_true
+      Example.new.tap do |i|
+        i.respond_to?("contract").should be_true
+        i.respond_to?("contract=").should be_true
       end
     end
 
     it "puts a new embeddable in keys list" do
-      Invoice.keys.find { |key| key.name == :contract }.should_not be_nil
+      Example.keys[0].name.should == :contract
     end
-    
+
     it "supports option definition" do
-      Invoice.keys.find { |key| key.name == :contract }.options[:some_option].should == 'contract options'
+      Example.keys[0].options.should == {some_option: 'contract options', many: false}
     end
-    
+
     it "really embeds one" do
-      Invoice.keys.find { |key| key.name == :contract }.options[:many].should be_false
+      Example.keys[0].options[:many].should be_false
     end
   end
 
   describe ".embeds_many" do
     it "defines an attr_accessor with embeddable name" do
-      Invoice.new.tap do |i|
-        i.invoice_items = []
-        i.invoice_items.should == []
+      Example.new.tap do |example|
+        example.respond_to?("invoice_items").should be_true
+        example.respond_to?("invoice_items=").should be_true
       end
     end
 
     it "puts a new embeddable in keys list" do
-      Invoice.keys.find { |key| key.name == :invoice_items }.should_not be_nil
+      Example.keys[1].name.should == :invoice_items
     end
-    
-    it "supports option definiton" do
-      Invoice.keys.find { |key| key.name == :invoice_items }.options[:some_option].should == 'invoice options'
+
+    it "supports option definition" do
+      Example.keys[1].options.should == {some_option: 'invoice options', many: true}
     end
-    
+
     it "really embeds many" do
-      Invoice.keys.find { |key| key.name == :invoice_items }.options[:many].should be_true
+      Example.keys[1].options[:many].should be_true
     end
   end
 end

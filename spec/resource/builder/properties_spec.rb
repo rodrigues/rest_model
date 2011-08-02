@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Properties do
+describe Transcriber::Resource::Builder::Properties do
   shared_examples_for "a property" do
     it "defines an attr_accessor with property name" do
       Example.new.tap do |example|

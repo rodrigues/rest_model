@@ -5,14 +5,13 @@ module Transcriber
     autoload :Response,      'transcriber/resource/response'
     autoload :Serialization, 'transcriber/resource/serialization'
     autoload :Key,           'transcriber/resource/key'
-    autoload :Properties,    'transcriber/resource/key/properties'
-    autoload :Property,      'transcriber/resource/key/property/property'
-    autoload :Embeddables,   'transcriber/resource/key/embeddables'
-    autoload :Embeddable,    'transcriber/resource/key/embeddable/embeddable'
+    autoload :Property,      'transcriber/resource/key/property'
+    autoload :Embeddable,    'transcriber/resource/key/embeddable'
+    autoload :Association,   'transcriber/resource/key/association'
+    autoload :Builder,       'transcriber/resource/builder'
 
     extend  Converter
-    extend  Properties
-    extend  Embeddables
+    extend  Builder
     extend  Parser
     include Serialization
 

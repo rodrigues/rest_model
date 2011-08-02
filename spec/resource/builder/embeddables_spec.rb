@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Embeddables do
+describe Transcriber::Resource::Builder::Embeddables do
   before do
     class Example < Transcriber::Resource
       embeds_one  :contract,      some_option: 'contract options'

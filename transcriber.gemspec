@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "transcriber"
   s.version     = Transcriber::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Victor Rodrigues",              "William Yokoi"]
-  s.email       = ["victorcrodrigues@gmail.com",    "thekina@gmail.com"]
+  s.authors     = ["Victor Rodrigues",              "William Yokoi",     "Guilherme Guimarães Filho"]
+  s.email       = ["victorcrodrigues@gmail.com",    "thekina@gmail.com", "guilherme.filho@locaweb.com.br"]
   s.homepage    = "http://github.com/rodrigues/transcriber"
   s.summary     = %q{}
   s.description = %q{}

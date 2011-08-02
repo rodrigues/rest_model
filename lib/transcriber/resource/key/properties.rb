@@ -1,8 +1,7 @@
 class Transcriber::Resource
   module Properties
     def id(*values)
-      options = {}
-      options = values.pop if values.last.kind_of? Hash
+      options = options(values)
       name = values.fetch(0, :id)
       property(name, options.merge(id: true))
     end
@@ -10,16 +9,20 @@ class Transcriber::Resource
     def property(name, options = {})
       attr_accessor name
       Property.new(name, options).tap do |property|
-        keys << property
-        id = property if options[:id]
+        self.keys  << property
+        self.id_key = property if options[:id]
       end
     end
 
     def properties(*names)
-      options = {}
-      options = names.pop if names.last.kind_of? Hash
-      names.each {|name| property(name, options)}
+      options = options(names)
+      names.each {|name| property(name,options)}
     end
 
+    private
+
+    def options(values)
+      values.last.kind_of?(Hash) ? values.pop : {}
+    end
   end
 end

@@ -16,6 +16,8 @@ module Transcriber
     extend  Parser
     include Serialization
 
+    cattr_accessor :id_key
+
     def initialize(attrs = {})
       attrs.map {|name, value| send("#{name}=", value)}
     end

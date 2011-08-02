@@ -18,6 +18,12 @@ describe Transcriber::Resource::Properties do
     end
   end
 
+  shared_examples_for "a key" do
+    it "is referenced as the resource id" do
+      Example.id_key.name.should == field
+    end
+  end
+
   describe ".id" do
     context "when it's just 'id'" do
       before do
@@ -28,7 +34,9 @@ describe Transcriber::Resource::Properties do
 
       let(:field)   {:id}
       let(:options) {{id: true}}
+
       it_behaves_like "a property"
+      it_behaves_like "a key"
     end
 
     context "when it has a different name" do
@@ -40,7 +48,9 @@ describe Transcriber::Resource::Properties do
 
       let(:field)   {:different_name}
       let(:options) {{id: true}}
+
       it_behaves_like "a property"
+      it_behaves_like "a key"
     end
 
     context "when it has options" do
@@ -52,7 +62,9 @@ describe Transcriber::Resource::Properties do
 
       let(:field)   {:id}
       let(:options) {{some_option: 'some option value', id: true}}
+
       it_behaves_like "a property"
+      it_behaves_like "a key"
     end
 
     context "when it has both different name and options" do
@@ -64,7 +76,9 @@ describe Transcriber::Resource::Properties do
 
       let(:field)   {:different_name}
       let(:options) {{some_option: 'some option value', id: true}}
+
       it_behaves_like "a property"
+      it_behaves_like "a key"
     end
 
     context "when it defines somehow the option id: false" do
@@ -76,20 +90,39 @@ describe Transcriber::Resource::Properties do
 
       let(:field)   {:id}
       let(:options) {{id: true}}
+
       it_behaves_like "a property"
+      it_behaves_like "a key"
     end
   end
 
   describe ".property" do
-    before do
-      class Example < Transcriber::Resource
-        property :document_number, some_option: 'this is an option'
+    context "when it is a normal property" do
+      before do
+        class Example < Transcriber::Resource
+          property :document_number, some_option: 'this is an option'
+        end
       end
+
+      let(:field)   {:document_number}
+      let(:options) {{some_option: 'this is an option'}}
+
+      it_behaves_like "a property"
     end
 
-    let(:field)   {:document_number}
-    let(:options) {{some_option: 'this is an option'}}
-    it_behaves_like "a property"
+    context "when it has the option :id set to true" do
+      before do
+        class Example < Transcriber::Resource
+          property :document_number, id: true
+        end
+      end
+
+      let(:field)   {:document_number}
+      let(:options) {{id: true}}
+
+      it_behaves_like "a property"
+      it_behaves_like "a key"
+    end
   end
 
   describe ".properties" do
@@ -104,6 +137,7 @@ describe Transcriber::Resource::Properties do
       context "for #{item}" do
         let(:field)   {item}
         let(:options) {{}}
+
         it_behaves_like "a property"
       end
     end
@@ -112,6 +146,7 @@ describe Transcriber::Resource::Properties do
       context "for #{item}" do
         let(:field)   {item}
         let(:options) {{firstoption: 'this is the first option', secondoption: 'this is the second option'}}
+
         it_behaves_like "a property"
       end
     end

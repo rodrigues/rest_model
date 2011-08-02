@@ -11,7 +11,7 @@ describe Transcriber::Resource::Builder::Associations do
 
     let(:field)   {:item}
     let(:many)    {false}
-    let(:options) {{some_option: 'option', many: many}}
+    let(:options) {{some_option: 'option', many: many, has: true}}
 
     it_behaves_like "a relation"
   end
@@ -25,7 +25,21 @@ describe Transcriber::Resource::Builder::Associations do
 
     let(:field)   {:items}
     let(:many)    {true}
-    let(:options) {{some_option: 'option', many: many}}
+    let(:options) {{some_option: 'option', many: many, has: true}}
+
+    it_behaves_like "a relation"
+  end
+
+  describe ".belongs_to" do
+    before do
+      class Example < Transcriber::Resource
+        belongs_to :item, some_option: 'option'
+      end
+    end
+
+    let(:field)   {:item}
+    let(:many)    {false}
+    let(:options) {{some_option: 'option', many: many, has: false}}
 
     it_behaves_like "a relation"
   end

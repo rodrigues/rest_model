@@ -1,61 +1,55 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Embeddable::Resource do
-  class Developer < Transcriber::Resource
-    property :language
+  before do
+    class ExampleChild < Transcriber::Resource
+      property :id
+    end
+
+    class Example < Transcriber::Resource
+      embeds_one  :example_child
+      embeds_many :example_children
+    end
   end
 
-  class Service < Transcriber::Resource
-    property :id
-  end
-
-  class Customer < Transcriber::Resource
-    embeds_one :developer
-    embeds_many :services
-  end
-
-  shared_examples_for "embeddable" do
+  shared_examples_for "an embeddable" do
     it "returns a pair with property name and value" do
-      subject.to_resource(customer).should == result
+      subject.to_resource(example).should == result
     end
 
     context "when this key shouldn't be present on resource" do
       it "returns an empty hash" do
         subject.should_receive(:present?).and_return false
-        subject.to_resource(customer).should == {}
+        subject.to_resource(example).should == {}
       end
     end
   end
 
   context "when embeds one" do
-    subject {Transcriber::Resource::Embeddable.new(:developer, many: false)}
+    subject {Example.keys[0]}
 
-    let :customer do
-      Customer.new.tap do |c|
-        developer = Developer.new
-        developer.language = "smalltalk"
-        c.developer = developer
+    let :example do
+      Example.new.tap do |example|
+        example.example_child = ExampleChild.new(id: "200")
       end
     end
 
-    let(:result) {{developer: {language: "smalltalk"}}}
+    let(:result) {{example_child: {id: "200"}}}
 
-    it_behaves_like "embeddable"
+    it_behaves_like "an embeddable"
   end
 
   context "when embeds many" do
-    subject {Transcriber::Resource::Embeddable.new(:services, many: true)}
+    subject {Example.keys[1]}
 
-    let :customer do
-      Customer.new.tap do |c|
-        service = Service.new
-        service.id = 1000
-        c.services = [service]
+    let :example do
+      Example.new.tap do |example|
+        example.example_children = [ExampleChild.new(id: "300")]
       end
     end
 
-    let(:result) {{services: [{id: 1000}]}}
+    let(:result) {{example_children: [{id: "300"}]}}
 
-    it_behaves_like "embeddable"
+    it_behaves_like "an embeddable"
   end
 end

@@ -1,23 +1,7 @@
 require 'spec_helper'
+require 'resource/builder/shared_example_for_relations'
 
 describe Transcriber::Resource::Builder::Associations do
-  shared_examples_for "an association" do
-    it "defines an attr_accessor with association name" do
-      Example.new.tap do |example|
-        example.respond_to?("#{field}").should be_true
-        example.respond_to?("#{field}=").should be_true
-      end
-    end
-
-    it "puts a new association in keys list" do
-      Example.keys.find {|key| key.name == field}.name.should == field
-    end
-
-    it "supports option definition" do
-      Example.keys.find {|key| key.name == field}.options.should == options
-    end
-  end
-
   describe ".has_one" do
     before do
       class Example < Transcriber::Resource
@@ -26,12 +10,23 @@ describe Transcriber::Resource::Builder::Associations do
     end
 
     let(:field)   {:item}
-    let(:options) {{some_option: 'option'}}
+    let(:many)    {false}
+    let(:options) {{some_option: 'option', many: many}}
 
-    it_behaves_like "an association"
+    it_behaves_like "a relation"
+  end
 
-    it "really has one" do
-
+  describe ".has_many" do
+    before do
+      class Example < Transcriber::Resource
+        has_many :items, some_option: 'option'
+      end
     end
+
+    let(:field)   {:items}
+    let(:many)    {true}
+    let(:options) {{some_option: 'option', many: many}}
+
+    it_behaves_like "a relation"
   end
 end

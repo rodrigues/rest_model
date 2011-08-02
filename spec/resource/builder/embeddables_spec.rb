@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'resource/builder/shared_example_for_relations'
 
 describe Transcriber::Resource::Builder::Embeddables do
   before do
@@ -9,44 +10,18 @@ describe Transcriber::Resource::Builder::Embeddables do
   end
 
   describe ".embeds_one" do
-    it "defines an attr_accessor with embeddable name" do
-      Example.new.tap do |i|
-        i.respond_to?("contract").should be_true
-        i.respond_to?("contract=").should be_true
-      end
-    end
+    let(:field)   {:contract}
+    let(:many)    {false}
+    let(:options) {{some_option: 'contract options', many: many}}
 
-    it "puts a new embeddable in keys list" do
-      Example.keys[0].name.should == :contract
-    end
-
-    it "supports option definition" do
-      Example.keys[0].options.should == {some_option: 'contract options', many: false}
-    end
-
-    it "really embeds one" do
-      Example.keys[0].options[:many].should be_false
-    end
+    it_behaves_like "a relation"
   end
 
   describe ".embeds_many" do
-    it "defines an attr_accessor with embeddable name" do
-      Example.new.tap do |example|
-        example.respond_to?("invoice_items").should be_true
-        example.respond_to?("invoice_items=").should be_true
-      end
-    end
+    let(:field)   {:invoice_items}
+    let(:many)    {true}
+    let(:options) {{some_option: 'invoice options', many: many}}
 
-    it "puts a new embeddable in keys list" do
-      Example.keys[1].name.should == :invoice_items
-    end
-
-    it "supports option definition" do
-      Example.keys[1].options.should == {some_option: 'invoice options', many: true}
-    end
-
-    it "really embeds many" do
-      Example.keys[1].options[:many].should be_true
-    end
+    it_behaves_like "a relation"
   end
 end

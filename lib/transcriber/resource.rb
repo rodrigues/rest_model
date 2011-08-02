@@ -6,6 +6,7 @@ module Transcriber
     autoload :Serialization, 'transcriber/resource/serialization'
     autoload :Key,           'transcriber/resource/key'
     autoload :Property,      'transcriber/resource/key/property'
+    autoload :Relation,      'transcriber/resource/key/relation'
     autoload :Embeddable,    'transcriber/resource/key/embeddable'
     autoload :Association,   'transcriber/resource/key/association'
     autoload :Builder,       'transcriber/resource/builder'

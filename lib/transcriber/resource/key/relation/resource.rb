@@ -3,7 +3,7 @@ class Transcriber::Resource
     module Resource
       def to_resource(parent)
         included = parent.__send__(name)
-        return {} if !present?(parent) or !included
+        return {} unless present?(parent) and included
         {name => resource_from_included(included)}
       end
 

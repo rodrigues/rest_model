@@ -14,7 +14,8 @@ class Transcriber::Resource
     end
 
     def present?(resource)
-      resource.instance_eval &options.fetch(:when, proc {true})
+      return true unless options[:when]
+      resource.instance_eval &options[:when]
     end
   end
 end

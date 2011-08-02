@@ -1,8 +1,12 @@
 $:.push 'lib'; require 'transcriber'
 
-Transcriber::Resource.convert_input_keys = lambda do |keys|
-  keys.map {|key| key.to_s.upcase}
+module Upcasing
+  def self.call(keys)
+    keys.map {|key| key.to_s.upcase}
+  end
 end
+
+Transcriber::Resource.convert_input_keys = Upcasing
 
 class Customer < Transcriber::Resource
   property :login

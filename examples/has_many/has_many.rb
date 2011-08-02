@@ -1,15 +1,18 @@
 $:.push 'lib'; require 'transcriber'
 
 class Service < Transcriber::Resource
-  property :login
+  property :name
+  belongs_to :customer
 end
 
 class Billing < Transcriber::Resource
   property :login
+  belongs_to :customer
 end
 
 class Developer < Transcriber::Resource
   property :login
+  belongs_to :customer
 end
 
 class Customer < Transcriber::Resource

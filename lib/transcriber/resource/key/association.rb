@@ -15,5 +15,9 @@ class Transcriber::Resource
     def belongs?
       !has?
     end
+
+    def parse(value)
+      nil
+    end
   end
 end

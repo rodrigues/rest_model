@@ -14,6 +14,10 @@ describe Transcriber::Resource::Builder::Associations do
     let(:options) {{some_option: 'option', many: many, has: true}}
 
     it_behaves_like "a relation"
+
+    it "puts a new association in association list" do
+      Example.associations.find {|associoation| associoation.name == field}.name.should == field
+    end
   end
 
   describe ".has_many" do
@@ -28,6 +32,10 @@ describe Transcriber::Resource::Builder::Associations do
     let(:options) {{some_option: 'option', many: many, has: true}}
 
     it_behaves_like "a relation"
+
+    it "puts a new association in association list" do
+      Example.associations.find {|associoation| associoation.name == field}.name.should == field
+    end
   end
 
   describe ".belongs_to" do

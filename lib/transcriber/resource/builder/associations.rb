@@ -3,7 +3,10 @@ class Transcriber::Resource
     module Associations
       def association(name, options)
         attr_accessor name
-        keys << Association.new(name, options)
+        Association.new(name, options).tap do |association|
+          keys << association
+          associations << association
+        end
       end
 
       def has_one(name, options = {})

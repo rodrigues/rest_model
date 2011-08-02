@@ -6,7 +6,7 @@ end
 
 class Root < Transcriber::Resource
   property :id
-  embeds_many :items, when: proc {id == "10"}
+  embeds_many :items, if: proc {id == "10"}
 end
 
 root = Root.parse({"id" => 10, "items" => [{"id" => 2000}]}).first

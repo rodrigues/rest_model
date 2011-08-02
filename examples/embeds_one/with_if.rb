@@ -2,7 +2,7 @@ $:.push 'lib'; require 'transcriber'
 
 class Root < Transcriber::Resource
   property :id
-  embeds_one :item, when: proc {id == "1"}
+  embeds_one :item, if: proc {id == "1"}
 end
 
 class Item < Transcriber::Resource

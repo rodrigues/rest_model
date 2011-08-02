@@ -27,7 +27,7 @@ class Transcriber::Resource
 
       def self.serialize(value)
         MAPPINGS[value].tap do |bool|
-          raise "value not serializable: #{value}" if bool.nil?
+          fail "value not serializable: #{value}" if bool.nil?
         end
       end
     end

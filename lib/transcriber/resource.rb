@@ -20,8 +20,12 @@ module Transcriber
     cattr_writer :resource_name
 
     def self.attr_accessor(*args)
-      raise "#{args[0]} is not allowed." if ["resource_id","resource", "links"].include? args[0].to_s
+      fail "#{args[0]} is not allowed." if not_allowed_names.include?(args[0].to_s)
       super
+    end
+
+    def self.not_allowed_names
+      ["resource_id", "resource", "links"]
     end
 
     def initialize(attrs = {})
@@ -36,12 +40,12 @@ module Transcriber
       @keys ||= []
     end
 
-    def resource_id
-      __send__(id_key.name)
-    end
-
     def self.resource_name
       @resource_name || to_s.demodulize.downcase.pluralize
+    end
+
+    def resource_id
+      __send__(id_key.name)
     end
 
     def resource

@@ -32,25 +32,26 @@ module Transcriber
       attrs.map {|name, value| send("#{name}=", value)}
     end
 
-    def self.relations
-      @relations ||= []
-    end
-
     def self.keys
       @keys ||= []
     end
 
-    def self.resource_name
-      @resource_name || to_s.demodulize.downcase.pluralize
+    def self.relations
+      @keys.find_all {|k| k.kind_of?(Relation)}
+    end
+
+    def self.resource_name(custom_name = nil)
+      @resource_name ||= custom_name or to_s.demodulize.tableize
     end
 
     def resource_id
       __send__(id_key.name)
     end
 
-    def resource
+    def resource(options = {})
+      root = options.fetch(:root, true)
       resource = self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource(self)}
-      resource.merge!({links: links}) if self.class.relations.any?
+      resource.merge!({links: links}) if root and self.class.relations.any?
       resource
     end
 

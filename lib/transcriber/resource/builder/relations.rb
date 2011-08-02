@@ -5,7 +5,6 @@ class Transcriber::Resource
         attr_accessor name
         Relation.new(name, options).tap do |relation|
           keys << relation
-          relations << relation
         end
       end
 

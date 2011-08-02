@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Property::Resource do
+describe Transcriber::Resource::Response::Property do
   class Customer
     attr_accessor :login
   end

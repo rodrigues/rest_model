@@ -1,23 +1,12 @@
 module Transcriber
   class Resource
-    autoload :Converter,     'transcriber/resource/converter'
-    autoload :Parser,        'transcriber/resource/parser'
-    autoload :Response,      'transcriber/resource/response'
-    autoload :Serialization, 'transcriber/resource/serialization'
-    autoload :Key,           'transcriber/resource/key'
-    autoload :Property,      'transcriber/resource/key/property'
-    autoload :Association,   'transcriber/resource/key/association'
-    autoload :Relation,      'transcriber/resource/key/relation'
-    autoload :Embeddable,    'transcriber/resource/key/embeddable'
-    autoload :Builder,       'transcriber/resource/builder'
-
     extend  Converter
     extend  Builder
     extend  Parser
     include Serialization
 
     cattr_accessor :id_key
-    cattr_writer :resource_name
+    cattr_writer   :resource_name
 
     def self.attr_accessor(*args)
       fail "#{args[0]} is not allowed." if not_allowed_names.include?(args[0].to_s)

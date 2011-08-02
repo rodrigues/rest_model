@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Embeddable::Parser do
+describe Transcriber::Resource::Parser::Embeddable do
   context "when it embeds one" do
     before do
       class ExampleChild < Transcriber::Resource

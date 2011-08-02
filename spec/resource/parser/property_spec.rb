@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Property::Parser do
+describe Transcriber::Resource::Parser::Property do
   subject {Transcriber::Resource::Property.new(:login)}
 
   let(:value)           {"jackiechan2010"}

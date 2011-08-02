@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Relation::Resource do
+describe Transcriber::Resource::Response do
   shared_examples_for "a relation" do
     context "#to_relation" do
       it "returns a pair with property name and value" do

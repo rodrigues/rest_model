@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Embeddable::Resource do
+describe Transcriber::Resource::Response::Embeddable do
   before do
     class ExampleChild < Transcriber::Resource
       property :id

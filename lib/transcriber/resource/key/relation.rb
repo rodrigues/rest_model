@@ -1,23 +1,24 @@
-class Transcriber::Resource
-  class Relation < Association
-    autoload :Resource, 'transcriber/resource/key/relation/resource'
-    include   Resource
+module Transcriber
+  class Resource
+    class Relation < Association
+      include Response::Relation
 
-    def initialize(name, options = {})
-      super
-      @has = options.fetch(:has, false)
-    end
+      def initialize(name, options = {})
+        super
+        @has = options.fetch(:has, false)
+      end
 
-    def has?
-      @has
-    end
+      def has?
+        @has
+      end
 
-    def belongs?
-      !has?
-    end
+      def belongs?
+        !has?
+      end
 
-    def parse(value)
-      nil
+      def parse(value)
+        nil
+      end
     end
   end
 end

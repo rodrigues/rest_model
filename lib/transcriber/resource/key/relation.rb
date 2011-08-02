@@ -1,27 +1,23 @@
 class Transcriber::Resource
-  class Relation < Key
-    attr_reader :many
+  class Relation < Association
+    autoload :Resource, 'transcriber/resource/key/relation/resource'
+    include   Resource
 
     def initialize(name, options = {})
       super
-      @many       = options.fetch(:many, false)
-      @class_name = options.fetch(:class_name, default_class_name).to_s.camelize
+      @has = options.fetch(:has, false)
     end
 
-    def one?
-      !many?
+    def has?
+      @has
     end
 
-    def many?
-      @many
+    def belongs?
+      !has?
     end
 
-    def default_class_name
-      one? ? name : name.to_s.singularize
-    end
-
-    def resource_class
-      @class_name.constantize
+    def parse(value)
+      nil
     end
   end
 end

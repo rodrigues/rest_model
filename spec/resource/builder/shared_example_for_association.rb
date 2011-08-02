@@ -1,4 +1,4 @@
-shared_examples_for "a relation" do
+shared_examples_for "an association" do
   it "defines an attr_accessor with association name" do
     Example.new.tap do |example|
       example.respond_to?("#{field}").should be_true

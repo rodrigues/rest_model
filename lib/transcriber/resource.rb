@@ -6,9 +6,9 @@ module Transcriber
     autoload :Serialization, 'transcriber/resource/serialization'
     autoload :Key,           'transcriber/resource/key'
     autoload :Property,      'transcriber/resource/key/property'
+    autoload :Association,   'transcriber/resource/key/association'
     autoload :Relation,      'transcriber/resource/key/relation'
     autoload :Embeddable,    'transcriber/resource/key/embeddable'
-    autoload :Association,   'transcriber/resource/key/association'
     autoload :Builder,       'transcriber/resource/builder'
 
     extend  Converter
@@ -28,9 +28,8 @@ module Transcriber
       attrs.map {|name, value| send("#{name}=", value)}
     end
 
-
-    def self.associations
-      @associations ||= []
+    def self.relations
+      @relations ||= []
     end
 
     def self.keys
@@ -47,11 +46,12 @@ module Transcriber
 
     def resource
       resource = self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource(self)}
-      resource.merge({links: links})
+      resource.merge!({links: links}) if self.class.relations.any?
+      resource
     end
 
     def links
-      self.class.associations.map {|key| key.to_relation(self)}
+      self.class.relations.map {|key| key.to_relation(self)}
     end
   end
 end

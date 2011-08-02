@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'resource/builder/shared_example_for_relations'
+require 'resource/builder/shared_example_for_association'
 
-describe Transcriber::Resource::Builder::Associations do
+describe Transcriber::Resource::Builder::Relations do
   describe ".has_one" do
     before do
       class Example < Transcriber::Resource
@@ -13,10 +13,10 @@ describe Transcriber::Resource::Builder::Associations do
     let(:many)    {false}
     let(:options) {{some_option: 'option', many: many, has: true}}
 
-    it_behaves_like "a relation"
+    it_behaves_like "an association"
 
-    it "puts a new association in association list" do
-      Example.associations.find {|associoation| associoation.name == field}.name.should == field
+    it "puts a new relation in relation list" do
+      Example.relations.find {|relation| relation.name == field}.name.should == field
     end
   end
 
@@ -31,10 +31,10 @@ describe Transcriber::Resource::Builder::Associations do
     let(:many)    {true}
     let(:options) {{some_option: 'option', many: many, has: true}}
 
-    it_behaves_like "a relation"
+    it_behaves_like "an association"
 
-    it "puts a new association in association list" do
-      Example.associations.find {|associoation| associoation.name == field}.name.should == field
+    it "puts a new relation in relation list" do
+      Example.relations.find {|relation| relation.name == field}.name.should == field
     end
   end
 
@@ -49,6 +49,6 @@ describe Transcriber::Resource::Builder::Associations do
     let(:many)    {false}
     let(:options) {{some_option: 'option', many: many, has: false}}
 
-    it_behaves_like "a relation"
+    it_behaves_like "an association"
   end
 end

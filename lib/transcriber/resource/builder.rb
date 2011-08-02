@@ -1,10 +1,10 @@
 class Transcriber::Resource
   module Builder
-    autoload :Associations, 'transcriber/resource/builder/associations'
+    autoload :Relations,    'transcriber/resource/builder/relations'
     autoload :Embeddables,  'transcriber/resource/builder/embeddables'
     autoload :Properties,   'transcriber/resource/builder/properties'
 
-    include Associations
+    include Relations
     include Embeddables
     include Properties
   end

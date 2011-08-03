@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Serialization::String do
+describe Resource::Serialization::String do
 
   it "converts value to string" do
     subject.class.serialize(:something).should == "something"

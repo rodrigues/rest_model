@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Serialization::Float do
+describe Resource::Serialization::Float do
   it "converts to float" do
     subject.class.serialize('1200.49').should == 1200.49
   end

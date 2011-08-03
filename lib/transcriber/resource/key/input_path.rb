@@ -13,7 +13,7 @@ module Transcriber
         end
 
         def keys_for_path(path)
-          path.empty? ? [name] : path.values.first.to_s.split('/')
+          path.empty? ? [name] : path.values.first.to_s.split('.')
         end
       end
     end

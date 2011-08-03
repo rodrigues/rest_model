@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Association do
+describe Resource::Association do
   describe "#initialize" do
     context "class_name" do
       context "when class_name option is passed" do
         subject do
-          Transcriber::Resource::Association.new(:login, class_name: :some_class)
+          Resource::Association.new(:login, class_name: :some_class)
         end
 
         it "sets passed class_name" do
@@ -14,7 +14,7 @@ describe Transcriber::Resource::Association do
       end
 
       context "when class_name option is not passed" do
-        subject {Transcriber::Resource::Association.new(:login)}
+        subject {Resource::Association.new(:login)}
 
         it "sets default class_name" do
           subject.instance_variable_get("@class_name").should == "Login"
@@ -25,7 +25,7 @@ describe Transcriber::Resource::Association do
     context "many" do
       context "when many option is passed with true" do
         subject do
-          Transcriber::Resource::Association.new(:login, many: true)
+          Resource::Association.new(:login, many: true)
         end
 
         it "returns false to one?" do
@@ -39,7 +39,7 @@ describe Transcriber::Resource::Association do
 
       context "when many option is passed with false" do
         subject do
-          Transcriber::Resource::Association.new(:login, many: false)
+          Resource::Association.new(:login, many: false)
         end
 
         it "returns true to one?" do
@@ -53,7 +53,7 @@ describe Transcriber::Resource::Association do
 
       context "when many option is not passed" do
         subject do
-          Transcriber::Resource::Association.new(:login)
+          Resource::Association.new(:login)
         end
 
         it "returns true to one?" do

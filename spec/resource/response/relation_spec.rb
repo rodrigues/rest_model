@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Response do
+describe Resource::Response do
   shared_examples_for "a relation" do
     context "#to_relation" do
       it "returns a pair with property name and value" do
@@ -30,12 +30,12 @@ describe Transcriber::Resource::Response do
 
   context "when has one" do
     before do
-      class ExampleChild < Transcriber::Resource
+      class ExampleChild < Resource
         id
         belongs_to :example
       end
 
-      class Example < Transcriber::Resource
+      class Example < Resource
         id
         has_one  :example_child
       end
@@ -51,12 +51,12 @@ describe Transcriber::Resource::Response do
 
   context "when has many" do
     before do
-      class ExampleChild < Transcriber::Resource
+      class ExampleChild < Resource
         property   :id
         belongs_to :example
       end
 
-      class Example < Transcriber::Resource
+      class Example < Resource
         property :id
         has_many :example_children
       end
@@ -72,12 +72,12 @@ describe Transcriber::Resource::Response do
 
   context "when belongs to one" do
     before do
-      class ExampleChild < Transcriber::Resource
+      class ExampleChild < Resource
         property   :id
         belongs_to :example
       end
 
-      class Example < Transcriber::Resource
+      class Example < Resource
         property :id
         has_many :example_children
       end
@@ -95,7 +95,7 @@ describe Transcriber::Resource::Response do
     [:resource_id, :resource].each do |forbidden_name|
       it "raises an exception for #{forbidden_name}" do
         expect {
-          class Example < Transcriber::Resource
+          class Example < Resource
             property forbidden_name
           end
         }.to raise_error

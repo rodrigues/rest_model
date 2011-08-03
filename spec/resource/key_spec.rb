@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Key do
+describe Resource::Key do
   let(:name)    {"key_name"}
   let(:options) {{any_option: "here"}}
 
-  subject {Transcriber::Resource::Property.new(name, options)}
+  subject {Resource::Property.new(name, options)}
 
   describe "#initialize" do
     it "sets key name" do
@@ -19,7 +19,7 @@ describe Transcriber::Resource::Key do
   describe "present?" do
     context "when :if option was defined with a proc" do
       context "and it evaluates to false" do
-        subject {Transcriber::Resource::Property.new(name, {if: proc {false}})}
+        subject {Resource::Property.new(name, {if: proc {false}})}
 
         it "returns false" do
           subject.present?(nil).should be_false
@@ -27,7 +27,7 @@ describe Transcriber::Resource::Key do
       end
 
       context "and it evaluates to true" do
-        subject {Transcriber::Resource::Property.new(name, {if: proc {true}})}
+        subject {Resource::Property.new(name, {if: proc {true}})}
 
         it "returns true" do
           subject.present?(nil).should be_true
@@ -35,7 +35,7 @@ describe Transcriber::Resource::Key do
       end
 
       context "and it depends on resource instance" do
-        subject {Transcriber::Resource::Property.new(name, {if: proc {show}})}
+        subject {Resource::Property.new(name, {if: proc {show}})}
 
         it "uses it" do
           resource = OpenStruct.new

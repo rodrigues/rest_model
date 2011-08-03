@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Response::Embeddable do
+describe Resource::Response::Embeddable do
   before do
-    class ExampleChild < Transcriber::Resource
+    class ExampleChild < Resource
       property :id
     end
 
-    class Example < Transcriber::Resource
+    class Example < Resource
       embeds_one  :example_child
       embeds_many :example_children
     end

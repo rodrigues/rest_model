@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Relation do
+describe Resource::Relation do
   it "is a relation" do
-    Transcriber::Resource::Relation.superclass.should == Transcriber::Resource::Association
+    Resource::Relation.superclass.should == Resource::Association
   end
 
   describe "#has?" do
     context "when it has one resource" do
       subject do
-        Transcriber::Resource::Relation.new(:service, many: false, has: true)
+        Resource::Relation.new(:service, many: false, has: true)
       end
 
       it "returns true" do
@@ -18,7 +18,7 @@ describe Transcriber::Resource::Relation do
 
     context "when it has many resources" do
       subject do
-        Transcriber::Resource::Relation.new(:service, many: true, has: true)
+        Resource::Relation.new(:service, many: true, has: true)
       end
 
       it "returns true" do
@@ -28,7 +28,7 @@ describe Transcriber::Resource::Relation do
 
     context "when it belongs to a resource" do
       subject do
-        Transcriber::Resource::Relation.new(:service, many: false, has: false)
+        Resource::Relation.new(:service, many: false, has: false)
       end
 
       it "returns true" do
@@ -40,7 +40,7 @@ describe Transcriber::Resource::Relation do
   describe "#belongs?" do
     context "when it belongs to a resource" do
       subject do
-        Transcriber::Resource::Relation.new(:service, many: false, has: false)
+        Resource::Relation.new(:service, many: false, has: false)
       end
 
       it "returns true" do
@@ -50,7 +50,7 @@ describe Transcriber::Resource::Relation do
 
     context "when it has one resource" do
       subject do
-        Transcriber::Resource::Relation.new(:service, many: false, has: true)
+        Resource::Relation.new(:service, many: false, has: true)
       end
 
       it "returns true" do
@@ -60,7 +60,7 @@ describe Transcriber::Resource::Relation do
 
     context "when it has many resources" do
       subject do
-        Transcriber::Resource::Relation.new(:service, many: true, has: true)
+        Resource::Relation.new(:service, many: true, has: true)
       end
 
       it "returns true" do

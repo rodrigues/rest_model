@@ -10,3 +10,5 @@ RSpec.configure do |config|
     end
   end
 end
+
+include Transcriber

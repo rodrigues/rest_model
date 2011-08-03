@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Serialization::Date do
+describe Resource::Serialization::Date do
   it "converts to date" do
     subject.class.serialize('2011-07-01').should == Date.new(2011, 07, 01)
   end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Parser::Property do
-  subject {Transcriber::Resource::Property.new(:login)}
+describe Resource::Parser::Property do
+  subject {Resource::Property.new(:login)}
 
   let(:value)           {"jackiechan2010"}
   let(:serializer_mock) {mock :serializer}
@@ -20,7 +20,7 @@ describe Transcriber::Resource::Parser::Property do
 
     subject do
       options = {values: values}
-      Transcriber::Resource::Property.new(:payment_status, options)
+      Resource::Property.new(:payment_status, options)
     end
 
     it "maps value" do

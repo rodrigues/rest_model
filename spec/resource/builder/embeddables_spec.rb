@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'resource/builder/shared_example_for_association'
 
-describe Transcriber::Resource::Builder::Embeddables do
+describe Resource::Builder::Embeddables do
   before do
     class Example < Transcriber::Resource
       embeds_one  :contract,      some_option: 'contract options'

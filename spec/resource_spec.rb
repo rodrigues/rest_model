@@ -1,9 +1,9 @@
 require 'spec_helper'
 require 'resource/converter_spec'
 
-describe Transcriber::Resource do
+describe Resource do
   before do
-    class Example < Transcriber::Resource
+    class Example < Resource
       property :login
       property :name
       property :age, type: Float

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Response::Property do
+describe Resource::Response::Property do
   class Customer
     attr_accessor :login
   end
 
-  subject {Transcriber::Resource::Property.new(:login)}
+  subject {Resource::Property.new(:login)}
 
   it "returns a pair with property name and value" do
     customer = Customer.new.tap {|c| c.login = "jackiechan2010"}

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Embeddable do
+describe Resource::Embeddable do
   it "is a relation" do
-    Transcriber::Resource::Embeddable.superclass.should == Transcriber::Resource::Association
+    Resource::Embeddable.superclass.should == Resource::Association
   end
 end

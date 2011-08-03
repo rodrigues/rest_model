@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Parser do
+describe Resource::Parser do
 
   describe '.parse' do
     it 'parses simple properties' do
-      class Example < Transcriber::Resource
+      class Example < Resource
         property :login
       end
 
@@ -14,7 +14,7 @@ describe Transcriber::Resource::Parser do
     end
 
     it 'uses different field name if defined' do
-      class Example < Transcriber::Resource
+      class Example < Resource
         property :login, field: :customer_login
       end
 
@@ -26,7 +26,7 @@ describe Transcriber::Resource::Parser do
     context "uses type defined" do
       context 'boolean' do
         before do
-          class Example < Transcriber::Resource
+          class Example < Resource
             property :can_merge, type: Boolean
           end
         end
@@ -44,7 +44,7 @@ describe Transcriber::Resource::Parser do
 
       context "date" do
         it "parse" do
-          class Example < Transcriber::Resource
+          class Example < Resource
             property :issue_date, type: Date
           end
 
@@ -55,7 +55,7 @@ describe Transcriber::Resource::Parser do
 
       context "float" do
         it "parse" do
-          class Example < Transcriber::Resource
+          class Example < Resource
             property :amount, type: Float
           end
 
@@ -67,7 +67,7 @@ describe Transcriber::Resource::Parser do
 
     context "maps values if defined" do
       before do
-        class Example < Transcriber::Resource
+        class Example < Resource
           property :status, values: {paid: '01', unpaid: '02'}
         end
       end

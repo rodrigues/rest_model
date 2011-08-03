@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Serialization::Boolean do
+describe Resource::Serialization::Boolean do
 
   [true,  "true",  "TRUE",  "1", 1, 1.0, "x", "X", "t", "T"].each do |true_value|
     context "when value is #{true_value}" do

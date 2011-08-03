@@ -5,19 +5,8 @@ require 'ostruct'
 require 'json'
 require 'stringio'
 
-module OutputHelper
-  extend self
-  def get_output
-    result = StringIO.new
-    begin
-      $stdout = result
-      yield
-    ensure
-      $stdout = STDOUT
-    end
-    result.string
-  end
-end
+require 'support/examples'
+require 'support/out'
 
 RSpec.configure do |config|
   config.before(:each) do
@@ -28,3 +17,5 @@ RSpec.configure do |config|
 end
 
 include Transcriber
+include Output
+include Examples

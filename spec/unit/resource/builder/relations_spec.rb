@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'resource/builder/shared_example_for_association'
+require 'unit/resource/builder/shared_example_for_association'
 
 describe Resource::Builder::Relations do
   describe ".has_one" do

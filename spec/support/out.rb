@@ -1,11 +1,13 @@
 module Output
   def out
     output  = StringIO.new
-    $stdout = output
-    yield
-  ensure
-    $stdout = STDOUT
-    output
+    begin
+      $stdout = output
+      yield
+    ensure
+      $stdout = STDOUT
+    end
+    output.string
   end
 
   def silently

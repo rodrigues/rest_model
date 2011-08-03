@@ -18,8 +18,8 @@ describe Resource do
 
   context "when using not allowed names" do
     [:resource_id, :resource, :links].each do |unallowed|
-      it "removes method #{unallowed}" do
-        output = OutputHelper.get_output do
+      it "warns when method #{unallowed} is redefined" do
+        output = out do
           eval <<-RUBY
             class Example < Resource
               def #{unallowed}
@@ -32,14 +32,13 @@ describe Resource do
 
       %w(property embeds_one embeds_many has_one has_many belongs_to).each do |kind|
         it "removes method #{unallowed} created by #{kind}" do
-          output = OutputHelper.get_output do
+          expect {
             eval <<-RUBY
               class Example < Resource
                 #{kind} :#{unallowed}
               end
             RUBY
-          end
-          output.should =~ /warning: redefining '#{unallowed}' may cause serious problems/
+          }.to raise_error "you can't define a key with name '#{unallowed}'"
         end
       end
     end

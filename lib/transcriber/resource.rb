@@ -38,9 +38,11 @@ module Transcriber
       self.class.relations.map {|key| key.to_relation(self)}
     end
 
-    def self.attr_accessor(*args)
-      fail "#{args[0]} is not allowed." if not_allowed_names.include?(args[0].to_s)
-      super
+
+    def self.method_added(method_name)
+      return unless not_allowed_names.include?(method_name.to_s)
+      remove_method method_name
+      puts "#{method_name} is not allowed. It was removed!"
     end
 
     def self.not_allowed_names

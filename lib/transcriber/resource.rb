@@ -38,7 +38,6 @@ module Transcriber
       self.class.relations.map {|key| key.to_relation(self)}
     end
 
-
     def self.method_added(method_name)
       return unless not_allowed_names.include?(method_name.to_s)
       remove_method method_name

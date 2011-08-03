@@ -19,23 +19,27 @@ describe Resource do
   context "when using not allowed names" do
     [:resource_id, :resource, :links].each do |unallowed|
       it "removes method #{unallowed}" do
-        eval <<-RUBY
-          class Example < Resource
-            def #{unallowed}
+        output = OutputHelper.get_output do
+          eval <<-RUBY
+            class Example < Resource
+              def #{unallowed}
+              end
             end
-          end
-        RUBY
-        Example.instance_method(unallowed).owner.should == Resource
+          RUBY
+        end
+        output.should =~ /^warning: redefining '#{unallowed}' may cause serious problems/
       end
 
       %w(property embeds_one embeds_many has_one has_many belongs_to).each do |kind|
         it "removes method #{unallowed} created by #{kind}" do
-          eval <<-RUBY
-            class Example < Resource
-              #{kind} :#{unallowed}
-            end
-          RUBY
-          Example.instance_method(unallowed).owner.should == Resource
+          output = OutputHelper.get_output do
+            eval <<-RUBY
+              class Example < Resource
+                #{kind} :#{unallowed}
+              end
+            RUBY
+          end
+          output.should =~ /warning: redefining '#{unallowed}' may cause serious problems/
         end
       end
     end

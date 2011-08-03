@@ -40,8 +40,7 @@ module Transcriber
 
     def self.method_added(method_name)
       return unless not_allowed_names.include?(method_name.to_s)
-      remove_method method_name
-      puts "WARNING! #{method_name} is not allowed. It was removed!"
+      puts "warning: redefining '#{method_name}' may cause serious problems"
     end
 
     def self.not_allowed_names

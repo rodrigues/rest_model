@@ -8,15 +8,6 @@ module Transcriber
     cattr_accessor :id_key
     cattr_writer   :resource_name
 
-    def self.attr_accessor(*args)
-      fail "#{args[0]} is not allowed." if not_allowed_names.include?(args[0].to_s)
-      super
-    end
-
-    def self.not_allowed_names
-      ["resource_id", "resource", "links"]
-    end
-
     def initialize(attrs = {})
       attrs.map {|name, value| send("#{name}=", value)}
     end
@@ -46,6 +37,15 @@ module Transcriber
 
     def links
       self.class.relations.map {|key| key.to_relation(self)}
+    end
+
+    def self.attr_accessor(*args)
+      fail "#{args[0]} is not allowed." if not_allowed_names.include?(args[0].to_s)
+      super
+    end
+
+    def self.not_allowed_names
+      ["resource_id", "resource", "links"]
     end
   end
 end

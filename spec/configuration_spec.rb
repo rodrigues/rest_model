@@ -7,7 +7,7 @@ describe Configuration do
 
   context "when no custom input keys converter is set" do
     it "returns default key converter" do
-      default_handler = Resource::Key::Converter::DefaultHandler
+      default_handler = Transcriber::Configuration::DefaultHandler
       Transcriber.configuration.convert_input_keys.should == default_handler
     end
   end

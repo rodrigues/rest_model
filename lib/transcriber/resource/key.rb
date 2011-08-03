@@ -1,8 +1,6 @@
 module Transcriber
   class Resource
     class Key
-      include Converter
-
       attr_accessor :name
       attr_accessor :options
 
@@ -20,6 +18,10 @@ module Transcriber
         return @input_path if @input_path
         path = InputPath.resolve(options, convert_input_keys)
         @input_path = path.empty? ? convert_input_keys.call([name]) : path
+      end
+
+      def convert_input_keys
+        options.fetch(:convert_input_keys, Transcriber.configuration.convert_input_keys)
       end
     end
   end

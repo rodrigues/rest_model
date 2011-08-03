@@ -8,8 +8,7 @@ module Transcriber
       private
 
       def prepare_entries(input, options)
-        path = options[:start_key]
-        path = path ? path.to_s.split('/') : []
+        path = InputPath.resolve(options, convert_input_keys)
         Array.wrap digg(input, path)
       end
 

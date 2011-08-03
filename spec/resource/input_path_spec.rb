@@ -6,7 +6,7 @@ module Upcasing
   end
 end
 
-describe Resource::Key::InputPath do
+describe Resource::InputPath do
   shared_examples_for "an input path" do
     it "brings the correct input path" do
       subject.input_path.should == path

@@ -8,7 +8,7 @@ module Transcriber
       private
 
       def prepare_entries(input, options)
-        path = InputPath.resolve(options, convert_input_keys)
+        path = InputPath.resolve(options, Transcriber.configuration.convert_input_keys)
         Array.wrap digg(input, path)
       end
 

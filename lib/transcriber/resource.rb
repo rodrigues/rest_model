@@ -1,6 +1,5 @@
 module Transcriber
   class Resource
-    extend  Converter
     extend  Builder
     extend  Parser
     include Serialization

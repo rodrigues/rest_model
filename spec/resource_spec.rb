@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'resource/converter_spec'
 
 describe Resource do
   describe '#resource' do

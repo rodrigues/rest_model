@@ -7,7 +7,7 @@ module Transcriber
         attr_writer :convert_input_keys
 
         def convert_input_keys
-          options.fetch(:convert_input_keys, Resource.convert_input_keys)
+          options.fetch(:convert_input_keys, Transcriber.configuration.convert_input_keys)
         end
       end
     end

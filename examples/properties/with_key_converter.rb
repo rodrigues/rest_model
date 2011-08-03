@@ -6,7 +6,9 @@ module Upcasing
   end
 end
 
-Transcriber::Resource.convert_input_keys = Upcasing
+Transcriber.configure do |c|
+  c.convert_input_keys = Upcasing
+end
 
 class Customer < Transcriber::Resource
   property :login

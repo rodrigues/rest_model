@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+module Upcasing
+  def self.call(keys)
+    keys.map {|key| key.to_s.upcase}
+  end
+end
+
 describe Resource::Key::InputPath do
   shared_examples_for "an input path" do
     it "brings the correct input path" do
@@ -15,15 +21,8 @@ describe Resource::Key::InputPath do
     end
 
     context "and there is a custom keys input converter" do
-      let(:options) do
-        {
-          start_key:          'yay.upcase.path',
-          convert_input_keys: proc {|keys| keys.map(&:upcase)}
-        }
-      end
-
-      subject {Resource::Key.new(:name, options)}
-      let(:path) {['YAY', 'UPCASE', 'PATH']}
+      subject {Resource::Key.new(:name, convert_input_keys: Upcasing)}
+      let(:path) {['NAME']}
       it_behaves_like "an input path"
     end
   end
@@ -57,7 +56,7 @@ describe Resource::Key::InputPath do
       let(:options) do
         {
           start_key:          'yay.upcase.path',
-          convert_input_keys: proc {|keys| keys.map(&:upcase)}
+          convert_input_keys: Upcasing
         }
       end
 

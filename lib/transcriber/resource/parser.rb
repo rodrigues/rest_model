@@ -13,12 +13,12 @@ module Transcriber
       end
 
       def parse_item(item)
-        resource = self.new
-        keys.each do |key|
-          value = digg(item, key.input_path)
-          resource.__send__("#{key.name}=", key.parse(value)) if key.present?(resource)
+        self.new.tap do |resource|
+          keys.each do |key|
+            value = digg(item, key.input_path)
+            resource.__send__("#{key.name}=", key.parse(value)) if key.present?(resource)
+          end
         end
-        resource
       end
 
       def digg(input, path)

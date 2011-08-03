@@ -2,7 +2,7 @@ module Transcriber
   class Resource
     module Builder
       module Summarization
-        def summarize(*args = [])
+        def summarizes(*args = [])
           args.each do |name|
             key = keys.find {|key| key.name == name}
             key.summarize = true unless key.nil?

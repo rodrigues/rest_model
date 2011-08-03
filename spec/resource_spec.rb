@@ -18,7 +18,7 @@ describe Resource do
 
   context "when using not allowed names" do
     [:resource_id, :resource, :links].each do |unallowed|
-      it "raises error for method #{unallowed}" do
+      it "removes method #{unallowed}" do
         eval <<-RUBY
           class Example < Resource
             def #{unallowed}
@@ -29,7 +29,7 @@ describe Resource do
       end
 
       %w(property embeds_one embeds_many has_one has_many belongs_to).each do |kind|
-        it "raises error for #{kind} #{unallowed}" do
+        it "removes method #{unallowed} created by #{kind}" do
           eval <<-RUBY
             class Example < Resource
               #{kind} :#{unallowed}

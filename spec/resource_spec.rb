@@ -16,53 +16,28 @@ describe Resource do
     end
   end
 
-  context "when using not allowed names as keys" do
-    it "raises error for 'resource_id'" do
-      expect {
-        class Example < Resource
-          property 'resource_id'
-        end
-      }.to raise_error
-    end
+  context "when using not allowed names" do
+    [:resource_id, :resource, :links].each do |unallowed|
+      it "raises error for method #{unallowed}" do
+        eval <<-RUBY
+          class Example < Resource
+            def #{unallowed}
+            end
+          end
+        RUBY
+        Example.instance_method(unallowed).owner.should == Resource
+      end
 
-    it "raises error for :resource_id" do
-      expect {
-        class Example < Resource
-          property :resource_id
+      %w(property embeds_one embeds_many has_one has_many belongs_to).each do |kind|
+        it "raises error for #{kind} #{unallowed}" do
+          eval <<-RUBY
+            class Example < Resource
+              #{kind} :#{unallowed}
+            end
+          RUBY
+          Example.instance_method(unallowed).owner.should == Resource
         end
-      }.to raise_error
-    end
-
-    it "raises error for 'resource'" do
-      expect {
-        class Example < Resource
-          property 'resource'
-        end
-      }.to raise_error
-    end
-
-    it "raises error for :resource" do
-      expect {
-        class Example < Resource
-          property :resource
-        end
-      }.to raise_error
-    end
-
-    it "raises error for 'links'" do
-      expect {
-        class Example < Resource
-          property 'links'
-        end
-      }.to raise_error
-    end
-
-    it "raises error for :links" do
-      expect {
-        class Example < Resource
-          property :links
-        end
-      }.to raise_error
+      end
     end
   end
 end

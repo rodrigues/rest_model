@@ -2,24 +2,20 @@ module Transcriber
   class Resource
     module Builder
       module Properties
-        def id(*args)
-          options = options(args)
-          name = args.fetch(0, :id)
-          property(name, options.merge(id: true))
-        end
-
         def property(name, options = {})
-          attr_accessor name
-          Property.new(name, options).tap do |property|
-            self.keys  << property
-            self.id_key = property if options[:id]
-          end
+          key Property.new(name, options)
         end
 
         def properties(*args)
           options = options(args)
           names = args
           names.each {|name| property(name, options)}
+        end
+
+        def id(*args)
+          options = options(args)
+          name = args.fetch(0, :id)
+          property(name, options.merge(id: true))
         end
 
         private

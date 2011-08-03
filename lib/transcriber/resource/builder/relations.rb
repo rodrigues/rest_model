@@ -3,10 +3,7 @@ module Transcriber
     module Builder
       module Relations
         def relation(name, options)
-          attr_accessor name
-          Relation.new(name, options).tap do |relation|
-            keys << relation
-          end
+          key Relation.new(name, options)
         end
 
         def has_one(name, options = {})

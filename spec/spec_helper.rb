@@ -2,6 +2,7 @@ $:.push '../lib'
 
 require 'transcriber'
 require 'ostruct'
+require 'json'
 
 RSpec.configure do |config|
   config.before(:each) do

@@ -16,7 +16,7 @@ module Transcriber
       end
 
       def input_path
-        return @input_path unless @input_path.nil?
+        return @input_path if @input_path
         path = InputPath.resolve(options, convert_input_keys)
         @input_path = path.empty? ? convert_input_keys.call([name]) : path
       end

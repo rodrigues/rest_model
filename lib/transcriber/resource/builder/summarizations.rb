@@ -5,7 +5,7 @@ module Transcriber
         def summarizes(*args = [])
           args.each do |name|
             key = keys.find {|key| key.name == name}
-            key.summarize = true unless key.nil?
+            key.summarize = true if key
           end
         end
       end

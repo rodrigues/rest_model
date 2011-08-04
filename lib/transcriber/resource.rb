@@ -29,9 +29,10 @@ module Transcriber
 
     def resource(options = {})
       root = options.fetch(:root, true)
-      resource = self.class.keys.inject({}) {|buffer, key| buffer.merge key.to_resource(self)}
-      resource.merge!({links: links}) if root and self.class.relations.any?
-      resource
+      {}.tap do |resource|
+        self.class.keys.inject(resource) {|buffer, key| buffer.merge!(key.to_resource(self))}
+        resource.merge!({links: links}) if root and self.class.relations.any?
+      end
     end
 
     def links

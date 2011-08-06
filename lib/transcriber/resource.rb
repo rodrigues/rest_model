@@ -2,6 +2,7 @@ module Transcriber
   class Resource
     extend  Builder
     extend  Parser
+    extend  Response
     include Serialization
 
     cattr_accessor :id_key

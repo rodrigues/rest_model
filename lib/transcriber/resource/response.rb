@@ -1,12 +1,10 @@
 module Transcriber
   class Resource
     module Response
-      def respond_with(model, options = {})
-        response = model.kind_of?(Enumerable) ?
-                    {entries: model.map(&:resource)}
-                   : model.resource
-
-        [200, {"Content-Type" => "application/json"}, response.to_json]
+      def normalize(model, options = {})
+        model.kind_of?(Enumerable) ?
+          {entries: model.map(&:resource)}
+         : model.resource
       end
     end
   end

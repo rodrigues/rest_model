@@ -4,6 +4,7 @@ require 'transcriber'
 require 'ostruct'
 require 'json'
 require 'stringio'
+require 'active_support/core_ext/hash/indifferent_access'
 
 require 'support/examples'
 require 'support/out'

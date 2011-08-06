@@ -1,12 +1,6 @@
 require 'spec_helper'
 
 describe Transcriber::Resource::Response do
-  class Responder
-    include Resource::Response
-  end
-
-  subject {Responder.new}
-
   before do
     class Example < Resource
       id         :login
@@ -31,19 +25,19 @@ describe Transcriber::Resource::Response do
     }
   end
 
-  describe "#respond_with" do
+  describe "#normalize" do
     context "when one resource is received" do
       it "returns a resource" do
         model = Example.parse(input).first
-        subject.respond_with(model).should == [200, {"Content-Type" => "application/json"}, input.to_json]
+        Example.normalize(model).with_indifferent_access.should == input.with_indifferent_access
       end
     end
 
     context "when a list of resources is received" do
       it "returns some resources in an entries array" do
         model = 3.times.map {Example.parse(input).first}
-        result = {entries: 3.times.map {input}}.to_json
-        subject.respond_with(model).should == [200, {"Content-Type" => "application/json"}, result]
+        result = {entries: 3.times.map {input}}
+        Example.normalize(model).with_indifferent_access.should == result.with_indifferent_access
       end
     end
   end

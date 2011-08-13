@@ -4,7 +4,7 @@ module Transcriber
       module Relation
         def to_resource(parent)
           included = parent.__send__(name)
-          return {} unless present?(parent) and included
+          return {} unless visible?(parent) and included
           {name => resource_from_included(included)}
         end
 

@@ -12,9 +12,9 @@ describe Resource::Response::Property do
     subject.to_resource(customer).should == {login: "jackiechan2010"}
   end
 
-  context "when this key shouldn't be present on resource" do
+  context "when this key shouldn't be visible on resource" do
     it "returns an empty hash" do
-      subject.should_receive(:present?).and_return false
+      subject.should_receive(:visible?).and_return false
       customer = Customer.new.tap {|c| c.login = "jackiechan2010"}
       subject.to_resource(customer).should == {}
     end

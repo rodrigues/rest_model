@@ -9,9 +9,9 @@ describe Resource::Response do
     end
 
     context "#to_resource" do
-      context "when the key shouldn't be present on resource" do
+      context "when the key shouldn't be visible on resource" do
         it "returns an empty hash" do
-          subject.should_receive(:present?).and_return false
+          subject.should_receive(:visible?).and_return false
           subject.to_resource(example).should == {}
         end
       end

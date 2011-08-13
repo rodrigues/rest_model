@@ -3,7 +3,7 @@ module Transcriber
     module Response
       module Embeddable
         def to_resource(parent)
-          return {} unless present?(parent)
+          return {} unless visible?(parent)
           embedded = parent.__send__(name)
           resource = one? ? embedded.resource : embedded.map(&:resource)
           {name => resource}

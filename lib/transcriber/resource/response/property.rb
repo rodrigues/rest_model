@@ -3,7 +3,7 @@ module Transcriber
     module Response
       module Property
         def to_resource(parent)
-          present?(parent) ? {name => parent.__send__(name)} : {}
+          visible?(parent) ? {name => parent.__send__(name)} : {}
         end
       end
     end

@@ -40,6 +40,10 @@ module Transcriber
       self.class.relations.map {|key| key.to_relation(self)}
     end
 
+    def self.transcribe(input, options = {})
+      normalize(parse(input, options), options)
+    end
+
     def self.method_added(method_name)
       return unless not_allowed_names.include?(method_name.to_s)
       puts "warning: redefining '#{method_name}' may cause serious problems"

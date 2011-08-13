@@ -6,6 +6,7 @@ module Transcriber
           {entries: model.map(&:resource)}
          : model.resource
       end
+      alias :resources :normalize
     end
   end
 end

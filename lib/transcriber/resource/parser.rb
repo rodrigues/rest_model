@@ -16,7 +16,7 @@ module Transcriber
         self.new.tap do |resource|
           keys.each do |key|
             value = digg(item, key.input_path)
-            resource.__send__("#{key.name}=", key.parse(value)) if key.present?(resource)
+            resource.__send__("#{key.name}=", key.parse(value, resource)) if key.present?(resource)
           end
         end
       end

@@ -16,7 +16,7 @@ module Transcriber
         !has?
       end
 
-      def parse(value)
+      def parse(value, resource = nil)
         nil
       end
     end

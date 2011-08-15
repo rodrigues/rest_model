@@ -10,7 +10,8 @@ module Transcriber
       def initialize(name, options = {})
         super
         @serializer   = options.fetch(:type, Serialization::String)
-        @translations = options[:values].try(:invert)
+        @translations = options[:values]        if options[:values].kind_of?(Proc)
+        @translations = options[:values].invert if options[:values].kind_of?(Hash)
       end
     end
   end

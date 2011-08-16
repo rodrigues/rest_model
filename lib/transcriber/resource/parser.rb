@@ -24,8 +24,8 @@ module Transcriber
             value = digg(item, key.input_path)
             begin
               resource.__send__("#{key.name}=", key.parse(value, resource)) if key.present?(resource)
-            rescue exception => e
-              raise e if options[:fail]
+            rescue => exception
+              raise exception if options[:fail]
             end
           end
         end

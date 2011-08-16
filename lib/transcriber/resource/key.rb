@@ -2,6 +2,7 @@ module Transcriber
   class Resource
     class Key
       attr_accessor :name
+      attr_accessor :model
       attr_accessor :options
       attr_accessor :summarize
 
@@ -31,7 +32,8 @@ module Transcriber
       end
 
       def convert_input_keys
-        options.fetch(:convert_input_keys, Transcriber.configuration.convert_input_keys)
+        options.fetch(:convert_input_keys, model.try(:convert_input_keys) ||
+                      Transcriber.configuration.convert_input_keys)
       end
     end
   end

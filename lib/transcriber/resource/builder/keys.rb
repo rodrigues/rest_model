@@ -4,6 +4,7 @@ module Transcriber
       module Keys
         def key(key)
           fail "you can't define a key with name '#{key.name}'" if not_allowed?(key)
+          key.model = self
           attr_accessor key.name
           self.keys  << key
           self.id_key = key if key.options[:id]

@@ -24,6 +24,11 @@ module Transcriber
       @resource_name ||= custom_name or to_s.demodulize.tableize
     end
 
+    def self.convert_input_keys(converter = nil)
+      @convert_input_keys = converter if converter
+      @convert_input_keys
+    end
+
     def resource_id
       __send__(id_key.name)
     end

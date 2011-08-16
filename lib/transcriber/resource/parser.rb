@@ -1,8 +1,14 @@
 module Transcriber
   class Resource
     module Parser
+      def parse!(input, options = {})
+        parse(input, options.merge(fail: true))
+      end
+
       def parse(input, options = {})
-        prepare_entries(input, options).collect &method(:parse_item)
+        prepare_entries(input, options).collect do |item|
+          parse_item(item, options)
+        end
       end
 
       private
@@ -12,11 +18,15 @@ module Transcriber
         Array.wrap digg(input, path)
       end
 
-      def parse_item(item)
+      def parse_item(item, options)
         self.new.tap do |resource|
           keys.each do |key|
             value = digg(item, key.input_path)
-            resource.__send__("#{key.name}=", key.parse(value, resource)) if key.present?(resource)
+            begin
+              resource.__send__("#{key.name}=", key.parse(value, resource)) if key.present?(resource)
+            rescue exception => e
+              raise e if options[:fail]
+            end
           end
         end
       end

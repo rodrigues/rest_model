@@ -163,7 +163,7 @@ Just define your `User` class like this:
     {
       id:    19837139879,
       login: 'jsmith180',
-      links: [
+      link: [
         {
           rel:  'avatar',
           href: 'http://app/api/users/19837139879/avatar'
@@ -195,7 +195,7 @@ If you want your api to handle `http://app/api/users/19371897318937?include[]=av
       guilda: {
         name: 'K1ll3rs'
       },
-      links: [
+      link: [
         {
           rel:  'achievements',
           href: 'http://app/api/users/19837139879/achievements'

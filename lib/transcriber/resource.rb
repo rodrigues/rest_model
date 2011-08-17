@@ -37,11 +37,11 @@ module Transcriber
       root = options.fetch(:root, true)
       {}.tap do |resource|
         self.class.keys.inject(resource) {|buffer, key| buffer.merge!(key.to_resource(self))}
-        resource.merge!({links: links}) if root and self.class.relations.any?
+        resource.merge!({link: link}) if root and self.class.relations.any?
       end
     end
 
-    def links
+    def link
       self.class.relations.map {|key| key.to_relation(self)}
     end
 
@@ -55,7 +55,7 @@ module Transcriber
     end
 
     def self.not_allowed_names
-      ["resource_id", "resource", "links"]
+      ["resource_id", "resource", "link"]
     end
   end
 end

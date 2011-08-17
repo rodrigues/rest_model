@@ -17,7 +17,7 @@ describe Resource do
   end
 
   context "when using not allowed names" do
-    [:resource_id, :resource, :links].each do |unallowed|
+    [:resource_id, :resource, :link].each do |unallowed|
       it "warns when method #{unallowed} is redefined" do
         output = out do
           eval <<-RUBY

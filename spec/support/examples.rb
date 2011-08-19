@@ -1,6 +1,6 @@
 module Examples
-  def context_from_example(file, &block)
-    context "example #{file}" do
+  def describe_example(file, &block)
+    describe "example #{file}" do
       silently {eval File.read("examples/#{file}.rb")}
 
       variables = instance_variables.reject {|var| var.to_s =~ /metadata$/}

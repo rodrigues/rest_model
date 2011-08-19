@@ -16,14 +16,14 @@ class Developer < Transcriber::Resource
 end
 
 class Customer < Transcriber::Resource
-  id field: :customer_id
+  id field: :customer_id, type: Integer
   property :login
   has_many :services
   has_one :billing
   has_one :devopada, class_name: :developer
 end
 
-@root = Customer.parse({"customer_id" => 123, "login" => 2000}).first
+@root = Customer.parse({"customer_id" => 123, "login" => 'jackiechan2010'}).first
 
 puts "root:     #{@root.inspect}"
 puts "resource: #{@root.resource}"

@@ -13,8 +13,10 @@ describe_example "has_many/simple" do
       subject[:link].should be_an(Array)
     end
 
-    it 'has a relation to a service' do
-      subject[:link].first[:rel].should == :services
+    [:services, :billing, :devops].each do |rel|
+      it "has a #{rel} relation" do
+        subject[:link].any? {|l| l[:rel] == rel}.should be_true
+      end
     end
   end
 end

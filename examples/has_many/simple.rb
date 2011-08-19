@@ -20,7 +20,7 @@ class Customer < Transcriber::Resource
   property :login
   has_many :services
   has_one :billing
-  has_one :devopada, class_name: :developer
+  has_one :devops, class_name: :developer
 end
 
 @root = Customer.parse({"customer_id" => 123, "login" => 'jackiechan2010'}).first

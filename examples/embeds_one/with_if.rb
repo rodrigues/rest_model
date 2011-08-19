@@ -9,13 +9,13 @@ class Item < Transcriber::Resource
   property :id
 end
 
-root = Root.parse({"id"=> 1, "item" => {"id" => 2000}}).first
+@root_with_item = Root.parse({"id"=> 1, "item" => {"id" => 2000}}).first
 
-puts "root:     #{root.inspect}"
-puts "resource: #{root.resource}"
+puts "root:     #{@root_with_item.inspect}"
+puts "resource: #{@root_with_item.resource}"
 
 
-root = Root.parse({"id"=> 100, "item" => {"id" => 2000}}).first
+@root_without_item = Root.parse({"id"=> 100, "item" => {"id" => 2000}}).first
 
-puts "root:     #{root.inspect}"
-puts "resource: #{root.resource}"
+puts "root:     #{@root_without_item.inspect}"
+puts "resource: #{@root_without_item.resource}"

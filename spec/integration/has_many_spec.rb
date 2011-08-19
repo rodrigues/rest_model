@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe_example "has_many/simple" do
-  it 'parses customer properly' do
+  it 'parses properly' do
     root.id.should == 123
     root.login.should == 'jackiechan2010'
   end

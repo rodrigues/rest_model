@@ -10,7 +10,7 @@ require 'support/examples'
 require 'support/out'
 
 RSpec.configure do |config|
-  config.before(:each) do
+  config.before do
     [:Example, :ExampleChild].each do |klass|
       Object.send(:remove_const, klass) if Object.const_defined? klass
     end

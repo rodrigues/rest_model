@@ -53,13 +53,7 @@ describe Resource::InputPath do
     end
 
     context "and there is a custom keys input converter" do
-      let(:options) do
-        {
-          start_key:          'yay.upcase.path',
-          convert_input_keys: Upcasing
-        }
-      end
-
+      let(:options) {{start_key: 'yay.upcase.path', convert_input_keys: Upcasing}}
       subject {Resource::Key.new(:name, options)}
       let(:path) {['YAY', 'UPCASE', 'PATH']}
       it_behaves_like "an input path"

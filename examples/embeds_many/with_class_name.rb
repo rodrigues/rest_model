@@ -8,7 +8,7 @@ class Root < Transcriber::Resource
   embeds_many :items, class_name: :entry
 end
 
-root = Root.parse({"items" => [{"id" => 2000}]}).first
+@root = Root.parse({"items" => [{"id" => 2000}]}).first
 
-puts "root:     #{root.inspect}"
-puts "resource: #{root.resource}"
+puts "root:     #{@root.inspect}"
+puts "resource: #{@root.resource}"

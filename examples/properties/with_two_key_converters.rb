@@ -15,15 +15,15 @@ end
 class Customer < Transcriber::Resource
   convert_input_keys Upcasing
   property :login
-  embeds_one :service
+  embeds_one :product
 end
 
-class Service < Transcriber::Resource
+class Product < Transcriber::Resource
   convert_input_keys Camelizing
-  property :key_name
+  property :unit_price, type: Float
 end
 
-root = Customer.parse({"LOGIN" => 2000, "SERVICE" => {"KeyName" => "ehehe"}}).first
+@root = Customer.parse({"LOGIN" => 'jackiechan2010', "PRODUCT" => {"UnitPrice" => 29.9}}).first
 
-puts "root:     #{root.inspect}"
-puts "resource: #{root.resource}"
+puts "root:     #{@root.inspect}"
+puts "resource: #{@root.resource}"

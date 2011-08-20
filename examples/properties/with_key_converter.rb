@@ -14,7 +14,7 @@ class Customer < Transcriber::Resource
   property :login
 end
 
-root = Customer.parse({"LOGIN" => 2000}).first
+@root = Customer.parse({"LOGIN" => 'jackiechan2010'}).first
 
-puts "root:     #{root.inspect}"
-puts "resource: #{root.resource}"
+puts "root:     #{@root.inspect}"
+puts "resource: #{@root.resource}"

@@ -45,3 +45,25 @@ describe_example 'properties/with_if' do
     end
   end
 end
+
+describe_example 'properties/with_key_converter' do
+  after do
+    Transcriber.configure do |c|
+      c.convert_input_keys = nil
+    end
+  end
+
+  context 'when a diferent key converter is configured on transcriber' do
+    it_parses_property
+  end
+end
+
+describe_example 'properties/with_two_key_converters' do
+  context 'when key converters are configured for each class' do
+    it_parses_property
+
+    it 'parses other property with different key converter' do
+      root.product.unit_price.should == 29.9
+    end
+  end
+end

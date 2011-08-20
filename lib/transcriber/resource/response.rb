@@ -6,7 +6,9 @@ module Transcriber
       def resource(options = {})
         root = options.fetch(:root, true)
         {}.tap do |resource|
-          resource_keys(options).inject(resource) {|buffer, key| buffer.merge!(key.to_resource(self))}
+          resource_keys(options).inject(resource) do |buffer, key|
+            buffer.merge!(key.to_resource(self))
+          end
           resource.merge!({link: link}) if root and self.class.relations.any?
         end
       end

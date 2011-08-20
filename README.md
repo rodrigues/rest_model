@@ -91,7 +91,7 @@ Just define your `User` class like this:
 
 ## Embedding other resources
 
-### [`embeds_one`](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_one)
+### [embeds_one](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_one)
 
     class Customer < Transcriber::Resource
       id field: 'cust_id'
@@ -116,7 +116,7 @@ Just define your `User` class like this:
       href:  "http://app/api/users/1938713897398"
     }
 
-### [`embeds_many`](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_many)
+### [embeds_many](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_many)
 
     class OrderItems < Transcriber::Resource
       property :item_id,    id: true      # default serialization: String
@@ -150,7 +150,9 @@ Just define your `User` class like this:
 
 ## Relations
 
-### `has_one`, `has_many` and `belongs_to`
+### has_one
+### has_many
+### belongs_to
 
     class User < Transcriber::Resource
       id

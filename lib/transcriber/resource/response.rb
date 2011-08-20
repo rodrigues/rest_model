@@ -6,7 +6,7 @@ module Transcriber
       def resource(options = {})
         root = options.fetch(:root, true)
         {}.tap do |resource|
-          self.class.keys.inject(resource) {|buffer, key| buffer.merge!(key.to_resource(self))}
+          resource_keys(options).inject(resource) {|buffer, key| buffer.merge!(key.to_resource(self))}
           resource.merge!({link: link}) if root and self.class.relations.any?
         end
       end
@@ -15,11 +15,16 @@ module Transcriber
         self.class.relations.map {|key| key.to_relation(self)}
       end
 
+      def resource_keys(options)
+        return self.class.summarized_keys if options[:summarize] and self.class.summarized_keys.any?
+        self.class.keys
+      end
+
       module ClassMethods
         def normalize(model, options = {})
           model.kind_of?(Enumerable) ?
-            {entries: model.map(&:resource)}
-           : model.resource
+            {entries: model.map {|m| m.resource(options.merge(summarize: true))}}
+           : model.resource(options)
         end
 
         alias :resources :normalize

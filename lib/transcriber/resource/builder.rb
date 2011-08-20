@@ -5,6 +5,7 @@ module Transcriber
       include Relations
       include Embeddables
       include Properties
+      include Summarizations
     end
   end
 end

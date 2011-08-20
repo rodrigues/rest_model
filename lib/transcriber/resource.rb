@@ -16,6 +16,10 @@ module Transcriber
       @keys ||= []
     end
 
+    def self.summarized_keys
+      @summarized_keys ||= []
+    end
+
     def self.relations
       @keys.find_all {|k| k.kind_of?(Relation)}
     end

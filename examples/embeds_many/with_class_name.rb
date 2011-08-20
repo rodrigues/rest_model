@@ -1,7 +1,7 @@
 $:.push 'lib'; require 'transcriber'
 
 class Entry < Transcriber::Resource
-  property :id
+  property :id, type: Integer
 end
 
 class Root < Transcriber::Resource

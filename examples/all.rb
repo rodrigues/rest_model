@@ -5,10 +5,6 @@ Dir["examples/*/**.rb"].each do |file|
     Object.send(:remove_const, klass) if Object.const_defined? klass
   end
 
-  puts
-  puts
-  p "example file: #{file}"
-  puts
-  puts
+  puts "\n\nexample file: #{file}\n\n"
   load file
 end

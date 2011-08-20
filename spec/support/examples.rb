@@ -1,8 +1,8 @@
 module Examples
   def describe_example(file, &block)
     describe "example #{file}" do
-      [:Root, :Item, :Customer, :Entry, :Service].each do |klass|
-        Examples.send(:remove_const, klass) if Examples.const_defined? klass
+      [:Root, :Item, :Customer, :Entry].each do |klass|
+        Examples.send(:remove_const, klass) if Examples.const_defined?(klass)
       end
 
       silently {eval File.read("examples/#{file}.rb")}

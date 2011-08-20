@@ -18,7 +18,7 @@ describe_example "has_many/simple" do
         subject[:link].any? {|l| l[:rel] == rel}.should be_true
       end
 
-      it "has a proper href for #{rel} relation" do
+      it "has a href for #{rel} relation" do
         link = subject[:link].find {|l| l[:rel] == rel}
         link[:href].should =~ %r{/customers/123/#{rel}}
       end

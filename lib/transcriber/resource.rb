@@ -2,7 +2,7 @@ module Transcriber
   class Resource
     extend  Builder
     extend  Parser
-    extend  Response
+    include Response
     include Serialization
 
     cattr_accessor :id_key
@@ -31,22 +31,6 @@ module Transcriber
 
     def resource_id
       __send__(id_key.name)
-    end
-
-    def resource(options = {})
-      root = options.fetch(:root, true)
-      {}.tap do |resource|
-        self.class.keys.inject(resource) {|buffer, key| buffer.merge!(key.to_resource(self))}
-        resource.merge!({link: link}) if root and self.class.relations.any?
-      end
-    end
-
-    def link
-      self.class.relations.map {|key| key.to_relation(self)}
-    end
-
-    def self.transcribe(input, options = {})
-      normalize(parse(input, options), options)
     end
 
     def self.method_added(method_name)

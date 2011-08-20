@@ -19,7 +19,6 @@ describe_example "embeds_one/with_if" do
   end
 
   it 'parses @root_without_item properly' do
-    puts "without_item: #{root_without_item.item}"
     root_without_item.id.should == "100"
     root_without_item.item.should_not be
   end
@@ -30,19 +29,3 @@ describe_example "embeds_one/with_start_key" do
     root.item.id.should == "2000"
   end
 end
-
-
-__END__
-
-class Entry < Transcriber::Resource
-  property :id
-end
-
-class Root < Transcriber::Resource
-  embeds_one :item, class_name: :entry
-end
-
-@root = Root.parse({"item" => {"id" => 2000}}).first
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"

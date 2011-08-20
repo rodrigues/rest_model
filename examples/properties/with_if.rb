@@ -3,17 +3,23 @@ $:.push 'lib'; require 'transcriber'
 class Customer < Transcriber::Resource
   property :login
   property :password
-  property :some_text, if: proc {password == "abc"}
+  property :description, if: proc {password == "abc"}
 end
 
-root = Customer.parse({"login" => 2000, "password" => "abc", "some_text" => "some text"}).first
+@root_with_description = Customer.parse({
+  "login" => 2000,
+  "password" => "abc",
+  "description" => "description"}).first
 
 
-puts "root:     #{root.inspect}"
-puts "resource: #{root.resource}"
+puts "root:     #{@root_with_description.inspect}"
+puts "resource: #{@root_with_description.resource}"
 
 
-root = Customer.parse({"login" => 2000, "password" => "abcd", "some_text" => "some text II"}).first
+@root_without_description = Customer.parse({
+  "login" => 2000,
+  "password" => "abcd",
+  "description" => "some text II"}).first
 
-puts "root:     #{root.inspect}"
-puts "resource: #{root.resource}"
+puts "root:     #{@root_without_description.inspect}"
+puts "resource: #{@root_without_description.resource}"

@@ -1,7 +1,47 @@
 require 'spec_helper'
 
-describe_example 'properties/simple' do
+def it_parses_property
   it 'parses property' do
     root.login.should == 'jackiechan2010'
+  end
+end
+
+describe_example 'properties/simple' do
+  it_parses_property
+end
+
+describe_example 'properties/with_field' do
+  context 'when input has a different name for the property' do
+    it_parses_property
+  end
+end
+
+describe_example 'properties/with_field_path' do
+  context 'when input has a different path for the property' do
+    it_parses_property
+  end
+end
+
+describe_example 'properties/with_id' do
+  context 'when property is an id' do
+    it 'parses id' do
+      root.id.should == "2000"
+    end
+  end
+end
+
+describe_example 'properties/with_if' do
+  context 'when a property has a conditional proc (:if)' do
+    context 'and it evaluates to true' do
+      it 'parses property' do
+        root_with_description.description.should == "description"
+      end
+    end
+
+    context 'and it evaluates to false' do
+      it "doesn't parse property" do
+        root_without_description.description.should_not be
+      end
+    end
   end
 end

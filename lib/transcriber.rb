@@ -43,4 +43,8 @@ module Transcriber
   def self.configure
     yield configuration if block_given?
   end
+
+  def self.host
+    configuration.host
+  end
 end

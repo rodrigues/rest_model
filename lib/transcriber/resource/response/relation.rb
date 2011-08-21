@@ -31,8 +31,8 @@ module Transcriber
         def href(parent)
           id_key = parent.class.id_key.name
           has? ?
-            "/#{parent.class.resource_name}/#{parent.send(id_key)}/#{relation_name(parent)}"
-          : "/#{relation_name(parent).to_s.pluralize}/#{parent.send(id_key)}/#{parent.class.resource_name}"
+            "#{Transcriber.host}/#{parent.class.resource_name}/#{parent.send(id_key)}/#{relation_name(parent)}"
+          : "#{Transcriber.host}/#{relation_name(parent).to_s.pluralize}/#{parent.send(id_key)}/#{parent.class.resource_name}"
         end
       end
     end

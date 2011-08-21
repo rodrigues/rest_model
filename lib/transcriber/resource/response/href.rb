@@ -4,7 +4,7 @@ module Transcriber
       module Href
         def to_resource(parent)
           id_key = parent.class.id_key.name
-          {name => "#{parent.class.resource_name}/#{parent.send(id_key)}"}
+          {name => "#{Transcriber.host}/#{parent.class.resource_name}/#{parent.send(id_key)}"}
         end
       end
     end

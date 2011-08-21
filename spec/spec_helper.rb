@@ -20,3 +20,7 @@ end
 include Transcriber
 include Output
 include Examples
+
+Transcriber.configure do |c|
+  c.host = 'http://example.com'
+end

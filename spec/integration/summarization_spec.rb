@@ -8,6 +8,6 @@ describe_example 'summarization/simple' do
     subject.keys.count.should == 3
     subject[:id].should    == '138911938'
     subject[:login].should == 'jackiechan2010'
-    subject[:href].should  == 'customers/138911938'
+    subject[:href].should  == 'http://example.com/customers/138911938'
   end
 end

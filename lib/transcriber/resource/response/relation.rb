@@ -9,7 +9,7 @@ module Transcriber
         end
 
         def to_relation(parent)
-          {:rel => name, :href => href(parent)}
+          {rel: name, href: href(parent)}
         end
 
         private

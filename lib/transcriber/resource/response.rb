@@ -18,8 +18,12 @@ module Transcriber
       end
 
       def resource_keys(options)
-        return self.class.keys unless options[:summarize] and self.class.summarized_keys.any?
+        return self.class.keys unless summarize?(options)
         self.class.summarized_keys.tap {|keys| keys << Resource::Href.new}
+      end
+
+      def summarize?(options)
+        options[:summarize] and self.class.summarized_keys.any?
       end
 
       module ClassMethods

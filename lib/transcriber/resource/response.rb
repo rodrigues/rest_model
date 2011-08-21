@@ -19,7 +19,7 @@ module Transcriber
 
       def resource_keys(options)
         return self.class.keys unless summarize?(options)
-        self.class.summarized_keys.tap {|keys| keys << Resource::Href.new}
+        self.class.summarized_keys + [Resource::Href.new]
       end
 
       def summarize?(options)

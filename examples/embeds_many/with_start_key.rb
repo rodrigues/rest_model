@@ -10,7 +10,7 @@ class Root < Transcriber::Resource
   embeds_many :items, start_key: 'detalhe.itens'
 end
 
-@root = Root.parse({"detalhe" => {"itens" => [{"item_id" => 2000}]}}).first
+@root = Root.parse({"detalhe" => {"itens" => [{item_id: 2000}]}}).first
 
 puts "root:     #{@root.inspect}"
 puts "resource: #{@root.resource}"

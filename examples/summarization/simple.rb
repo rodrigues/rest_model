@@ -1,13 +1,8 @@
 $:.push 'lib'; require 'transcriber'
 
-module AsDefined
-  def self.call(keys)
-    keys
-  end
-end
-
 class Customer < Transcriber::Resource
-  convert_input_keys AsDefined
+  convert_input_keys proc {|keys| keys}
+
   id
   properties :login, :name, :postal_code, :email, :secondary_email
   summarizes :id, :login

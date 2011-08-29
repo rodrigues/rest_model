@@ -12,9 +12,9 @@ class Root < Transcriber::Resource
 end
 
 
-@root = Root.parse({'locale' => 'pt-BR',
-                    'key' => 19190839,
-                    'names'   => {
+@root = Root.parse({locale: 'pt-BR',
+                    key: 19190839,
+                    names: {
                       'en'    => 'Woot',
                       'pt-BR' => 'Úia',
                       'es'    => 'Me gusta'

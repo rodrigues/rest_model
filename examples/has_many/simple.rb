@@ -23,7 +23,7 @@ class Customer < Transcriber::Resource
   has_one :devops, class_name: :developer
 end
 
-@root = Customer.parse({"customer_id" => 123, "login" => 'jackiechan2010'}).first
+@root = Customer.parse({customer_id: 123, login: 'jackiechan2010'}).first
 
 puts "root:     #{@root.inspect}"
 puts "resource: #{@root.resource}"

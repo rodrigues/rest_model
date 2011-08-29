@@ -16,7 +16,7 @@ describe Resource::InputPath do
   context "when a custom path is not defined" do
     context "and there is'nt a custom keys input converter" do
       subject    {Resource::Key.new(:name)}
-      let(:path) {['name']}
+      let(:path) {[:name]}
       it_behaves_like "an input path"
     end
 
@@ -30,7 +30,7 @@ describe Resource::InputPath do
   context "when a custom path is defined" do
     context "and it is a simple name" do
       subject    {Resource::Key.new(:name, field: :other_name)}
-      let(:path) {['other_name']}
+      let(:path) {[:other_name]}
       it_behaves_like "an input path"
     end
 

@@ -16,11 +16,11 @@ describe Transcriber::Resource::Response do
 
   let(:input) do
     {
-      'login' => 'jackiechan2010',
-      'phone' => '32232188',
-      'address' => {
-        'street' => 'Aurora St.',
-        'city'   => 'Recife'
+      login: 'jackiechan2010',
+      phone: '32232188',
+      address: {
+        street: 'Aurora St.',
+        city:   'Recife'
       }
     }
   end

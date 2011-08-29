@@ -12,7 +12,13 @@ module Transcriber
       end
 
       def self.keys_for_path(path)
-        path.empty? ? [] : path.values.first.to_s.split('.')
+        return [] if path.empty?
+
+        if path.values.first.kind_of?(Symbol)
+          [path.values.first]
+        else
+          path.values.first.to_s.split('.')
+        end
       end
     end
   end

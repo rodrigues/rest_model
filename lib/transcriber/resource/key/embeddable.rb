@@ -7,6 +7,11 @@ module Transcriber
       def raw?
         [Hash, Array].include?(resource_class)
       end
+
+      def from_hash(attrs)
+        return hash if raw?
+        super
+      end
     end
   end
 end

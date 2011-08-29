@@ -9,7 +9,11 @@ module Transcriber
     cattr_writer   :resource_name
 
     def initialize(attrs = {})
-      attrs.map {|name, value| send("#{name}=", value)}
+      return if attrs.nil? or attrs.empty?
+
+      self.class.keys.each do |key|
+        __send__("#{key.name}=", key.from_hash(attrs[key.name])) if key.present? self
+      end
     end
 
     def self.keys

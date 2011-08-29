@@ -24,6 +24,12 @@ module Transcriber
       def resource_class
         @class_name.constantize
       end
+
+      def from_hash(attrs)
+        return nil if attrs.nil? or attrs.empty?
+        one? ? resource_class.new(attrs)
+             : Array(attrs).map {|item| resource_class.new(item)}
+      end
     end
   end
 end

@@ -2,7 +2,7 @@ module Transcriber
   class Resource
     module Parser
       def parse!(input, options = {})
-        parse(input, options.merge(fail: true))
+        parse(input.with_different_access, options.merge(fail: true))
       end
 
       def parse(input, options = {})

@@ -5,6 +5,7 @@ require 'active_support/core_ext/class/attribute_accessors'
 require 'active_support/core_ext/object/try'
 require 'active_support/core_ext/array/wrap'
 require 'active_support/core_ext/hash/slice'
+require 'active_support/hash_with_indifferent_access'
 
 require 'transcriber/resource/input_path'
 require 'transcriber/resource/parser'

@@ -27,8 +27,19 @@ module Transcriber
 
       def input_path
         return @input_path if @input_path
+
         path = InputPath.resolve(options, convert_input_keys)
-        @input_path = path.empty? ? convert_input_keys.call([name]) : path
+
+        if path.empty? and !root_path?
+          path = convert_input_keys.call([name])
+        end
+
+        @input_path = path
+      end
+
+      def root_path?
+        path_definition = options.slice(:start_key, :field)
+        path_definition.any? and path_definition.first[1].empty?
       end
 
       def convert_input_keys

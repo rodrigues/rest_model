@@ -8,12 +8,18 @@ module Transcriber
           resource = nil
 
           if embedded = parent.__send__(name)
-            resource = one? ? embedded.resource : embedded.map(&:resource)
+            resource = raw? ? resourcify(embedded) : embedded
           elsif many?
             resource = []
           end
 
           {name => resource}
+        end
+
+        private
+
+        def resourcify(embedded)
+          one? ? embedded.resource : embedded.map(&:resource)
         end
       end
     end

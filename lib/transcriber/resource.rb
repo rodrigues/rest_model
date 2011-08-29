@@ -43,7 +43,7 @@ module Transcriber
     end
 
     def self.not_allowed_names
-      ["resource_id", "resource", "link"]
+      %w(resource_id resource link)
     end
   end
 end

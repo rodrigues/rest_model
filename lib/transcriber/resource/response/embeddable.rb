@@ -8,7 +8,7 @@ module Transcriber
           resource = nil
 
           if embedded = parent.__send__(name)
-            resource = raw? ? resourcify(embedded) : embedded
+            resource = raw? ? embedded : resourcify(embedded)
           elsif many?
             resource = []
           end

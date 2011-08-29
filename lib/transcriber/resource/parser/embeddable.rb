@@ -3,7 +3,7 @@ module Transcriber
     module Parser
       module Embeddable
         def parse(value, resource = nil)
-          parsed_value = raw? ? resource_class.parse(value) : value
+          parsed_value = raw? ? value : resource_class.parse(value)
           one? ? parsed_value.first : parsed_value
         end
       end

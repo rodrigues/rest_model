@@ -5,7 +5,7 @@ module Transcriber
       include Response::Embeddable
 
       def raw?
-        ![Hash, Array].include?(resource_class)
+        [Hash, Array].include?(resource_class)
       end
     end
   end

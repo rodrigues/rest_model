@@ -31,9 +31,9 @@ module Transcriber
              : Array(attrs).map {|item| resource_class.new(item)}
       end
 
-      def to_input(value)
+      def to_input(value, options = {})
         return nil if value.nil?
-        one? ? value.to_input : value.map(&:to_input)
+        one? ? value.to_input(options) : value.map {|item| item.to_input(options)}
       end
     end
   end

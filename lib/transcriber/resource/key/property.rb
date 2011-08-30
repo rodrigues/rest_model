@@ -18,7 +18,7 @@ module Transcriber
         value
       end
 
-      def to_input(value)
+      def to_input(value, options = {})
         value
       end
     end

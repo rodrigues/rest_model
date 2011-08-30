@@ -13,7 +13,7 @@ module Transcriber
         super
       end
 
-      def to_input(value)
+      def to_input(value, options = {})
         return value if raw?
         super
       end

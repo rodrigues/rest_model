@@ -17,6 +17,10 @@ module Transcriber
       def from_hash(value)
         value
       end
+
+      def to_input(value)
+        value
+      end
     end
   end
 end

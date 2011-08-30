@@ -12,6 +12,11 @@ module Transcriber
         return hash if raw?
         super
       end
+
+      def to_input(value)
+        return value if raw?
+        super
+      end
     end
   end
 end

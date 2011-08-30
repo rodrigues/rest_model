@@ -12,7 +12,7 @@ module Transcriber
       return if attrs.nil? or attrs.empty?
 
       self.class.keys.each do |key|
-        __send__("#{key.name}=", key.from_hash(attrs[key.name])) if key.present? self
+        __send__("#{key.name}=", key.from_hash(attrs[key.name])) if key.present?(self)
       end
     end
 
@@ -48,6 +48,24 @@ module Transcriber
 
     def self.not_allowed_names
       %w(resource_id resource link)
+    end
+
+    def to_input
+      input = {}
+      self.class.keys.each do |key|
+        value = __send__("#{key.name}")
+        parsed_value = key.to_input(value)
+        path = key.input_path
+
+        if path.any?
+          last = path.pop
+          key_input = path.inject(input) {|buffer, key| buffer[key] = {}; buffer[key]}
+          key_input[last] = parsed_value
+        else
+          input.merge!(parsed_value)
+        end
+      end
+      input
     end
   end
 end

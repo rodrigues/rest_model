@@ -26,7 +26,7 @@ module Transcriber
       end
 
       def input_path
-        return @input_path if @input_path
+        return @input_path.clone if @input_path
 
         path = InputPath.resolve(options, convert_input_keys)
 
@@ -35,6 +35,7 @@ module Transcriber
         end
 
         @input_path = path
+        @input_path.clone
       end
 
       def root_path?

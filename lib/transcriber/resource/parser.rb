@@ -2,12 +2,12 @@ module Transcriber
   class Resource
     module Parser
       def parse!(input, options = {})
-        parse(input.with_different_access, options.merge(fail: true))
+        parse(input, options.merge(fail: true))
       end
 
       def parse(input, options = {})
         prepare_entries(input, options).collect do |item|
-          parse_item(item, options)
+          parse_item(HashWithIndifferentAccess.new(item), options)
         end
       end
 

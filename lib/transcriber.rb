@@ -8,6 +8,7 @@ require 'active_support/core_ext/hash/slice'
 require "active_support/core_ext/hash/indifferent_access"
 
 require 'transcriber/resource/input_path'
+require 'transcriber/resource/input_parser'
 require 'transcriber/resource/parser'
 require 'transcriber/resource/response'
 require 'transcriber/resource/serialization/boolean'

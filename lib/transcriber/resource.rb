@@ -11,6 +11,8 @@ module Transcriber
     def initialize(attrs = {})
       return if attrs.nil? or attrs.empty?
 
+      attrs = attrs.with_indifferent_access
+
       self.class.keys.each do |key|
         __send__("#{key.name}=", key.from_hash(attrs[key.name])) if key.present?(self)
       end
@@ -65,7 +67,7 @@ module Transcriber
           input.merge!(parsed_value)
         end
       end
-      input
+      input.with_indifferent_access
     end
   end
 end

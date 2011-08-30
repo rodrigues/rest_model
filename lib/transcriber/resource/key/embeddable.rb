@@ -9,7 +9,7 @@ module Transcriber
       end
 
       def from_hash(attrs)
-        return hash if raw?
+        return attrs if raw?
         super
       end
 

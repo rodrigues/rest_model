@@ -9,13 +9,11 @@ module Transcriber
       end
 
       def from_hash(attrs)
-        return attrs if raw?
-        super
+        raw? ? attrs : super
       end
 
       def to_input(value, options = {})
-        return value if raw?
-        super
+        raw? ? value : super
       end
     end
   end

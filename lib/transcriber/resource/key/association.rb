@@ -22,7 +22,7 @@ module Transcriber
       end
 
       def resource_class
-        @class_name.constantize
+        @class_name.to_s.camelize.constantize
       end
 
       def from_hash(attrs)

@@ -4,6 +4,15 @@ module Transcriber
       include Parser::Embeddable
       include Response::Embeddable
 
+      def initialize(name, options = {})
+        super
+
+        if fields = options[:fields]
+          @class_name = :array
+          @fields = fields
+        end
+      end
+
       def raw?
         [Hash, Array].include?(resource_class)
       end

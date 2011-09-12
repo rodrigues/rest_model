@@ -21,9 +21,8 @@ module Transcriber
       def parse_item(item, options)
         self.new.tap do |resource|
           keys.each do |key|
-            value = digg(item, key.input_path)
             begin
-              resource.__send__("#{key.name}=", key.parse(value, resource)) if key.present?(resource)
+              resource.__send__("#{key.name}=", key.parse(item, resource)) if key.present?(resource)
             rescue => exception
               raise exception if options[:fail]
             end

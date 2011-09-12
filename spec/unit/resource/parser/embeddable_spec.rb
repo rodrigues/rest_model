@@ -10,7 +10,7 @@ describe Resource::Parser::Embeddable do
 
     let(:value) {{id: "7000"}}
 
-    subject {Resource::Embeddable.new(:example_child, many: false)}
+    subject {Resource::Embeddable.new(:example_child, many: false, start_key: "")}
 
     it "parses child" do
       child = subject.parse(value)
@@ -25,7 +25,7 @@ describe Resource::Parser::Embeddable do
       end
     end
 
-    let(:value) {[{id: "7000"}, {id: "7001"}]}
+    let(:value) {{example_children: [{id: "7000"}, {id: "7001"}]}}
 
     subject {Resource::Embeddable.new(:example_children, many: true)}
 

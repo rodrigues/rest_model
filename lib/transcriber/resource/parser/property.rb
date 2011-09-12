@@ -2,18 +2,20 @@ module Transcriber
   class Resource
     module Parser
       module Property
-        def parse(value, resource = nil)
+        def parse(item, resource = nil)
+          value = digg(item)
           translate(serializer.serialize(value), resource)
+        end
+
+        def digg(input)
+          input_path.inject(input) {|buffer, key| buffer = buffer[key]}
         end
 
         def translate(value, resource)
           case translations
-          when nil
-            value
-          when Hash
-            translations[value]
-          when Proc
-            resource.instance_eval &translations
+          when nil  then value
+          when Hash then translations[value]
+          when Proc then resource.instance_eval(&translations)
           end
         end
       end

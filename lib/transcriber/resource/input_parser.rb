@@ -4,7 +4,7 @@ module Transcriber
       def to_input(options = {})
         input = {}
         keys_to_input(options).each do |key|
-          value = __send__("#{key.name}")
+          value = __send__(key.name)
           parsed_value = key.to_input(value, options.fetch(key.name, {}))
           path = key.input_path
 

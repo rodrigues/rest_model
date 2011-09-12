@@ -32,8 +32,9 @@ module Transcriber
             key_input = path.inject(input) {|buffer, key| buffer[key] = {}; buffer[key]}
 
             if fields
-              convert_input_keys.call(fields).each_with_index do |field, index|
-                input[field] = value[index]
+              mapped_fields = convert_input_keys.call(fields)
+              value.each_with_index do |item, index|
+                input[mapped_fields[index]] = item
               end
             elsif raw?
               key_input[last] = value

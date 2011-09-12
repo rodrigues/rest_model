@@ -14,14 +14,6 @@ module Transcriber
                         when Hash then values.invert
                         end
       end
-
-      def from_hash(value)
-        value
-      end
-
-      def to_input(value, options = {})
-        value
-      end
     end
   end
 end

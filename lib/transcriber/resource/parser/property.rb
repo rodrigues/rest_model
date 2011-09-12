@@ -18,6 +18,25 @@ module Transcriber
           when Proc then resource.instance_eval(&translations)
           end
         end
+
+        def from_hash(value)
+          value
+        end
+
+        def to_input(value, options = {})
+          input = {}
+
+          path = input_path
+          if path.any?
+            last = path.pop
+            key_input = path.inject(input) {|buffer, key| buffer[key] = {}; buffer[key]}
+            key_input[last] = value
+          else
+            input.merge!(value)
+          end
+
+          input
+        end
       end
     end
   end

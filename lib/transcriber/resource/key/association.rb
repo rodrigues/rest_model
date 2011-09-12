@@ -30,11 +30,6 @@ module Transcriber
         one? ? resource_class.new(attrs)
              : Array(attrs).map {|item| resource_class.new(item)}
       end
-
-      def to_input(value, options = {})
-        return nil if value.nil?
-        one? ? value.to_input(options) : value.map {|item| item.to_input(options)}
-      end
     end
   end
 end

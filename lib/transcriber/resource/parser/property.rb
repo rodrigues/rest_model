@@ -27,6 +27,7 @@ module Transcriber
           input = {}
 
           path = input_path
+
           if path.any?
             last = path.pop
             key_input = path.inject(input) {|buffer, key| buffer[key] = {}; buffer[key]}

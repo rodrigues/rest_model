@@ -8,16 +8,9 @@ module Transcriber
         @options = options
       end
 
-      def present?(resource)
-        !options[:if] ? true : resource.instance_eval(&options[:if])
-      end
-
-      def visible?(resource)
-        !present?(resource) ? false : case visible = options[:visible]
-                                      when nil  then true
-                                      when Proc then resource.instance_eval(&visible)
-                                      else visible
-                                      end
+      def convert_input_keys
+        options.fetch(:convert_input_keys, model.try(:convert_input_keys) ||
+                      Transcriber.configuration.convert_input_keys)
       end
 
       def input_path
@@ -37,9 +30,16 @@ module Transcriber
         path_definition.any? and path_definition.first[1].empty?
       end
 
-      def convert_input_keys
-        options.fetch(:convert_input_keys, model.try(:convert_input_keys) ||
-                      Transcriber.configuration.convert_input_keys)
+      def present?(resource)
+        !options[:if] ? true : resource.instance_eval(&options[:if])
+      end
+
+      def visible?(resource)
+        !present?(resource) ? false : case visible = options[:visible]
+                                      when nil  then true
+                                      when Proc then resource.instance_eval(&visible)
+                                      else visible
+                                      end
       end
     end
   end

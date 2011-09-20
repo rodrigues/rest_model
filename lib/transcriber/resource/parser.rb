@@ -2,10 +2,13 @@ module Transcriber
   class Resource
     module Parser
       def parse!(input, options = {})
+        fail "invalid input" unless input.kind_of?(Enumerable)
         parse(input, options.merge(fail: true))
       end
 
       def parse(input, options = {})
+        return [] unless input.kind_of?(Enumerable)
+
         prepare_entries(input, options).collect do |item|
           parse_item(HashWithIndifferentAccess.new(item), options)
         end

@@ -22,9 +22,14 @@ module Transcriber
         def translate_to_input(value, resource)
           case translations
           when nil  then value
-          when Hash then translations[value]
+          when Hash then translate_to_input_from_hash(value)
           when Proc then resource.instance_eval(&translations)
           end
+        end
+
+        def translate_to_input_from_hash(value)
+          other = value.kind_of?(Symbol) ? value.to_s : value.to_sym
+          translations.key?(value) ? translations[value] : translations.fetch(other, value)
         end
 
         def from_hash(value)

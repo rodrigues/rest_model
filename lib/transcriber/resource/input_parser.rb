@@ -6,7 +6,7 @@ module Transcriber
 
         keys_to_input(options).each do |key|
           value = __send__(key.name)
-          input.merge! key.to_input(value, options.fetch(key.name, {}))
+          input.merge! key.to_input(value, self, options.fetch(key.name, {}))
         end
 
         input.with_indifferent_access

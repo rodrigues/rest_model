@@ -9,10 +9,7 @@ module Transcriber
       def initialize(name, options = {})
         super
         @serializer   = options.fetch(:type, Serialization::String)
-        @translations = case values = options[:values]
-                        when Proc then values
-                        when Hash then values.invert
-                        end
+        @translations = options[:values]
       end
     end
   end

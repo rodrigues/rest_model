@@ -32,7 +32,7 @@ describe Resource::Property do
       end
 
       it "configures values" do
-        subject.translations.should == values.invert
+        subject.translations.should == values
       end
     end
   end

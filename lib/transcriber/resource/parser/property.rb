@@ -4,14 +4,22 @@ module Transcriber
       module Property
         def parse(item, resource = nil)
           value = digg(item)
-          translate(serializer.serialize(value), resource)
+          translate_from_input(serializer.serialize(value), resource)
         end
 
         def digg(input)
           input_path.inject(input) {|buffer, key| buffer = buffer[key]}
         end
 
-        def translate(value, resource)
+        def translate_from_input(value, resource)
+          case translations
+          when nil  then value
+          when Hash then translations.key(value)
+          when Proc then resource.instance_eval(&translations)
+          end
+        end
+
+        def translate_to_input(value, resource)
           case translations
           when nil  then value
           when Hash then translations[value]
@@ -23,9 +31,9 @@ module Transcriber
           value
         end
 
-        def to_input(value, options = {})
+        def to_input(value, resource, options = {});
+          value = translate_to_input(value, resource)
           input = {}
-
           path = input_path
 
           if path.any?

@@ -5,7 +5,7 @@ class Root < Transcriber::Resource
 end
 
 class Item < Transcriber::Resource
-  property :id
+  properties :id, :name
 end
 
 @root = Root.parse({item: {id: 2000}}).first

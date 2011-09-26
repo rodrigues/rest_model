@@ -24,12 +24,12 @@ module Transcriber
         def to_input(value, resource, options = {})
           return {} if value.nil?
           fields ? to_multiple_input(value, options)
-                 : to_single_input(value)
+                 : to_single_input(value, options)
         end
 
         private
 
-        def to_single_input(value)
+        def to_single_input(value, options)
           input = {}
           path = input_path
 

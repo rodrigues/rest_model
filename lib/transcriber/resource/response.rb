@@ -11,7 +11,9 @@ module Transcriber
             buffer.merge!(key.to_resource(self))
           end
 
-          resource.merge!({link: link}) if root and self.class.relations.any?
+          if root and self.class.relations.any? and !options[:summarize]
+            resource.merge!({link: link})
+          end
         end
       end
 

@@ -19,6 +19,22 @@ module Transcriber
       end
     end
 
+    def update_attributes(attrs = {})
+      return if attrs.nil? or attrs.empty?
+
+      attrs = attrs.with_indifferent_access
+
+      self.class.keys.each do |key|
+        value = attrs[key.name]
+
+        if value and key.present?(self)
+          __send__("#{key.name}=", key.from_hash(value, __send__(key.name)))
+        end
+      end
+
+      self
+    end
+
     def self.keys
       @keys ||= []
     end

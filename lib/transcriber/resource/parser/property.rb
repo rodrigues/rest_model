@@ -27,7 +27,7 @@ module Transcriber
           end
         end
 
-        def from_hash(value)
+        def from_hash(value, resource = nil)
           value
         end
 

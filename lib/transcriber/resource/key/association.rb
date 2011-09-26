@@ -25,10 +25,19 @@ module Transcriber
         @class_name.to_s.camelize.constantize
       end
 
-      def from_hash(attrs)
+      def from_hash(attrs, resource = nil)
         return nil if attrs.nil? or attrs.empty?
+        resource ? update_from_hash(resource, attrs) : create_from_hash(attrs)
+      end
+
+      def create_from_hash(attrs)
         one? ? resource_class.new(attrs)
              : Array(attrs).map {|item| resource_class.new(item)}
+      end
+
+      def update_from_hash(resource, attrs)
+        one? ? resource.update_attributes(attrs)
+             : resource.map {|item| item.update_attributes(item)}
       end
     end
   end

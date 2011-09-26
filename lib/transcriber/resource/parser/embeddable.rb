@@ -17,7 +17,7 @@ module Transcriber
           input_path.inject(input) {|buffer, key| buffer = buffer[key]}
         end
 
-        def from_hash(attrs)
+        def from_hash(attrs, resource = nil)
           raw? ? attrs : super
         end
 

@@ -21,7 +21,7 @@ module Transcriber
           raw? ? attrs : super
         end
 
-        def to_input(value, resource, options = {})
+        def to_input!(value, resource, options = {})
           return {} if value.nil?
           fields ? to_multiple_input(value, options)
                  : to_single_input(value, options)

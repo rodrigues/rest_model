@@ -1,21 +1,21 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Service < Transcriber::Resource
+class Service < RestModel
   property :name
   belongs_to :customer
 end
 
-class Billing < Transcriber::Resource
+class Billing < RestModel
   property :login
   belongs_to :customer
 end
 
-class Developer < Transcriber::Resource
+class Developer < RestModel
   property :login
   belongs_to :customer
 end
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   id field: :customer_id, type: Integer
   property :login
   has_many :services
@@ -25,5 +25,4 @@ end
 
 @root = Customer.parse({customer_id: 123, login: 'jackiechan2010'}).first
 
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

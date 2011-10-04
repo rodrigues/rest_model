@@ -1,4 +1,4 @@
-# Transcriber
+# RestModel
 
 **Map from one or more input hashes** to instances of your model classes.
 
@@ -41,7 +41,7 @@ With transcriber you can parse the input to instances of `User`:
 
 Just define your `User` class like this:
 
-    class User < Transcriber::Resource
+    class User < RestModel
       id
       property :login
       property :name,  field: :username                  # input hash key is different from resource key
@@ -93,12 +93,12 @@ Just define your `User` class like this:
 
 ### [embeds_one](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_one)
 
-    class Customer < Transcriber::Resource
+    class Customer < RestModel
       id field: 'cust_id'
       embeds_one :address
     end
 
-    class Address < Transcriber::Resource
+    class Address < RestModel
       property :street,
       property :number, field: 'n'
       properties :city, :state, :country
@@ -118,14 +118,14 @@ Just define your `User` class like this:
 
 ### [embeds_many](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_many)
 
-    class OrderItems < Transcriber::Resource
+    class OrderItems < RestModel
       property :item_id,    id: true      # default serialization: String
       property :quantity,   type: Integer
       property :unit_price, type: Float
       property :amount,     type: Float
     end
 
-    class Order < Transcriber::Resource
+    class Order < RestModel
       id
       embeds_many :items, class: OrderItems
     end
@@ -154,7 +154,7 @@ Just define your `User` class like this:
 ### has_many
 ### belongs_to
 
-    class User < Transcriber::Resource
+    class User < RestModel
       id
       property   :login
       has_one    :avatar

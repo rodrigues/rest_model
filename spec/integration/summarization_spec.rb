@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe_example 'summarization/simple' do
-
   subject {root[:entries].first}
 
   it 'summarizes resources' do

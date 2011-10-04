@@ -1,17 +1,13 @@
-require 'json'
+$:.push 'examples'; require 'helper'
 
-$:.push 'lib'; require 'transcriber'
-
-class Item < Transcriber::Resource
+class Item < RestModel
   property :id, field: :item_id
 end
 
-class Root < Transcriber::Resource
+class Root < RestModel
   embeds_many :items, start_key: 'detalhe.itens'
 end
 
 @root = Root.parse({"detalhe" => {"itens" => [{item_id: 2000}]}}).first
 
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
-puts "to_json:  #{@root.resource.to_json}"
+inspect_rest_model(@root)

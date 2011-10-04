@@ -1,15 +1,12 @@
-require 'json'
+$:.push 'examples'; require 'helper'
 
-$:.push 'lib'; require 'transcriber'
-
-class Item < Transcriber::Resource
+class Item < RestModel
   property :id
 end
 
-class Root < Transcriber::Resource
+class Root < RestModel
   embeds_many :items
 end
 
 @root = Root.new
-
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

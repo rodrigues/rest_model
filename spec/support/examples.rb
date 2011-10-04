@@ -5,7 +5,11 @@ module Examples
         Examples.send(:remove_const, klass) if Examples.const_defined?(klass)
       end
 
-      silently {eval File.read("examples/#{file}.rb")}
+      # silently {
+
+        eval File.read("examples/#{file}.rb")
+
+        # }
 
       variables = instance_variables.reject {|var| var.to_s =~ /metadata$/}
 

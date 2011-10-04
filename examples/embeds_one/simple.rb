@@ -1,14 +1,12 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Root < Transcriber::Resource
+class Root < RestModel
   embeds_one :item
 end
 
-class Item < Transcriber::Resource
+class Item < RestModel
   properties :id, :name
 end
 
 @root = Root.parse({item: {id: 2000}}).first
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

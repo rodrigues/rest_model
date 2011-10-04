@@ -1,6 +1,6 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :login
   property :password
   property :description, if: proc {password == "abc"}
@@ -11,15 +11,11 @@ end
   password: "abc",
   description: "description"}).first
 
-
-puts "root:     #{@root_with_description.inspect}"
-puts "resource: #{@root_with_description.resource}"
-
+inspect_rest_model(@root_with_description)
 
 @root_without_description = Customer.parse({
   login: 2000,
   password: "abcd",
   description: "some text II"}).first
 
-puts "root:     #{@root_without_description.inspect}"
-puts "resource: #{@root_without_description.resource}"
+inspect_rest_model(@root_without_description)

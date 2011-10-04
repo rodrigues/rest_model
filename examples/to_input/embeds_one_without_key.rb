@@ -1,11 +1,11 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   properties :login, :name
   embeds_one :address
 end
 
-class Address < Transcriber::Resource
+class Address < RestModel
   properties :street, :number, :hint
 end
 
@@ -19,5 +19,5 @@ end
   }
 })
 
-puts "root.to_input: #{@root.to_input(address: {without: :hint})}"
-puts "root:     #{@root.inspect}"
+inspect_rest_model(@root)
+puts "root.to_input without hint: #{@root.to_input(address: {without: :hint})}"

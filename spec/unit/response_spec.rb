@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Transcriber::Resource::Response do
+describe RestModel::Response do
   before do
-    class Example < Resource
+    class Example < RestModel
       id         :login
       property   :phone
       embeds_one :address, class_name: :example_child
     end
 
-    class ExampleChild < Resource
+    class ExampleChild < RestModel
       property   :street
       property   :city
     end

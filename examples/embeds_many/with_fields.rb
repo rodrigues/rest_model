@@ -1,10 +1,9 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Root < Transcriber::Resource
+class Root < RestModel
   embeds_many :items, fields: [:item1, :item2, :item3]
 end
 
 @root = Root.parse({item1: "i1", item2: "i2", item3: "i3"}).first
 
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

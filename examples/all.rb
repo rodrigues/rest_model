@@ -1,4 +1,6 @@
-$:.push 'lib'; puts ": #{$:}"; require 'transcriber'
+# encoding: utf-8
+
+$:.push 'examples'; require 'helper'
 
 Dir["examples/*/**.rb"].each do |file|
   [:Root, :Item, :Customer, :Entry, :Service].each do |klass|

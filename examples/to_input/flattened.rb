@@ -1,15 +1,12 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Root < Transcriber::Resource
+class Root < RestModel
   embeds_one :item, start_key: ""
 end
 
-class Item < Transcriber::Resource
+class Item < RestModel
   property :id
 end
 
 @root = Root.new(item: {id: 2000})
-
-puts "root.to_input: #{@root.to_input}"
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

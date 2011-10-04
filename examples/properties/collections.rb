@@ -1,6 +1,6 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :login
 end
 
@@ -8,5 +8,4 @@ end
                              {login: "brucelee"},
                              {login: "vcr2"}])
 
-puts "root:     #{@customers.inspect}"
-puts "resource: #{Customer.resources @customers}"
+@customers.map(&method(:inspect_rest_model))

@@ -1,11 +1,11 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :name
   embeds_many :phones
 end
 
-class Phone < Transcriber::Resource
+class Phone < RestModel
   properties :number, :extension
 end
 
@@ -22,5 +22,4 @@ end
     }
   ]})
 
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

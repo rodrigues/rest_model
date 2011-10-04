@@ -1,6 +1,6 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   convert_input_keys proc {|keys| keys}
 
   id
@@ -17,6 +17,5 @@ input = {
   "secondary_email" => 'jackiepeligroso@yahoo.com'
 }
 
-@root = Customer.transcribe(input)
-
-puts "resources: #{@root.inspect}"
+@root = Customer.resources Customer.parse(input)
+puts "transcribed: #{@root}"

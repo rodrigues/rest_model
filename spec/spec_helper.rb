@@ -1,6 +1,6 @@
 $:.push '../lib'
 
-require 'transcriber'
+require 'rest_model'
 require 'ostruct'
 require 'json'
 require 'stringio'
@@ -18,10 +18,9 @@ RSpec.configure do |config|
   end
 end
 
-include Transcriber
 include Output
 include Examples
 
-Transcriber.configure do |c|
+RestModel::Configuration.configure do |c|
   c.host = 'http://example.com'
 end

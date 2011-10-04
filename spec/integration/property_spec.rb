@@ -48,7 +48,7 @@ end
 
 describe_example 'properties/with_key_converter' do
   after do
-    Transcriber.configure do |c|
+    RestModel::Configuration.configure do |c|
       c.convert_input_keys = nil
     end
   end

@@ -1,12 +1,10 @@
-require 'json'
+$:.push 'examples'; require 'helper'
 
-$:.push 'lib'; require 'transcriber'
-
-class Root < Transcriber::Resource
+class Root < RestModel
   embeds_many :items, class_name: :array
 end
 
 @root = Root.new
 @root.items = ["a", "b"]
 
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

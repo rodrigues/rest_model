@@ -1,4 +1,4 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
 module Upcasing
   def self.call(keys)
@@ -6,15 +6,13 @@ module Upcasing
   end
 end
 
-Transcriber.configure do |c|
+RestModel::Configuration.configure do |c|
   c.convert_input_keys = Upcasing
 end
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :login
 end
 
 @root = Customer.parse({"LOGIN" => 'jackiechan2010'}).first
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

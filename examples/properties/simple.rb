@@ -1,11 +1,8 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :login
 end
 
 @root = Customer.parse({login: 'jackiechan2010'}).first
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
-puts "to_input: #{@root.to_input}"
+inspect_rest_model(@root)

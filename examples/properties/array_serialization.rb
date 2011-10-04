@@ -1,10 +1,8 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :products, type: Enumerable
 end
 
 @root = Customer.parse({products: ['a', 'b', 'c']}).first
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

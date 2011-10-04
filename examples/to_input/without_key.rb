@@ -1,6 +1,6 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :login
   property :name
 end
@@ -8,4 +8,4 @@ end
 @root = Customer.new(login: 'jackiechan2010', name: "Jackie Chan")
 
 puts "root.to_input: #{@root.to_input(without: :name)}"
-puts "root:     #{@root.inspect}"
+inspect_rest_model(@root)

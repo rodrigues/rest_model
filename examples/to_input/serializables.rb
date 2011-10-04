@@ -1,12 +1,12 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-Transcriber.configure do |c|
+RestModel::Configuration.configure do |c|
   c.true_value = "X"
   c.false_value = ""
   c.date_format = "%Y%m%d"
 end
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :login
   property :age,      type: Integer
   property :birth,    type: Date
@@ -16,8 +16,4 @@ class Customer < Transcriber::Resource
 end
 
 @root = Customer.new({login: 'jackiechan2010', age: 22, birth: "1990-07-04", active: true, services: ["Hosting", "Email"], balance: 200.00})
-
-puts "root.to_input: #{@root.to_input}"
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

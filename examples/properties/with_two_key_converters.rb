@@ -1,4 +1,4 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
 module Upcasing
   def self.call(keys)
@@ -12,18 +12,16 @@ module Camelizing
   end
 end
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   convert_input_keys Upcasing
   property :login
   embeds_one :product
 end
 
-class Product < Transcriber::Resource
+class Product < RestModel
   convert_input_keys Camelizing
   property :unit_price, type: Float
 end
 
 @root = Customer.parse({"LOGIN" => 'jackiechan2010', "PRODUCT" => {"UnitPrice" => 29.9}}).first
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

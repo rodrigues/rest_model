@@ -1,11 +1,9 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   property :name
   embeds_many :phones, class_name: :array
 end
 
 @root = Customer.new({name: "Jackie Chan", phones: ["1391938", "893271984"]})
-
-puts "root:     #{@root.inspect}"
-puts "resource: #{@root.resource}"
+inspect_rest_model(@root)

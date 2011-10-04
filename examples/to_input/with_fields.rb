@@ -1,9 +1,8 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Root < Transcriber::Resource
+class Root < RestModel
   embeds_many :items, fields: [:item1, :item2, :item3, :item4]
 end
 
 @root = Root.new(items: %w(i1 i2 i3))
-
-puts "input:     #{@root.to_input}"
+inspect_rest_model(@root)

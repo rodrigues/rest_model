@@ -1,21 +1,16 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Item < Transcriber::Resource
+class Item < RestModel
   property :id
 end
 
-class Root < Transcriber::Resource
+class Root < RestModel
   property :id
   embeds_many :items, if: proc {id == "10"}
 end
 
 @root_with_items = Root.parse({id: 10, items: [{id: 2000}]}).first
-
-puts "root:     #{@root_with_items.inspect}"
-puts "resource: #{@root_with_items.resource}"
-
+inspect_rest_model(@root_with_items)
 
 @root_without_items = Root.parse({id: 1, items: [{id: 2000}]}).first
-
-puts "root:     #{@root_without_items.inspect}"
-puts "resource: #{@root_without_items.resource}"
+inspect_rest_model(@root_without_items)

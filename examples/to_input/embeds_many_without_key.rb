@@ -1,11 +1,11 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'examples'; require 'helper'
 
-class Customer < Transcriber::Resource
+class Customer < RestModel
   properties :login, :name
   embeds_many :phones
 end
 
-class Phone < Transcriber::Resource
+class Phone < RestModel
   properties :number, :extension, :description
 end
 
@@ -26,5 +26,6 @@ end
   ]
 })
 
-puts "root.to_input: #{@root.to_input(phones: {without: :description})}"
-puts "root:     #{@root.inspect}"
+inspect_rest_model(@root)
+
+puts "to input without description: #{@root.to_input(phones: {without: :descriptions})}"

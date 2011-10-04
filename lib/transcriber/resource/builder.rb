@@ -4,7 +4,7 @@ module Transcriber
       include Keys
       include Relations
       include Embeddables
-      include Properties
+      include Resource::Property::Builder
       include Summarizations
     end
   end

@@ -1,7 +1,7 @@
 module Transcriber
   class Resource
-    module Builder
-      module Properties
+    class Property
+      module Builder
         def property(name, options = {})
           key Property.new(name, options)
         end

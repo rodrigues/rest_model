@@ -1,8 +1,10 @@
 module Transcriber
   class Resource
     class Property < Key
-      include Parser::Property
-      include Response::Property
+      autoload :Parser,   "transcriber/resource/key/property/parser"
+      autoload :Response, "transcriber/resource/key/property/response"
+      include Parser
+      include Response
 
       attr_accessor :serializer, :translations
 

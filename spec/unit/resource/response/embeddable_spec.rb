@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Resource::Response::Embeddable do
+describe Resource::Embeddable::Response do
   before do
     class ExampleChild < Resource
       property :id

@@ -1,7 +1,7 @@
 module Transcriber
   class Resource
-    module Builder
-      module Embeddables
+    class Embeddable
+      module Builder
         def embeds(name, options = {})
           key Embeddable.new(name, options)
         end

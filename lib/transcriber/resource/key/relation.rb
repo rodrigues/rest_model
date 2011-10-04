@@ -1,7 +1,8 @@
 module Transcriber
   class Resource
     class Relation < Association
-      include Response::Relation
+      autoload :Response, "transcriber/resource/key/relation/response"
+      include Response
 
       def initialize(name, options = {})
         super

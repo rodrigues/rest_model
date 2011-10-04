@@ -1,7 +1,7 @@
 module Transcriber
   class Resource
-    module Builder
-      module Relations
+    class Relation
+      module Builder
         def relation(name, options = {})
           key Relation.new(name, options)
         end

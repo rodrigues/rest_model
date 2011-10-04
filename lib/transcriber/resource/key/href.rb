@@ -1,7 +1,8 @@
 module Transcriber
   class Resource
     class Href < Key
-      include Response::Href
+      autoload :Response, "transcriber/resource/key/href/response"
+      include Response
 
       def initialize
         super(:href)

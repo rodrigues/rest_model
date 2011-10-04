@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Resource::Response::Property do
+describe Resource::Property::Response do
   class Customer
     attr_accessor :login
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Resource::Parser::Property do
+describe Resource::Property::Parser do
   subject {Resource::Property.new(:login)}
 
   let(:item)            {{login: "jackiechan2010"}}

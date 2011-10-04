@@ -1,7 +1,7 @@
 module Transcriber
   class Resource
-    module Parser
-      module Embeddable
+    class Embeddable
+      module Parser
         def parse(item, resource = nil)
           return parse_fields(item) if fields
           value = digg(item)

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'unit/resource/builder/shared_example_for_association'
 
-describe Resource::Builder::Relations do
+describe Resource::Relation::Builder do
   describe ".has_one" do
     before do
       class Example < Transcriber::Resource

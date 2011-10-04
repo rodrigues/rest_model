@@ -1,7 +1,7 @@
 module Transcriber
   class Resource
-    module Parser
-      module Property
+    class Property
+      module Parser
         def parse(item, resource = nil)
           value = digg(item)
           translate_from_input(serializer.serialize(value), resource)

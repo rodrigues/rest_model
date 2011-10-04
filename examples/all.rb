@@ -1,4 +1,4 @@
-$:.push 'lib'; require 'transcriber'
+$:.push 'lib'; puts ": #{$:}"; require 'transcriber'
 
 Dir["examples/*/**.rb"].each do |file|
   [:Root, :Item, :Customer, :Entry, :Service].each do |klass|

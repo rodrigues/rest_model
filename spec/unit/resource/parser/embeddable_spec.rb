@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Resource::Parser::Embeddable do
+describe Resource::Embeddable::Parser do
   context "when it embeds one" do
     before do
       class ExampleChild < Resource

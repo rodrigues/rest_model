@@ -1,7 +1,7 @@
 module Transcriber
   class Resource
-    module Response
-      module Relation
+    class Relation
+      module Response
         def to_resource(parent)
           included = parent.__send__(name)
           return {} unless visible?(parent) and included

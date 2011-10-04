@@ -2,7 +2,7 @@ module Transcriber
   class Configuration
     attr_accessor :host
 
-    DefaultHandler = lambda {|keys| keys}
+    DefaultHandler = proc {|keys| keys}
 
     def convert_input_keys
       @convert_input_keys || DefaultHandler

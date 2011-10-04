@@ -1,8 +1,10 @@
 module Transcriber
   class Resource
     class Embeddable < Association
-      include Parser::Embeddable
-      include Response::Embeddable
+      autoload :Parser,   "transcriber/resource/key/embeddable/parser"
+      autoload :Response, "transcriber/resource/key/embeddable/response"
+      include Parser
+      include Response
 
       attr_accessor :fields
 

@@ -1,7 +1,7 @@
 module Transcriber
   class Resource
-    module Response
-      module Embeddable
+    class Embeddable
+      module Response
         def to_resource(parent)
           return {} unless visible?(parent)
           resource = nil

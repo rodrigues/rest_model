@@ -7,6 +7,14 @@ module Transcriber
         rescue ArgumentError
           raise "value not serializable: #{value}"
         end
+
+        def self.desserialize(value)
+          date = value.kind_of?(::Date) ? value : ::Date.parse(value)
+          format = Transcriber.configuration.date_format
+          format ? date.strftime(format) : date.to_s
+        rescue ArgumentError
+          raise "value not desserializable: #{value}"
+        end
       end
     end
   end

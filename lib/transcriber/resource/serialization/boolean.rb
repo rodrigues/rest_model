@@ -31,6 +31,19 @@ module Transcriber
             fail "value not serializable: #{value}" if bool.nil?
           end
         end
+
+        def self.desserialize(value)
+          fail unless boolean?(value)
+
+          value ? Transcriber.configuration.true_value
+                : Transcriber.configuration.false_value
+        end
+
+        private
+
+        def self.boolean?(value)
+          !!value == value
+        end
       end
     end
   end

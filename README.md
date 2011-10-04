@@ -87,7 +87,7 @@ Just define your `User` class like this:
 
 ## Embedding other resources
 
-### [embeds_one](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_one)
+### [embeds_one](https://github.com/rodrigues/rest_client/tree/master/examples/embeds_one)
 
     class Customer < RestModel
       id field: 'cust_id'
@@ -103,7 +103,7 @@ Just define your `User` class like this:
     {
       id:    1938713897398,
       address: {
-        street:  'transcriber st.',
+        street:  'rest_client st.',
         number:  '39',
         city:    'hashland',
         state:   'std',
@@ -112,7 +112,7 @@ Just define your `User` class like this:
       href:  "http://app/api/users/1938713897398"
     }
 
-### [embeds_many](https://github.com/rodrigues/transcriber/tree/master/examples/embeds_many)
+### [embeds_many](https://github.com/rodrigues/rest_client/tree/master/examples/embeds_many)
 
     class OrderItems < RestModel
       property :item_id,    id: true      # default serialization: String
@@ -201,7 +201,7 @@ If you want your api to handle `http://app/api/users/19371897318937?include[]=av
       ]
     }
 
-### [See more examples here](https://github.com/rodrigues/transcriber/tree/master/examples).
+### [See more examples here](https://github.com/rodrigues/rest_client/tree/master/examples).
 
 ## Installation
 

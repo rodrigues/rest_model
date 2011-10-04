@@ -53,7 +53,7 @@ describe_example 'properties/with_key_converter' do
     end
   end
 
-  context 'when a diferent key converter is configured on transcriber' do
+  context 'when a diferent key converter is configured on rest model' do
     it_parses_property
   end
 end

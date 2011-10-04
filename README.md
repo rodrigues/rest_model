@@ -205,7 +205,7 @@ If you want your api to handle `http://app/api/users/19371897318937?include[]=av
 
 ## Installation
 
-    gem install transcriber
+    gem install rest_model
 
 ## Maintainers
 

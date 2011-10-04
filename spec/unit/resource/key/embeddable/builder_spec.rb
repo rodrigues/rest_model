@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'unit/resource/builder/shared_example_for_association'
 
 describe Resource::Embeddable::Builder do
   before do

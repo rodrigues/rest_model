@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Resource::Embeddable::Parser do
+describe Resource::Embeddable::Retriever do
   context "when it embeds one" do
     before do
       class ExampleChild < Resource
@@ -13,7 +13,7 @@ describe Resource::Embeddable::Parser do
     subject {Resource::Embeddable.new(:example_child, many: false, start_key: "")}
 
     it "parses child" do
-      child = subject.parse(value)
+      child = subject.from_source(value)
       child.id.should == "7000"
     end
   end
@@ -30,7 +30,7 @@ describe Resource::Embeddable::Parser do
     subject {Resource::Embeddable.new(:example_children, many: true)}
 
     it "parses children" do
-      children = subject.parse(value)
+      children = subject.from_source(value)
       children[0].id.should == "7000"
       children[1].id.should == "7001"
     end

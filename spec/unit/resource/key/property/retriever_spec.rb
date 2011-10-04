@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Resource::Property::Parser do
+describe Resource::Property::Retriever do
   subject {Resource::Property.new(:login)}
 
   let(:item)            {{login: "jackiechan2010"}}
@@ -12,7 +12,7 @@ describe Resource::Property::Parser do
 
   it "tries to serialize value" do
     serializer_mock.should_receive(:serialize).with(item[:login]).and_return(item[:login])
-    subject.parse(item)
+    subject.from_source(item)
   end
 
   context "when there is a values map" do
@@ -25,7 +25,7 @@ describe Resource::Property::Parser do
 
     it "maps value" do
       serializer_mock.should_receive(:serialize).with("02").and_return "02"
-      subject.parse({payment_status: "02"}).should == :unpaid
+      subject.from_source({payment_status: "02"}).should == :unpaid
     end
   end
 end

@@ -1,9 +1,11 @@
 module Transcriber
   class Resource
     class Embeddable < Association
-      autoload :Parser,   "transcriber/resource/key/embeddable/parser"
-      autoload :Response, "transcriber/resource/key/embeddable/response"
-      include   Parser
+      autoload :Sender,    "transcriber/resource/key/embeddable/sender"
+      autoload :Retriever, "transcriber/resource/key/embeddable/retriever"
+      autoload :Response,  "transcriber/resource/key/embeddable/response"
+      include   Sender
+      include   Retriever
       include   Response
 
       attr_accessor :fields
@@ -19,6 +21,10 @@ module Transcriber
 
       def raw?
         [Hash, Array].include?(resource_class)
+      end
+
+      def from_hash(attrs, resource = nil)
+        raw? ? attrs : super
       end
     end
   end

@@ -6,6 +6,7 @@ require 'json'
 require 'stringio'
 require 'active_support/core_ext/hash/indifferent_access'
 
+require 'support/shared_examples'
 require 'support/examples'
 require 'support/out'
 

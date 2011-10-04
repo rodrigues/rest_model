@@ -13,16 +13,16 @@ module Transcriber
                       Transcriber.configuration.convert_input_keys)
       end
 
-      def input_path
-        return @input_path.clone if @input_path
+      def source_path
+        return @source_path.clone if @source_path
 
-        @input_path = InputPath.resolve(options, convert_input_keys)
+        @source_path = Source::Path.resolve(options, convert_input_keys)
 
-        if @input_path.empty? and !root_path?
-          @input_path = convert_input_keys.call([name])
+        if @source_path.empty? and !root_path?
+          @source_path = convert_input_keys.call([name])
         end
 
-        @input_path.clone
+        @source_path.clone
       end
 
       def root_path?

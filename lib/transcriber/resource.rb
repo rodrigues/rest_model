@@ -1,8 +1,8 @@
 module Transcriber
   class Resource
     extend  Builder
-    extend  Parser
-    include InputParser
+    extend  Source::Retriever
+    include Source::Sender
     include Response
     include Serialization
 

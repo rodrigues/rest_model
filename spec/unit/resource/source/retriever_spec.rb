@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Resource::Parser do
+describe Resource::Source::Retriever do
   describe '.parse' do
     it 'parses simple properties' do
       class Example < Resource

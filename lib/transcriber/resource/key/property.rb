@@ -1,9 +1,11 @@
 module Transcriber
   class Resource
     class Property < Key
-      autoload :Parser,   "transcriber/resource/key/property/parser"
-      autoload :Response, "transcriber/resource/key/property/response"
-      include   Parser
+      autoload :Sender,    "transcriber/resource/key/property/sender"
+      autoload :Retriever, "transcriber/resource/key/property/retriever"
+      autoload :Response,  "transcriber/resource/key/property/response"
+      include   Sender
+      include   Retriever
       include   Response
 
       attr_accessor :serializer, :translations
@@ -12,6 +14,10 @@ module Transcriber
         super
         @serializer   = options.fetch(:type, Serialization::String)
         @translations = options[:values]
+      end
+
+      def from_hash(value, resource = nil)
+        value
       end
     end
   end

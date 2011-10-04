@@ -6,7 +6,7 @@ module Transcriber
           value.nil? ? nil : value.to_s
         end
 
-        def self.serialize(value)
+        def self.desserialize(value)
           value.nil? ? nil : value.to_s
         end
       end

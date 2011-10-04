@@ -3,8 +3,8 @@ module Transcriber
     class Property < Key
       autoload :Parser,   "transcriber/resource/key/property/parser"
       autoload :Response, "transcriber/resource/key/property/response"
-      include Parser
-      include Response
+      include   Parser
+      include   Response
 
       attr_accessor :serializer, :translations
 

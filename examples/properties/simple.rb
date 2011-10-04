@@ -8,3 +8,4 @@ end
 
 puts "root:     #{@root.inspect}"
 puts "resource: #{@root.resource}"
+puts "to_input: #{@root.to_input}"

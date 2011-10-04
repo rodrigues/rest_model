@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "rest_model"
   s.version     = RestModel::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Victor Rodrigues",           "William Yokoi",     "Vinicius Higa"]
-  s.email       = ["victorcrodrigues@gmail.com", "thekina@gmail.com", "vinicius.higa@locaweb.com.br"]
+  s.authors     = ["Victor Rodrigues",           "Vinicius Higa",                "William Yokoi"]
+  s.email       = ["victorcrodrigues@gmail.com", "vinicius.higa@locaweb.com.br", "thekina@gmail.com"]
   s.homepage    = "http://github.com/rodrigues/rest_model"
   s.summary     = %q{}
   s.description = %q{}

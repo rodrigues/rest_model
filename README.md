@@ -35,7 +35,7 @@ Given you have:
 
 And you want to transform this input in some instances of a `class User;   attr_accessor :id, :login, :name, :birth;   end`
 
-With transcriber you can parse the input to instances of `User`:
+With RestModel you can parse the input to instances of `User`:
 
     users = User.parse(input, :result)  # starts looking input hash from 'result' key
 
@@ -84,10 +84,6 @@ Just define your `User` class like this:
       birth: "1999-02-10",
       href:  "http://app/api/users/1938713897398"
     }
-
-### Input hash to restful response hash
-
-    User.transcribe(input, :result)
 
 ## Embedding other resources
 
@@ -214,8 +210,8 @@ If you want your api to handle `http://app/api/users/19371897318937?include[]=av
 ## Maintainers
 
 * [Victor Rodrigues](http://github.com/rodrigues)
+* [Vinicius Higa](http://github.com/viniciushiga)
 * [William "Kina"](http://github.com/kina)
-* [Guilherme Guimarães Filho](http://github.com/gguimaraesbr)
 
 ## License
 

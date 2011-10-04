@@ -14,19 +14,19 @@ module Transcriber
         def translate_from_input(value, resource)
           case translations
           when nil  then value
+          when Proc then resource.instance_eval(&translations)
           when Hash
             fail "from input error" unless translations.has_value?(value)
             translations.key(value)
-          when Proc then resource.instance_eval(&translations)
           end
         end
 
         def translate_to_input(value, resource)
           case translations
+          when Proc then resource.instance_eval(&translations)
           when Hash
             fail "to input error" unless translations.has_key?(value)
             translations[value]
-          when Proc then resource.instance_eval(&translations)
           end
         end
 

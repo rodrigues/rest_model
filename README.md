@@ -1,19 +1,37 @@
 # RestModel
 
-**Map from one or more input hashes** to instances of your model classes.
+            [ THE INTERNETS ]
 
-**Map to restful responses** from these model instances. (Some hypermedia magic happens here).
+                /\    ||
+                ||    ||
+                ||    \/
+         #resource    .new
+        .resources    #update_attributes
+
+             Your < RestModel
+
+        #to_source    .from_source
+                ||    /\
+                ||    ||
+                \/    ||
+
+                 SOURCE
+
+
+### Map _from a data source_ to instances of your model class.
+
+### Map _to RESTful responses_ from these model instances.
 
 ## Usage
 
-### Input hash to model
+### Source hash to model instances
 
 Given you have:
 
     input = {
       "result" => [
         {
-          "id"       => 1938713897398,
+          "id"       => "1938713897398",
           "login"    => "jsmith180",
           "username" => "John Smith",
           "personal_info" => {
@@ -22,7 +40,7 @@ Given you have:
           }
         },
         {
-          "id"       => 92171987391873,
+          "id"       => "92171987391873",
           "login"    => "john_appleseed",
           "username" => "John Appleseed",
           "personal_info" => {
@@ -33,19 +51,19 @@ Given you have:
       ]
     }
 
-And you want to transform this input in some instances of a `class User;   attr_accessor :id, :login, :name, :birth;   end`
+And you want to transform this in some instances of a `class User;   attr_accessor :id, :login, :name, :birth;   end`
 
 With RestModel you can parse the input to instances of `User`:
 
-    users = User.parse(input, :result)  # starts looking input hash from 'result' key
+    users = User.from_source(input, start_key: 'result')  # starts looking hash from 'result' key
 
 Just define your `User` class like this:
 
     class User < RestModel
       id
       property :login
-      property :name,  field: :username                  # input hash key is different from resource key
-      property :birth, field: 'personal_info/birth_date' # digg hash path defined by '/', the last being the key
+      property :name,  field: :username                  # source key is different from model property
+      property :birth, field: 'personal_info.birth_date' # digg hash path defined by '.', the last being the key
     end
 
 ### Model instances array to restful response hash
@@ -56,14 +74,14 @@ Just define your `User` class like this:
     {
       entries: [
         {
-          id:    1938713897398,
+          id:    "1938713897398",
           login: "jsmith180",
           name:  "John Smith",
           birth: "1999-02-10",
           href:  "http://app/api/users/1938713897398"
         },
         {
-          id:    92171987391873,
+          id:    "92171987391873",
           login: "john_appleseed",
           name:  "John Appleseed",
           birth: "1999-02-10",
@@ -78,7 +96,7 @@ Just define your `User` class like this:
 =>
 
     {
-      id:    1938713897398,
+      id:    "1938713897398",
       login: "jsmith180",
       name:  "John Smith",
       birth: "1999-02-10",
@@ -101,7 +119,7 @@ Just define your `User` class like this:
     end
 
     {
-      id:    1938713897398,
+      id:    '1938713897398',
       address: {
         street:  'rest_client st.',
         number:  '39',
@@ -127,16 +145,16 @@ Just define your `User` class like this:
     end
 
     {
-      id: 739819813719387,
+      id: '739819813719387',
       items: [
         {
-          item_id:    1738917139871,
+          item_id:    '1738917139871',
           quantity:   18,
           unit_price: 0.2,
           amount:     3.6
         },
         {
-          item_id:    3987187398782,
+          item_id:    '3987187398782',
           quantity:   1,
           unit_price: 39.9,
           amount:     39.9
@@ -159,7 +177,7 @@ Just define your `User` class like this:
     end
 
     {
-      id:    19837139879,
+      id:    '19837139879',
       login: 'jsmith180',
       link: [
         {
@@ -181,10 +199,10 @@ Just define your `User` class like this:
 
 If you want your api to handle `http://app/api/users/19371897318937?include[]=avatar&include[]=guilda`
 
-    user = User.parse(input, include: [avatar_input, guilda_input]).first
+    user = User.from_source(input, include: [avatar_input, guilda_input]).first
 
     {
-      id:    19837139879,
+      id:    '19837139879',
       login: 'jsmith180',
       avatar: {
         name:   'K1ll3r',

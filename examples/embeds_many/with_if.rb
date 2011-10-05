@@ -9,8 +9,8 @@ class Root < RestModel
   embeds_many :items, if: proc {id == "10"}
 end
 
-@root_with_items = Root.parse({id: 10, items: [{id: 2000}]}).first
+@root_with_items = Root.from_source(id: 10, items: [{id: 2000}]).first
 inspect_rest_model(@root_with_items)
 
-@root_without_items = Root.parse({id: 1, items: [{id: 2000}]}).first
+@root_without_items = Root.from_source(id: 1, items: [{id: 2000}]).first
 inspect_rest_model(@root_without_items)

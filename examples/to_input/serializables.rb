@@ -15,5 +15,11 @@ class Customer < RestModel
   property :balance,  type: Float
 end
 
-@root = Customer.new({login: 'jackiechan2010', age: 22, birth: "1990-07-04", active: true, services: ["Hosting", "Email"], balance: 200.00})
+@root = Customer.new(login: 'jackiechan2010',
+                     age: 22,
+                     birth: "1990-07-04",
+                     active: true,
+                     services: ["Hosting", "Email"],
+                     balance: 200.00)
+
 inspect_rest_model(@root)

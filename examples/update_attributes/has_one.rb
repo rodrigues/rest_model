@@ -11,7 +11,7 @@ class Customer < RestModel
   has_one :billing
 end
 
-@root = Customer.parse({customer_id: 123, login: 'jackiechan2010'}).first
-@root.update_attributes({billing: {login: "new_billing_login"}})
+@root = Customer.from_source(customer_id: 123, login: 'jackiechan2010').first
+@root.update_attributes(billing: {login: "new_billing_login"})
 
 inspect_rest_model(@root)

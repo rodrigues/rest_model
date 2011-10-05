@@ -8,7 +8,7 @@ class Root < RestModel
   embeds_many :items
 end
 
-@root = Root.parse({items: [{id: 2000}, {id: 2001}]}).first
-@root.update_attributes({items: [{id: 3000}]})
+@root = Root.from_source(items: [{id: 2000}, {id: 2001}]).first
+@root.update_attributes(items: [{id: 3000}])
 
 inspect_rest_model(@root)

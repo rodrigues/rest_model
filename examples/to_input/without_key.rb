@@ -7,5 +7,5 @@ end
 
 @root = Customer.new(login: 'jackiechan2010', name: "Jackie Chan")
 
-puts "root.to_input: #{@root.to_input(without: :name)}"
+puts "root.to_source: #{@root.to_source(without: :name)}"
 inspect_rest_model(@root)

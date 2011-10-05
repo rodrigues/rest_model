@@ -3,12 +3,12 @@ require 'spec_helper'
 describe "has_many" do
   describe_example "has_many/simple" do
     it 'parses properly' do
-      root.id.should == 123
-      root.login.should == 'jackiechan2010'
+      @root.id.should == 123
+      @root.login.should == 'jackiechan2010'
     end
 
     describe "#resource" do
-      subject {root.resource}
+      subject {@root.resource}
 
       it 'has a link' do
         subject[:link].should be_an(Array)

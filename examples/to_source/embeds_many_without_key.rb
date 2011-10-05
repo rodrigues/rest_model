@@ -26,4 +26,4 @@ end
 
 inspect_rest_model(@root)
 
-puts "to input without description: #{@root.to_source(phones: {without: :descriptions})}"
+puts "to input without description: #{@root.to_source(phones: {without: :description})}"

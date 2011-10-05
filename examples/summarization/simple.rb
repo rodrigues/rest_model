@@ -18,4 +18,3 @@ input = {
 }
 
 @root = Customer.resources Customer.from_source(input)
-puts "transcribed: #{@root}"

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "summarization" do
   describe_example 'summarization/simple' do
-    subject {root[:entries].first}
+    subject {@root[:entries].first}
 
     it 'summarizes resources' do
       subject.keys.count.should == 3

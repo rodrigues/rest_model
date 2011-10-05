@@ -7,6 +7,20 @@ def it_parses_property
 end
 
 describe "properties" do
+  describe_example "properties/array_serialization" do
+    it "parses property" do
+      root.products.should == ["a", "b", "c"]
+    end
+  end
+
+  describe_example "properties/collections" do
+    it "parses customers" do
+      customers[0].login.should == "jackiechan2010"
+      customers[1].login.should == "brucelee"
+      customers[2].login.should == "vcr2"
+    end
+  end
+
   describe_example 'properties/simple' do
     it_parses_property
   end
@@ -60,6 +74,14 @@ describe "properties" do
       it 'parses other property with different key converter' do
         root.product.unit_price.should == 29.9
       end
+    end
+  end
+
+  describe_example "properties/with_values" do
+    it "maps values" do
+      root.periodicity.should == 1
+      root.company.should == "google"
+      root.type.should == :complex
     end
   end
 end

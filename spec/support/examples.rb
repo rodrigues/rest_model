@@ -1,8 +1,12 @@
 module Examples
-  def describe_example(file, &block)
-    describe "example #{file}" do
+  def describe_example(file, tags = {}, &block)
+    describe "example #{file}", tags do
       [:Root, :Item, :Customer, :Entry].each do |klass|
         Examples.send(:remove_const, klass) if Examples.const_defined?(klass)
+      end
+
+      RestModel::Configuration.configure do |c|
+        c.convert_input_keys = proc {|keys| keys}
       end
 
       silently {eval File.read("examples/#{file}.rb")}

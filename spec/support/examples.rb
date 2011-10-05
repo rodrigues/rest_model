@@ -6,7 +6,7 @@ module Examples
       end
 
       RestModel::Configuration.configure do |c|
-        c.convert_input_keys = proc {|keys| keys}
+        c.convert_input_keys = RestModel::Configuration::DefaultHandler
       end
 
       silently {eval File.read("examples/#{file}.rb")}

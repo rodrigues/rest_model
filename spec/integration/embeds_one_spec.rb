@@ -7,6 +7,12 @@ describe "embeds_one" do
     end
   end
 
+  describe_example "embeds_one/flattened" do
+    it "parses flattened key" do
+      root.item.id.should == "2000"
+    end
+  end
+
   describe_example "embeds_one/with_class_name" do
     context 'when a different class name is used for embeddable' do
       it 'parses embedded item' do

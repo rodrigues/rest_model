@@ -15,8 +15,22 @@
                 ||    ||
                 \/    ||
 
-                 SOURCE
+              SOURCE HASH
 
+.
+
+    class Account < RestModel
+      property :number
+      property :balance, type: Float
+      property :type,    values: {gold: '01', platinum: '02'}
+      
+      embeds_one  :electronic_card
+      embeds_many :transactions
+      
+      belongs_to :customer
+      has_one    :manager
+      has_many   :tickets
+    end
 
 ### Map _from a data source_ to instances of your model class.
 

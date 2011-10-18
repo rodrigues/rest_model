@@ -11,6 +11,6 @@ end
 
 names = {'en' => 'Woot', 'pt-BR' => 'Úia', 'es' => 'Me gusta'}
 
-@root = Root.from_source(locale: 'pt-BR', key: 19190839, names: names).first
+@root = Root.from_source!(locale: 'pt-BR', key: 19190839, names: names).first
 
 inspect_rest_model(@root)

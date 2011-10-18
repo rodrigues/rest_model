@@ -11,7 +11,7 @@ class Customer < RestModel
   has_many :services
 end
 
-@root = Customer.from_source(customer_id: 123, login: 'jackiechan2010').first
+@root = Customer.from_source!(customer_id: 123, login: 'jackiechan2010').first
 @root.update_attributes(services: [{name: "new_service_name"}])
 
 inspect_rest_model(@root)

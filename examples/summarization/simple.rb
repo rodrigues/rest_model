@@ -17,4 +17,4 @@ input = {
   "secondary_email" => 'jackiepeligroso@yahoo.com'
 }
 
-@root = Customer.resources Customer.from_source(input)
+@root = Customer.resources Customer.from_source!(input)

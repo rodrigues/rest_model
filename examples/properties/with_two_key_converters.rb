@@ -23,5 +23,5 @@ class Product < RestModel
   property :unit_price, type: Float
 end
 
-@root = Customer.from_source("LOGIN" => 'jackiechan2010', "PRODUCT" => {"UnitPrice" => 29.9}).first
+@root = Customer.from_source!("LOGIN" => 'jackiechan2010', "PRODUCT" => {"UnitPrice" => 29.9}).first
 inspect_rest_model(@root)

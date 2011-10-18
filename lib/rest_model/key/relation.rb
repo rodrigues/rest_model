@@ -16,8 +16,11 @@ class RestModel
       !has?
     end
 
-    def parse(value, resource = nil)
+    def from_source(value, resource = nil)
       nil
     end
+
+    alias :parse  :from_source
+
   end
 end

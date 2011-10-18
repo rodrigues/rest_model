@@ -8,6 +8,6 @@ class Root < RestModel
   embeds_many :items
 end
 
-@root = Root.from_source(items: [{id: 2000}, {id: 2001}]).first
+@root = Root.from_source!(items: [{id: 2000}, {id: 2001}]).first
 
 inspect_rest_model(@root)

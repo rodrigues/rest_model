@@ -4,7 +4,7 @@ class Customer < RestModel
   property :login
 end
 
-@customers = Customer.from_source([{login: "jackiechan2010"},
+@customers = Customer.from_source!([{login: "jackiechan2010"},
                                    {login: "brucelee"},
                                    {login: "vcr2"}])
 

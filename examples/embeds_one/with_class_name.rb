@@ -8,5 +8,5 @@ class Root < RestModel
   embeds_one :item, class_name: :entry
 end
 
-@root = Root.from_source(item: {id: 2000}).first
+@root = Root.from_source!(item: {id: 2000}).first
 inspect_rest_model(@root)

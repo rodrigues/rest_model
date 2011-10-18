@@ -8,5 +8,5 @@ class Item < RestModel
   properties :id, :name
 end
 
-@root = Root.from_source(item: {id: 2000}).first
+@root = Root.from_source!(item: {id: 2000}).first
 inspect_rest_model(@root)

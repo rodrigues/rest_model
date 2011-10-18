@@ -8,5 +8,5 @@ class Item < RestModel
   property :id
 end
 
-@root = Root.from_source('ugly_nesting_key' => {id: 2000}).first
+@root = Root.from_source!('ugly_nesting_key' => {id: 2000}).first
 inspect_rest_model(@root)

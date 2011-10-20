@@ -5,7 +5,7 @@ require "spec_helper"
 describe "update_attributes" do
   describe_example "update_attributes/embeds_one" do
     it "updates customer item name" do
-      @root.item.id.should == "2000"
+      @root.item.id.should == nil
       @root.item.name.should == "name"
     end
   end

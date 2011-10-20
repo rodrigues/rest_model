@@ -34,4 +34,16 @@ describe "to_source" do
       source["address"]["number"].should == "666"
     end
   end
+
+  describe_example "to_source/serializables" do
+    it "generates source" do
+      source = @root.to_source
+      source["login"].should == "jackiechan2010"
+      source["age"].should == 22
+      source["birth"].should == "19900704"
+      source["active"].should == "X"
+      source["services"].should == ["Hosting", "Email"]
+      source["balance"].should == 200.00
+    end
+  end
 end

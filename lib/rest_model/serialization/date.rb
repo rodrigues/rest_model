@@ -9,7 +9,7 @@ class RestModel
 
       def self.desserialize(value)
         date = value.kind_of?(::Date) ? value : ::Date.parse(value)
-        format = RestModel.configuration.date_format
+        format = RestModel::Configuration.date_format
         format ? date.strftime(format) : date.to_s
       rescue ArgumentError
         raise "value not desserializable: #{value}"

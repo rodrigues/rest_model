@@ -34,8 +34,8 @@ class RestModel
       def self.desserialize(value)
         fail unless boolean?(value)
 
-        value ? RestModel.configuration.true_value
-              : RestModel.configuration.false_value
+        value ? RestModel::Configuration.true_value
+              : RestModel::Configuration.false_value
       end
 
       private

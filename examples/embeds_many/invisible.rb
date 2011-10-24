@@ -6,7 +6,7 @@ class Root < RestModel
   property    :key,    id: true
   property    :locale, visible: false
   embeds_many :names,  class_name: 'Hash', visible: false
-  property    :name,   values: proc {names[locale]}
+  property    :name,   from_source: proc {names[locale]}, to_source: proc {names[locale]}
 end
 
 names = {'en' => 'Woot', 'pt-BR' => 'Úia', 'es' => 'Me gusta'}

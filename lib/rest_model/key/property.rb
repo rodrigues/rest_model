@@ -7,12 +7,12 @@ class RestModel
     include   Retriever
     include   Response
 
-    attr_accessor :serializer, :translations
+    attr_accessor :serializer, :translation
 
     def initialize(name, options = {})
       super
-      @serializer   = options.fetch(:type, Serialization::String)
-      @translations = options[:values]
+      @serializer  = options.fetch(:type, Serialization::String)
+      @translation = Source::Translation.new(options)
     end
 
     def from_hash(value, resource = nil)

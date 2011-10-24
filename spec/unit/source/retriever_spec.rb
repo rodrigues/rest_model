@@ -72,13 +72,21 @@ describe RestModel::Source::Retriever do
       end
 
       it "returns key when value was mapped" do
-        models = Example.parse({status: '02'})
+        models = Example.from_source!({status: '02'})
         models.first.status.should == :unpaid
       end
 
-      it "returns nil when value wasn't mapped" do
-        models = Example.parse({status: '03'})
-        models.first.status.should be_nil
+      context "when calling from_source" do
+        it "returns nil when value wasn't mapped" do
+          models = Example.from_source({status: '03'})
+          models.first.status.should be_nil
+        end
+      end
+
+      context "when calling from_source!" do
+        it "fails when value wasn't mapped" do
+          expect {Example.from_source!({status: '03'})}.to raise_error("from source error")
+        end
       end
     end
   end

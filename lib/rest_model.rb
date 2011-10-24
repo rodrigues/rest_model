@@ -9,6 +9,7 @@ require "active_support/core_ext/hash/slice"
 require "active_support/core_ext/hash/indifferent_access"
 
 require "rest_model/source/path"
+require "rest_model/source/translation"
 require "rest_model/source/retriever"
 require "rest_model/source/sender"
 require "rest_model/response"

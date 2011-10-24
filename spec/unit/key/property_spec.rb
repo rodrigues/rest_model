@@ -32,7 +32,8 @@ describe RestModel::Property do
       end
 
       it "configures values" do
-        subject.translations.should == values
+        subject.translation.should be_a(RestModel::Source::Translation)
+        subject.translation.values.should == values
       end
     end
   end

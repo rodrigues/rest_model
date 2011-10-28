@@ -3,7 +3,8 @@ class RestModel
     module Sender
       def to_source!(value, resource, options = {})
         source_value = begin
-          translation.translate_to_source(serializer.desserialize(value), resource)
+          translation.translates_to_source? ? translation.translate_to_source(value, resource)
+                                            : serializer.desserialize(value)
         rescue => exception
           raise exception if options[:fail]
         end

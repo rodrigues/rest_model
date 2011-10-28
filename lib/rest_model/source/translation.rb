@@ -9,6 +9,10 @@ class RestModel
         @to_source   = attrs[:to_source]
       end
 
+      def translates_from_source?
+        from_source or values
+      end
+
       def translate_from_source(value, resource)
         if from_source
           resource.instance_exec(value, &from_source)
@@ -18,6 +22,10 @@ class RestModel
         else
           value
         end
+      end
+
+      def translates_to_source?
+        to_source or values
       end
 
       def translate_to_source(value, resource)

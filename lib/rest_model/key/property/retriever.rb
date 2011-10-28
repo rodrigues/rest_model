@@ -3,7 +3,8 @@ class RestModel
     module Retriever
       def from_source(item, resource = nil)
         value = digg(item)
-        translation.translate_from_source(serializer.serialize(value), resource)
+        translation.translates_from_source? ? translation.translate_from_source(value, resource)
+                                            : serializer.serialize(value)
       end
 
       def digg(input)

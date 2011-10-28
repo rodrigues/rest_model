@@ -6,5 +6,5 @@ class Customer < RestModel
   property :type,        values: {simple: "1", complex: "2"}
 end
 
-@root = Customer.from_source!(periodicity: 'c_53', company: "GOOG", type: 2).first
+@root = Customer.from_source!(periodicity: 'c_53', company: "GOOG", type: "2").first
 inspect_rest_model(@root)

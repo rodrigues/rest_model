@@ -24,7 +24,6 @@ describe RestModel::Property::Retriever do
     end
 
     it "maps value" do
-      serializer_mock.should_receive(:serialize).with("02").and_return "02"
       subject.from_source({payment_status: "02"}).should == :unpaid
     end
   end

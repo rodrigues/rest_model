@@ -17,7 +17,10 @@ class RestModel
         if from_source
           resource.instance_exec(value, &from_source)
         elsif values
-          fail "from source error" unless values.has_value?(value)
+          unless values.has_value?(value)
+            fail TranslationError, "value '#{value}' doesn't belong to values: #{values.values}"
+          end
+
           values.key(value)
         else
           value
@@ -32,7 +35,10 @@ class RestModel
         if to_source
           resource.instance_exec(value, &to_source)
         elsif values
-          fail "to source error" unless values.has_key?(value)
+          unless values.has_key?(value)
+            fail TranslationError, "value '#{value}' doesn't belong to values: #{values.keys}"
+          end
+
           values[value]
         else
           value

@@ -4,13 +4,13 @@ class RestModel
       def self.serialize(value)
         Float(value)
       rescue ArgumentError
-        raise "value not serializable: #{value}"
+        raise SerializationError, "value '#{value}' is not a float"
       end
 
       def self.desserialize(value)
         Float(value)
       rescue ArgumentError
-        raise "value not desserializable: #{value}"
+        raise SerializationError, "value '#{value}' is not a float"
       end
     end
   end

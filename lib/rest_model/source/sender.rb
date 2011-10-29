@@ -7,13 +7,21 @@ class RestModel
 
       def to_source(options = {})
         source = {}
+        errors = {}
         root_options = {without_nil: options[:without_nil], fail: options[:fail]}
 
         keys_to_source(options).each do |key|
           value = __send__(key.name)
           key_options = options.fetch(key.name, {}).merge(root_options)
-          source.merge! key.to_source!(value, self, key_options)
+
+          begin
+            source.merge! key.to_source!(value, self, key_options)
+          rescue TranslationError, SerializationError => error
+            errors[key.name] = error.message
+          end
         end
+
+        fail SourceError, errors unless errors.empty? if options[:fail]
 
         source.with_indifferent_access
       end

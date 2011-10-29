@@ -85,7 +85,7 @@ describe RestModel::Source::Retriever do
 
       context "when calling from_source!" do
         it "fails when value wasn't mapped" do
-          expect {Example.from_source!({status: '03'})}.to raise_error("from source error")
+          expect {Example.from_source!({status: '03'})}.to raise_error
         end
       end
     end

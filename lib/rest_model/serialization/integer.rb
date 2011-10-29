@@ -4,13 +4,13 @@ class RestModel
       def self.serialize(value)
         Integer(value)
       rescue ArgumentError
-        raise "value not serializable: #{value}"
+        raise SerializationError, "value '#{value}' is not an integer"
       end
 
       def self.desserialize(value)
         Integer(value)
       rescue ArgumentError
-        raise "value not desserializable: #{value}"
+        raise SerializationError, "value '#{value}' is not an integer"
       end
     end
   end

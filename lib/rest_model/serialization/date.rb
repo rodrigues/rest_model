@@ -4,7 +4,7 @@ class RestModel
       def self.serialize(value)
         ::Date.parse value
       rescue ArgumentError
-        raise "value not serializable: #{value}"
+        raise SerializationError, "value '#{value}' is an invalid date"
       end
 
       def self.desserialize(value)
@@ -12,7 +12,7 @@ class RestModel
         format = RestModel::Configuration.date_format
         format ? date.strftime(format) : date.to_s
       rescue ArgumentError
-        raise "value not desserializable: #{value}"
+        raise SerializationError, "value '#{value}' is an invalid date"
       end
     end
   end

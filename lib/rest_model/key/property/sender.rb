@@ -5,7 +5,7 @@ class RestModel
         source_value = begin
           translation.translates_to_source? ? translation.translate_to_source(value, resource)
                                             : serializer.desserialize(value)
-        rescue => exception
+        rescue TranslationError, SerializationError
           raise exception if options[:fail]
         end
 

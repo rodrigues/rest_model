@@ -30,6 +30,7 @@ require "rest_model/key/embeddable/builder"
 require "rest_model/key/href"
 require "rest_model/key/builder"
 require "rest_model/configuration"
+require "rest_model/errors"
 
 class RestModel
   extend  Key::Builder

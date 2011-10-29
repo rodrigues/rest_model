@@ -27,12 +27,12 @@ class RestModel
 
       def self.serialize(value)
         MAPPINGS[value].tap do |bool|
-          fail "value not serializable: #{value}" if bool.nil?
+          fail SerializationError, "value '#{value}' is not boolean" if bool.nil?
         end
       end
 
       def self.desserialize(value)
-        fail unless boolean?(value)
+        fail SerializationError, "value '#{value}' is not boolean" unless boolean?(value)
 
         value ? RestModel::Configuration.true_value
               : RestModel::Configuration.false_value

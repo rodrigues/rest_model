@@ -3,7 +3,7 @@ class RestModel
     class DateTime
       def self.serialize(value)
         ::DateTime.parse value
-      rescue ArgumentError
+      rescue
         raise SerializationError, "value '#{value}' is an invalid date time"
       end
 
@@ -11,7 +11,7 @@ class RestModel
         date_time = value.kind_of?(::DateTime) ? value : ::DateTime.parse(value)
         format = RestModel::Configuration.date_time_format
         format ? date_time.strftime(format) : date_time.to_s
-      rescue ArgumentError
+      rescue
         raise SerializationError, "value '#{value}' is an invalid date time"
       end
     end

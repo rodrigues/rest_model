@@ -38,12 +38,12 @@ class RestModel
       @date_format = format
     end
 
-    def datetime_format
-      @datetime_format
+    def date_time_format
+      @date_time_format
     end
 
-    def datetime_format=(format)
-      @datetime_format = format
+    def date_time_format=(format)
+      @date_time_format = format
     end
 
     def configure

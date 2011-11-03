@@ -4,7 +4,7 @@ RestModel::Configuration.configure do |c|
   c.true_value = "X"
   c.false_value = ""
   c.date_format = "%Y%m%d"
-  c.datetime_format = "%a %b %d %H:%M:%S %Y"
+  c.date_time_format = "%a %b %d %H:%M:%S %Y"
 end
 
 class Customer < RestModel

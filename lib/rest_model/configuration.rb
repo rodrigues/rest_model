@@ -38,6 +38,14 @@ class RestModel
       @date_format = format
     end
 
+    def datetime_format
+      @datetime_format
+    end
+
+    def datetime_format=(format)
+      @datetime_format = format
+    end
+
     def configure
       yield self if block_given?
     end

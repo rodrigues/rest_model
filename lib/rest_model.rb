@@ -94,11 +94,6 @@ class RestModel
     @convert_input_keys
   end
 
-  def self.method_added(method_name)
-    return unless not_allowed_names.include?(method_name.to_s)
-    puts "warning: redefining '#{method_name}' may cause serious problems"
-  end
-
   def self.not_allowed_names
     %w(resource_id resource link)
   end

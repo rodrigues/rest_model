@@ -18,6 +18,7 @@ class RestModel
       def belongs_to(name, options = {})
         options.merge!(many: false, has: false)
         relation(name, options)
+        attr_accessor "#{name}_id"
       end
     end
   end

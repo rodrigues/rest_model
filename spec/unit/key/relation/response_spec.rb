@@ -85,8 +85,8 @@ describe RestModel::Response do
 
     subject {ExampleChild.keys[1]}
 
-    let(:example) {ExampleChild.new(id: 200)}
-    let(:result)  {{rel: :example, href: "http://example.com/examples/200/example_children"}}
+    let(:example) {ExampleChild.new(id: 200, example_id: 123)}
+    let(:result)  {{rel: :example, href: "http://example.com/examples/123"}}
 
     it_behaves_like "a relation"
   end

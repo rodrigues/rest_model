@@ -8,7 +8,7 @@ class RestModel
       end
 
       def to_relation(parent)
-        {rel: name, href: href(parent)}
+        {rel: name, href: href(parent)} if resource_id(parent)
       end
 
       private
@@ -28,10 +28,21 @@ class RestModel
       end
 
       def href(parent)
-        id_key = parent.class.id_key.name
-        has? ?
-          "#{RestModel::Configuration.host}/#{parent.class.resource_name}/#{parent.send(id_key)}/#{relation_name(parent)}"
-        : "#{RestModel::Configuration.host}/#{relation_name(parent).to_s.pluralize}/#{parent.send(id_key)}/#{parent.class.resource_name}"
+        if has?
+          "#{RestModel::Configuration.host}/#{parent.class.resource_name}/#{resource_id(parent)}/#{relation_name(parent)}"
+        else
+          "#{RestModel::Configuration.host}/#{relation_name(parent).to_s.pluralize}/#{resource_id(parent)}"
+        end
+      end
+
+      def resource_id(parent)
+        if has?
+          parent.send(parent.class.id_key.name)
+        else
+          options[:resource_id] ?
+            parent.instance_eval(&options[:resource_id])
+          : parent.__send__("#{self.name}_id")
+        end
       end
     end
   end

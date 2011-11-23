@@ -48,6 +48,8 @@ class RestModel
 
     attrs = attrs.with_indifferent_access
 
+    assign_non_keys_attrs(attrs)
+
     self.class.keys.each do |key|
       __send__("#{key.name}=", key.from_hash(attrs[key.name])) if key.present?(self)
     end
@@ -57,6 +59,8 @@ class RestModel
     return if attrs.nil? or attrs.empty?
 
     attrs = attrs.with_indifferent_access
+
+    assign_non_keys_attrs(attrs)
 
     self.class.keys.each do |key|
       value = attrs[key.name]
@@ -96,5 +100,16 @@ class RestModel
 
   def self.not_allowed_names
     %w(resource_id resource link)
+  end
+
+  private
+
+  def assign_non_keys_attrs(attrs)
+    key_names = self.class.keys.map {|k| k.name}
+    non_keys = attrs.reject {|k, v| key_names.member?(k.to_sym)}
+
+    non_keys.each do |key, value|
+      __send__("#{key}=", value) if self.respond_to?("#{key}=")
+    end
   end
 end

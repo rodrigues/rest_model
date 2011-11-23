@@ -11,12 +11,13 @@ class RestModel
         end
 
         if root and self.class.relations.any? and !options[:summarize]
-          resource.merge!({link: link})
+          links = build_links
+          resource.merge!({link: links}) if links.any?
         end
       end
     end
 
-    def link
+    def build_links
       self.class.relations.map {|key| key.to_relation(self)}
     end
 

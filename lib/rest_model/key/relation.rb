@@ -21,6 +21,5 @@ class RestModel
     end
 
     alias :parse  :from_source
-
   end
 end

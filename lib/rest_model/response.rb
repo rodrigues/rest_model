@@ -18,12 +18,11 @@ class RestModel
     end
 
     def build_links
-      self.class.relations.map {|key| key.to_relation(self)}
+      self.class.relations.map {|key| key.to_relation(self)}.reject(&:nil?)
     end
 
     def resource_keys(options)
-      summarize?(options) ? self.class.summarized_keys + [Href.new]
-                          : self.class.keys
+      summarize?(options) ? self.class.summarized_keys + [Href.new] : self.class.keys
     end
 
     def summarize?(options)

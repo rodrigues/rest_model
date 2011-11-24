@@ -99,7 +99,7 @@ class RestModel
   end
 
   def self.not_allowed_names
-    %w(resource_id resource link)
+    %w(resource_id resource)
   end
 
   private

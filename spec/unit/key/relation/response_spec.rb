@@ -52,12 +52,12 @@ describe RestModel::Response do
   context "when has many" do
     before do
       class ExampleChild < RestModel
-        property   :id
+        id
         belongs_to :example
       end
 
       class Example < RestModel
-        property :id
+        id
         has_many :example_children
       end
     end
@@ -73,12 +73,12 @@ describe RestModel::Response do
   context "when belongs to one" do
     before do
       class ExampleChild < RestModel
-        property   :id
+        id
         belongs_to :example
       end
 
       class Example < RestModel
-        property :id
+        id
         has_many :example_children
       end
     end

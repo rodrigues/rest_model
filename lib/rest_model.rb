@@ -40,9 +40,6 @@ class RestModel
   include Response
   include Serialization
 
-  cattr_accessor :id_key
-  cattr_writer   :resource_name
-
   def initialize(attrs = {})
     return if attrs.nil? or attrs.empty?
 
@@ -75,6 +72,18 @@ class RestModel
 
   def resource_id
     __send__(id_key.name)
+  end
+
+  def self.id_key
+    @id_key
+  end
+
+  def self.id_key=(id_key)
+    @id_key = id_key
+  end
+
+  def self.resource_name=(resource_name)
+    @resource_name = resource_name
   end
 
   def self.keys

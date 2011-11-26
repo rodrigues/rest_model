@@ -9,7 +9,8 @@ class RestModel
       end
 
       def to_relation(parent)
-        {rel: name, href: href(parent)} if resource_id(parent)
+        href = href(parent)
+        href ? {rel: name, href: href} : nil
       end
 
       private
@@ -22,6 +23,8 @@ class RestModel
       def href(parent)
         if options[:href]
           parent.instance_eval(&options[:href])
+        elsif parent.class.id_key.nil?
+          nil
         else
           host = "#{RestModel::Configuration.host}"
 

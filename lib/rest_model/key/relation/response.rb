@@ -28,10 +28,14 @@ class RestModel
       end
 
       def href(parent)
-        uri = has? ? "#{parent.class.resource_name}/#{resource_id(parent)}/#{relation_name(parent)}"
-                   : "#{relation_name(parent).to_s.pluralize}/#{resource_id(parent)}"
+        if options[:href]
+          parent.instance_eval(&options[:href])
+        else
+          host = "#{RestModel::Configuration.host}"
 
-        "#{RestModel::Configuration.host}/#{uri}"
+          has? ? "#{host}/#{parent.class.resource_name}/#{resource_id(parent)}/#{relation_name(parent)}"
+               : "#{host}/#{relation_name(parent).to_s.pluralize}/#{resource_id(parent)}"
+        end
       end
 
       def resource_id(parent)

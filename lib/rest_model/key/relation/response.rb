@@ -14,14 +14,6 @@ class RestModel
 
       private
 
-      def relation_name(parent)
-        relation = parent.class.relations.find do |key|
-          key.resource_class == self.resource_class
-        end
-
-        relation.name or fail
-      end
-
       def resource_from_included(included)
         options = {root: false}
         one? ? included.resource(options) : included.map {|r| r.resource(options)}
@@ -33,8 +25,8 @@ class RestModel
         else
           host = "#{RestModel::Configuration.host}"
 
-          has? ? "#{host}/#{parent.class.resource_name}/#{resource_id(parent)}/#{relation_name(parent)}"
-               : "#{host}/#{relation_name(parent).to_s.pluralize}/#{resource_id(parent)}"
+          has? ? "#{host}/#{parent.class.resource_name}/#{resource_id(parent)}/#{name}"
+               : "#{host}/#{name.to_s.pluralize}/#{resource_id(parent)}"
         end
       end
 

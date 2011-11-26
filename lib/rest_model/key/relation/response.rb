@@ -23,7 +23,7 @@ class RestModel
       def href(parent)
         if options[:href]
           parent.instance_eval(&options[:href])
-        elsif parent.class.id_key.nil?
+        elsif resource_id(parent).nil?
           nil
         else
           host = "#{RestModel::Configuration.host}"
@@ -35,7 +35,7 @@ class RestModel
 
       def resource_id(parent)
         if has?
-          parent.send(parent.class.id_key.name)
+          parent.class.id_key ? parent.send(parent.class.id_key.name) : nil
         else
           options[:resource_id] ? parent.instance_eval(&options[:resource_id])
                                 : parent.__send__("#{self.name}_id")

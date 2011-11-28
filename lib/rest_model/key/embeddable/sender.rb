@@ -3,6 +3,7 @@ class RestModel
     module Sender
       def to_source!(value, resource, options = {})
         return {} if value.nil?
+
         fields ? to_multiple_source(value, options)
                : to_single_source(value, options)
       end

@@ -3,6 +3,7 @@ class RestModel
     module Retriever
       def from_source(item, resource = nil)
         return handle_fields(item) if fields
+
         value = digg(item)
         parsed_value = raw? ? value : resource_class.from_source(value)
         one? ? parsed_value.first : parsed_value

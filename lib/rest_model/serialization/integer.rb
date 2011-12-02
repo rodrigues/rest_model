@@ -3,7 +3,7 @@ class RestModel
     class Integer
       def self.serialize(value)
         case value
-        when String
+        when ::String
           if value =~ /^\d+$/
             value.to_i
           else

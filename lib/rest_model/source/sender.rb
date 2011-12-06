@@ -16,8 +16,10 @@ class RestModel
 
           begin
             source.merge! key.to_source!(value, self, key_options)
-          rescue TranslationError, SerializationError => error
-            errors[key.name] = error.message
+          rescue TranslationError, SerializationError => e
+            errors[key.name] = e.message
+          rescue SourceError => e
+            errors.merge!(e.message)
           end
         end
 

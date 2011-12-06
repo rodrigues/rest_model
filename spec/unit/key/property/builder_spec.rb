@@ -33,7 +33,7 @@ describe RestModel::Property::Builder do
       end
 
       let(:field)   {:id}
-      let(:options) {{id: true}}
+      let(:options) {{id: true, validate: true}}
 
       it_behaves_like "a property"
       it_behaves_like "a key"
@@ -47,7 +47,7 @@ describe RestModel::Property::Builder do
       end
 
       let(:field)   {:different_name}
-      let(:options) {{id: true}}
+      let(:options) {{id: true, validate: true}}
 
       it_behaves_like "a property"
       it_behaves_like "a key"
@@ -61,7 +61,7 @@ describe RestModel::Property::Builder do
       end
 
       let(:field)   {:id}
-      let(:options) {{some_option: 'some option value', id: true}}
+      let(:options) {{some_option: 'some option value', id: true, validate: true}}
 
       it_behaves_like "a property"
       it_behaves_like "a key"
@@ -75,7 +75,7 @@ describe RestModel::Property::Builder do
       end
 
       let(:field)   {:different_name}
-      let(:options) {{some_option: 'some option value', id: true}}
+      let(:options) {{some_option: 'some option value', id: true, validate: true}}
 
       it_behaves_like "a property"
       it_behaves_like "a key"
@@ -89,7 +89,7 @@ describe RestModel::Property::Builder do
       end
 
       let(:field)   {:id}
-      let(:options) {{id: true}}
+      let(:options) {{id: true, validate: true}}
 
       it_behaves_like "a property"
       it_behaves_like "a key"
@@ -105,7 +105,7 @@ describe RestModel::Property::Builder do
       end
 
       let(:field)   {:document_number}
-      let(:options) {{some_option: 'this is an option'}}
+      let(:options) {{some_option: 'this is an option', validate: true}}
 
       it_behaves_like "a property"
     end
@@ -118,7 +118,7 @@ describe RestModel::Property::Builder do
       end
 
       let(:field)   {:document_number}
-      let(:options) {{id: true}}
+      let(:options) {{id: true, validate: true}}
 
       it_behaves_like "a property"
       it_behaves_like "a key"
@@ -136,7 +136,7 @@ describe RestModel::Property::Builder do
     [:id, :description].each do |item|
       context "for #{item}" do
         let(:field)   {item}
-        let(:options) {{}}
+        let(:options) {{validate: true}}
 
         it_behaves_like "a property"
       end
@@ -145,7 +145,7 @@ describe RestModel::Property::Builder do
     [:price, :quantity].each do |item|
       context "for #{item}" do
         let(:field)   {item}
-        let(:options) {{firstoption: 'this is the first option', secondoption: 'this is the second option'}}
+        let(:options) {{firstoption: 'this is the first option', secondoption: 'this is the second option', validate: true}}
 
         it_behaves_like "a property"
       end

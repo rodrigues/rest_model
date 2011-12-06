@@ -9,6 +9,10 @@ class RestModel
       @errors = errors
     end
 
+    def message
+      @errors
+    end
+
     def self.exception(errors = {})
       new(errors)
     end

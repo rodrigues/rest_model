@@ -18,8 +18,8 @@ class RestModel
           last = path.pop
           key_source = path.inject(source) {|buffer, key| buffer[key] = {}; buffer[key]}
           key_source[last] = raw? ? value
-                                  : one? ? value.to_source(options)
-                                         : value.map {|item| item.to_source(options)}
+                                  : one? ? embedds_one_source(value, options)
+                                         : embedds_many_source(value, options)
         else
           source.merge!(value.to_source(options))
         end
@@ -36,6 +36,27 @@ class RestModel
         end
 
         input
+      end
+
+      def embedds_one_source(value, options)
+        value.to_source(options)
+      end
+
+      def embedds_many_source(value, options)
+        errors = {}
+
+        source = value.each_with_index.map do |item, index|
+          begin
+            item.to_source(options)
+          rescue RestModel::SourceError => e
+            errors[self.name] ||= {}
+            errors[self.name][index] = e.message
+          end
+        end
+
+        fail RestModel::SourceError, errors unless errors.empty?
+
+        source
       end
     end
   end

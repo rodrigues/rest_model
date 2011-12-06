@@ -8,9 +8,7 @@ class RestModel
       end
 
       def self.desserialize(value)
-        value.nil? ? nil : value.to_s
-      rescue
-        raise SerializationError, "value '#{value}' is not a string"
+        serialize(value)
       end
     end
   end

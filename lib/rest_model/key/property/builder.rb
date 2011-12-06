@@ -2,7 +2,7 @@ class RestModel
   class Property
     module Builder
       def property(name, options = {})
-        options[:validate] = options[:validate_if_present] ? false : true
+        options[:validate] = !options[:validate_if_present]
         key Property.new(name, options)
       end
 

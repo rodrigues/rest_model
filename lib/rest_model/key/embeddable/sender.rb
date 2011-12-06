@@ -18,8 +18,8 @@ class RestModel
           last = path.pop
           key_source = path.inject(source) {|buffer, key| buffer[key] = {}; buffer[key]}
           key_source[last] = raw? ? value
-                                  : one? ? embedds_one_source(value, options)
-                                         : embedds_many_source(value, options)
+                                  : one? ? embeds_one_source(value, options)
+                                         : embeds_many_source(value, options)
         else
           source.merge!(value.to_source(options))
         end
@@ -38,11 +38,11 @@ class RestModel
         input
       end
 
-      def embedds_one_source(value, options)
+      def embeds_one_source(value, options)
         value.to_source(options)
       end
 
-      def embedds_many_source(value, options)
+      def embeds_many_source(value, options)
         errors = {}
 
         source = value.each_with_index.map do |item, index|

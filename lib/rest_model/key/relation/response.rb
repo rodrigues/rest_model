@@ -9,6 +9,8 @@ class RestModel
       end
 
       def to_relation(parent)
+        return nil unless visible?(parent)
+
         href = href(parent)
         href ? {rel: name, href: href} : nil
       end

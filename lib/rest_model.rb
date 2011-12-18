@@ -60,9 +60,8 @@ class RestModel
     assign_non_keys_attrs(attrs)
 
     self.class.keys.each do |key|
-      value = attrs[key.name]
-
-      if value and key.present?(self)
+      if key.present?(self) and attrs.has_key?(key.name)
+        value = attrs[key.name]
         __send__("#{key.name}=", key.from_hash(value, __send__(key.name)))
       end
     end

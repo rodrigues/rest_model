@@ -37,4 +37,11 @@ describe "update_attributes" do
       @root.services.first.name.should == "new_service_name"
     end
   end
+
+  describe_example "update_attributes/with_nil_value" do
+    it "updates only the customers login" do
+      @root.login.should_not be
+      @root.id.should == 200
+    end
+  end
 end

@@ -11,10 +11,11 @@ describe "validations" do
               code: "value 'non integer (S0)' is not an integer",
               products: {
                 0 => {
+                  value:      "value '100.0' doesn't belong to values in: [10.0, 20.0, 25.5]",
                   created_at: "value 'non datetime (P0)' is an invalid date time"
                 },
                 1 => {
-                  value: "value 'non float (P1)' is not a float"
+                  value: "value 'non float (P1)' doesn't belong to values in: [10.0, 20.0, 25.5]"
                 }
               }
             }

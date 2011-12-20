@@ -17,11 +17,7 @@ class RestModel
         if from_source
           resource.instance_exec(value, &from_source)
         elsif values
-          unless values.has_value?(value)
-            fail TranslationError, "value '#{value}' doesn't belong to values: #{values.values}"
-          end
-
-          values.key(value)
+          translate_from_source_values(value)
         else
           value
         end
@@ -35,13 +31,43 @@ class RestModel
         if to_source
           resource.instance_exec(value, &to_source)
         elsif values
+          translate_to_source_values(value)
+        else
+          value
+        end
+      end
+
+      private
+
+      def translate_from_source_values(value)
+        if values.kind_of? Hash
+          unless values.has_value?(value)
+            fail TranslationError, "value '#{value}' doesn't belong to values: #{values.values}"
+          end
+
+          values.key(value)
+        elsif values.kind_of? Array
+          fail TranslationError, "value '#{value}' doesn't belong to values in: #{values}" unless values.member?(value)
+
+          value
+        else
+          fail TranslationError, "not supported values"
+        end
+      end
+
+      def translate_to_source_values(value)
+        if values.kind_of? Hash
           unless values.has_key?(value)
             fail TranslationError, "value '#{value}' doesn't belong to values: #{values.keys}"
           end
 
           values[value]
-        else
+        elsif values.kind_of? Array
+          fail TranslationError, "value '#{value}' doesn't belong to values in: #{values}" unless values.member?(value)
+
           value
+        else
+          fail TranslationError, "not supported values"
         end
       end
     end

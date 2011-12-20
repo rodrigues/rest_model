@@ -19,7 +19,8 @@ class Service < RestModel
 end
 
 class Product < RestModel
-  property :value, type: Float
+  VALUES = [10.00, 20.00, 25.50]
+  property :value, type: Float, values: VALUES
   property :created_at, type: DateTime
 end
 
@@ -31,6 +32,10 @@ products = [
   },
   {
     value: "non float (P1)",
+    created_at: "2011-11-11T11:11:11"
+  },
+  {
+    value: 20.00,
     created_at: "2011-11-11T11:11:11"
   }
 ]

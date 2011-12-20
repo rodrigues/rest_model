@@ -44,6 +44,7 @@ describe "to_source" do
       source["active"].should == "X"
       source["services"].should == ["Hosting", "Email"]
       source["balance"].should == 200.00
+      source["sym"].should  == :some_symbol
     end
   end
 end

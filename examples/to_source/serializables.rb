@@ -15,6 +15,7 @@ class Customer < RestModel
   property :active,     type: Boolean
   property :services,   type: Enumerable
   property :balance,    type: Float
+  property :sym,        type: Symbol
 end
 
 @root = Customer.new(login: 'jackiechan2010',
@@ -23,6 +24,7 @@ end
                      created_at: DateTime.now,
                      active: true,
                      services: ["Hosting", "Email"],
-                     balance: 200.00)
+                     balance: 200.00,
+                     sym: :some_symbol)
 
 inspect_rest_model(@root)

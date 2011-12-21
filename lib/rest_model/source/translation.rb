@@ -40,14 +40,16 @@ class RestModel
       private
 
       def translate_from_source_values(value)
-        if values.kind_of? Hash
+        if values.kind_of?(Hash)
           unless values.has_value?(value)
             fail TranslationError, "value '#{value}' doesn't belong to values: #{values.values}"
           end
 
           values.key(value)
-        elsif values.kind_of? Array
-          fail TranslationError, "value '#{value}' doesn't belong to values in: #{values}" unless values.member?(value)
+        elsif values.kind_of?(Array)
+          unless values.member?(value)
+            fail TranslationError, "value '#{value}' doesn't belong to values in: #{values}"
+          end
 
           value
         else
@@ -56,14 +58,16 @@ class RestModel
       end
 
       def translate_to_source_values(value)
-        if values.kind_of? Hash
+        if values.kind_of?(Hash)
           unless values.has_key?(value)
             fail TranslationError, "value '#{value}' doesn't belong to values: #{values.keys}"
           end
 
           values[value]
-        elsif values.kind_of? Array
-          fail TranslationError, "value '#{value}' doesn't belong to values in: #{values}" unless values.member?(value)
+        elsif values.kind_of?(Array)
+          unless values.member?(value)
+            fail TranslationError, "value '#{value}' doesn't belong to values in: #{values}"
+          end
 
           value
         else

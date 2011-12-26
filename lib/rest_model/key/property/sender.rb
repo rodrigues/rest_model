@@ -27,7 +27,7 @@ class RestModel
       private
 
       def validates?(value)
-        (self.options[:validate_if_present] and !value.nil?) or self.options[:validate]
+        (self.options[:validate_if_present] and value.present?) or self.options[:validate]
       end
     end
   end

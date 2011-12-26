@@ -1,6 +1,7 @@
 require "date"
 require "active_support/inflector"
 require "active_support/concern"
+require "active_support/core_ext/object"
 require "active_support/core_ext/class/attribute_accessors"
 require "active_support/core_ext/object/try"
 require "active_support/core_ext/array/wrap"

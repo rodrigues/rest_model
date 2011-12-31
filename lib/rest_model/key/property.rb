@@ -16,6 +16,8 @@ class RestModel
     end
 
     def from_hash(value, resource = nil)
+      serializer == Serialization::String ? value : serializer.serialize(value)
+    rescue
       value
     end
   end

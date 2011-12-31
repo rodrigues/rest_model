@@ -14,6 +14,11 @@ describe "update_attributes" do
     it "updates customer login" do
       @root.login.should == "newjackiechan2010"
     end
+
+    it "updates customer birth" do
+      @root.birth.should be_a(Date)
+      @root.birth.should == Date.new(1986, 01, 23)
+    end
   end
 
   describe_example "update_attributes/embeds_many" do

@@ -23,10 +23,10 @@
       property :number
       property :balance, type: Float
       property :type,    values: {gold: '01', platinum: '02'}
-      
+
       embeds_one  :electronic_card
       embeds_many :transactions
-      
+
       belongs_to :customer
       has_one    :manager
       has_many   :tickets
@@ -155,7 +155,7 @@ Just define your `User` class like this:
 
     class Order < RestModel
       id
-      embeds_many :items, class: OrderItems
+      embeds_many :items, class_name: 'order_items'
     end
 
     {
@@ -205,30 +205,6 @@ Just define your `User` class like this:
         {
           rel:  'guilda',
           href: 'http://app/api/users/19837139879/guilda
-        }
-      ]
-    }
-
-### embedding relations
-
-If you want your api to handle `http://app/api/users/19371897318937?include[]=avatar&include[]=guilda`
-
-    user = User.from_source(input, include: [avatar_input, guilda_input]).first
-
-    {
-      id:    '19837139879',
-      login: 'jsmith180',
-      avatar: {
-        name:   'K1ll3r',
-        specie: 'WTF'
-      },
-      guilda: {
-        name: 'K1ll3rs'
-      },
-      link: [
-        {
-          rel:  'achievements',
-          href: 'http://app/api/users/19837139879/achievements'
         }
       ]
     }

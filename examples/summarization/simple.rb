@@ -9,11 +9,11 @@ class Customer < RestModel
 end
 
 input = {
-  "id"              =>           138911938,
-  "login"           =>           'jackiechan2010',
-  "name"            =>           'jackie chan',
-  "postal_code"     =>     '05492-092',
-  "email"           =>           'jachan@gmail.com',
+  "id"              => 138911938,
+  "login"           => 'jackiechan2010',
+  "name"            => 'jackie chan',
+  "postal_code"     => '05492-092',
+  "email"           => 'jachan@gmail.com',
   "secondary_email" => 'jackiepeligroso@yahoo.com'
 }
 

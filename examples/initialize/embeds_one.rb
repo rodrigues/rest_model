@@ -14,6 +14,7 @@ end
   address: {
     street: "Aurora St",
     number: 666
-  }})
+  }
+})
 
 inspect_rest_model(@root)

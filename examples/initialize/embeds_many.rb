@@ -20,6 +20,7 @@ end
       number: "2979139332",
       extension: "1011"
     }
-  ]})
+  ]
+})
 
 inspect_rest_model(@root)

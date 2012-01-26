@@ -1,18 +1,23 @@
 require 'spec_helper'
 
 describe RestModel::Client do
-  before do
-    class Example < RestModel
-      host :one
+  describe ".host" do
+    before do
+      class Example < RestModel
+        host :one
+      end
+
+      class AnotherExample < RestModel
+        host :two
+      end
     end
 
-    class AnotherExample < RestModel
-      host :two
+    it "sets class host" do
+      Example.host.should == :one
+      AnotherExample.host.should == :two
     end
   end
 
-  it "sets class host" do
-    Example.host.should == :one
-    AnotherExample.host.should == :two
+  describe ".get" do
   end
 end

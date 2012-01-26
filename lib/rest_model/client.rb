@@ -10,6 +10,9 @@ class RestModel
 
         @host = host
       end
+
+      def get(*attrs)
+      end
     end
   end
 end

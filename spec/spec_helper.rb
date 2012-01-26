@@ -12,7 +12,7 @@ require 'support/out'
 
 RSpec.configure do |config|
   config.before do
-    [:Example, :ExampleChild].each do |klass|
+    [:Example, :ExampleChild, :AnotherExample].each do |klass|
       Object.send(:remove_const, klass) if Object.const_defined? klass
     end
   end

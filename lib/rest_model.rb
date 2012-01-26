@@ -32,6 +32,7 @@ require "rest_model/key/embeddable"
 require "rest_model/key/embeddable/builder"
 require "rest_model/key/href"
 require "rest_model/key/builder"
+require "rest_model/client"
 require "rest_model/configuration"
 require "rest_model/errors"
 
@@ -41,6 +42,7 @@ class RestModel
   include Source::Sender
   include Response
   include Serialization
+  include Client
 
   def initialize(attrs = {})
     return if attrs.nil? or attrs.empty?

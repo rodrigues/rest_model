@@ -6,7 +6,7 @@ class RestModel
 
     module ClassMethods
       def host(host = nil)
-        return @host unless host
+        return @host || :default unless host
 
         @host = host
       end

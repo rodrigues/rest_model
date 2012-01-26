@@ -10,11 +10,18 @@ describe RestModel::Client do
       class AnotherExample < RestModel
         host :two
       end
+
+      class ExampleChild < RestModel
+      end
     end
 
-    it "sets class host" do
+    it "returns set class host when defined" do
       Example.host.should == :one
       AnotherExample.host.should == :two
+    end
+
+    it "returns default host when not defined" do
+      ExampleChild.host.should == :default
     end
   end
 

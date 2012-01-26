@@ -94,4 +94,48 @@ describe RestModel::Configuration do
       end
     end
   end
+
+  describe "#date_format" do
+    context "when no custom value is set" do
+      before do
+        if subject.instance_variable_defined?(:@date_format)
+          subject.send(:remove_instance_variable, :@date_format)
+        end
+      end
+
+      it "returns nil" do
+        subject.date_format.should_not be
+      end
+    end
+
+    context "when a custom value is set" do
+      before {subject.date_format = "%Y%m%d"}
+
+      it "returns custom value" do
+        subject.date_format.should == "%Y%m%d"
+      end
+    end
+  end
+
+  describe "#date_time_format" do
+    context "when no custom value is set" do
+      before do
+        if subject.instance_variable_defined?(:@date_time_format)
+          subject.send(:remove_instance_variable, :@date_time_format)
+        end
+      end
+
+      it "returns nil" do
+        subject.date_time_format.should_not be
+      end
+    end
+
+    context "when a custom value is set" do
+      before {subject.date_time_format = "%a %b %d %H:%M:%S %Y"}
+
+      it "returns custom value" do
+        subject.date_time_format.should == "%a %b %d %H:%M:%S %Y"
+      end
+    end
+  end
 end

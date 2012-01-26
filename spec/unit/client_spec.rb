@@ -19,5 +19,43 @@ describe RestModel::Client do
   end
 
   describe ".get" do
+    before do
+      RestModel::Configuration.configure do |c|
+        c.hosts = {
+         one: "http://one.com"
+        }
+      end
+
+      class Example < RestModel
+        host :one
+        id
+        property :name
+      end
+    end
+
+    context "when calling with no parameters" do
+      let :examples do
+        {
+          entries: [
+            {
+              id:   "28287287",
+              name: "Aadvark"
+            },
+            {
+              id:   "19871897",
+              name: "Awkward"
+            }
+          ]
+        }
+      end
+
+      before do
+        RestClient.stub(:get).with("http://one.com/examples").and_return(examples.to_json)
+      end
+
+      it "returns a list of resources" do
+        Example.get.map(&:resource).should == examples[:entries]
+      end
+    end
   end
 end

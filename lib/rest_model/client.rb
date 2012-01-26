@@ -12,6 +12,10 @@ class RestModel
       end
 
       def get(*attrs)
+        base_uri = RestModel::Configuration.hosts[host]
+        uri = "#{base_uri}/#{resource_name.pluralize}"
+        source = JSON.parse RestClient.get(uri)
+        from_source(source.with_indifferent_access[:entries])
       end
     end
   end

@@ -5,9 +5,9 @@ class RestModel
     attr_accessor :host
 
     DefaultHandler = proc {|keys| keys}
-    
+
     def configure
-      yield self if block_given?
+      yield self
     end
 
     def convert_input_keys
@@ -53,7 +53,7 @@ class RestModel
     def hosts
       @hosts ||= {}
     end
-    
+
     def hosts=(hosts)
       @hosts = hosts
     end

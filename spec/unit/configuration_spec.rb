@@ -30,6 +30,12 @@ describe RestModel::Configuration do
     after(:all) {subject.hosts = {}}
 
     context "when no custom hosts are set" do
+      before do
+        if subject.instance_variable_defined?(:@hosts)
+          subject.send(:remove_instance_variable, :@hosts)
+        end
+      end
+
       it "returns an empty hash" do
         subject.hosts.should == {}
       end

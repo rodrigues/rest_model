@@ -14,8 +14,14 @@ class RestModel
       def get(*attrs)
         base_uri = RestModel::Configuration.hosts[host]
         uri = "#{base_uri}/#{resource_name.pluralize}"
-        source = MultiJson.decode(Http.get(uri), symbolize_keys: true)
-        from_source(source[:entries])
+
+        identifier_present = attrs.first and not attrs.first.kind_of?(Hash)
+        uri << "/#{attrs.first}" if identifier_present
+
+        source = MultiJson.decode Http.get(uri)
+
+        identifier_present ? from_source(source).first
+                           : from_source(source.with_indifferent_access[:entries])
       end
     end
   end

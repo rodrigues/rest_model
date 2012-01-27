@@ -64,5 +64,22 @@ describe RestModel::Client do
         Example.get.map(&:resource).should == examples[:entries]
       end
     end
+
+    context "when calling with an identifier parameter" do
+      let :example do
+        {
+          id:   "19871897",
+          name: "Awkward"
+        }
+      end
+
+      before do
+        RestClient.stub(:get).with("http://one.com/examples/19871897", {}).and_return(example.to_json)
+      end
+
+      it "returns a resource" do
+        Example.get("19871897").resource.should == example
+      end
+    end
   end
 end

@@ -14,8 +14,8 @@ class RestModel
       def get(*attrs)
         base_uri = RestModel::Configuration.hosts[host]
         uri = "#{base_uri}/#{resource_name.pluralize}"
-        source = JSON.parse Http.get(uri)
-        from_source(source.with_indifferent_access[:entries])
+        source = MultiJson.decode(Http.get(uri), symbolize_keys: true)
+        from_source(source[:entries])
       end
     end
   end

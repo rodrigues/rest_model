@@ -9,6 +9,7 @@ require "active_support/core_ext/array/access"
 require "active_support/core_ext/hash/slice"
 require "active_support/core_ext/hash/indifferent_access"
 require "rest_client"
+require "multi_json"
 
 require "rest_model/source/path"
 require "rest_model/source/translation"

@@ -59,7 +59,7 @@ class RestModel
     end
 
     def hosts
-      @hosts ||= {}
+      (@hosts || {}).merge({default: host})
     end
 
     def hosts=(hosts)

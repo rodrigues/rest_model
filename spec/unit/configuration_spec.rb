@@ -58,8 +58,8 @@ describe RestModel::Configuration do
         end
       end
 
-      it "returns an empty hash" do
-        subject.hosts.should == {}
+      it "returns a hash with default host only" do
+        subject.hosts.should == {default: RestModel::Configuration.host}
       end
     end
 
@@ -74,7 +74,7 @@ describe RestModel::Configuration do
       before {subject.hosts = hosts}
 
       it "returns custom set hosts" do
-        subject.hosts.should == hosts
+        subject.hosts.should == hosts.merge(default: RestModel::Configuration.host)
       end
     end
   end

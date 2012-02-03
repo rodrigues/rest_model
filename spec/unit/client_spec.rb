@@ -57,7 +57,7 @@ describe RestModel::Client do
       end
 
       before do
-        RestModel::Client::Http.stub(:get).with("http://one.com/examples").and_return(examples.to_json)
+        RestModel::Client::Http.stub(:get).with("http://one.com/examples", anything).and_return(examples.to_json)
       end
 
       it "returns a list of resources" do
@@ -74,7 +74,7 @@ describe RestModel::Client do
       end
 
       before do
-        RestModel::Client::Http.stub(:get).with("http://one.com/examples/19871897").and_return(example.to_json)
+        RestModel::Client::Http.stub(:get).with("http://one.com/examples/19871897", anything).and_return(example.to_json)
       end
 
       it "returns a resource" do

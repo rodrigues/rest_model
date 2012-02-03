@@ -26,6 +26,28 @@ describe RestModel::Configuration do
     end
   end
 
+  describe "#custom_headers_resolver" do
+    after :all do
+      subject.custom_headers_resolver = nil
+    end
+
+    context "when no custom headers resolver is set" do
+      it "returns default resolver" do
+        subject.custom_headers_resolver.call.should == {}
+      end
+    end
+
+    context "when a custom headers resolver is set" do
+      let(:custom_headers_resolver) {proc {{ola: true}}}
+
+      before {subject.custom_headers_resolver = custom_headers_resolver}
+
+      it "returns custom headers resolver" do
+        subject.custom_headers_resolver.call.should == {ola: true}
+      end
+    end
+  end
+
   describe "#hosts" do
     after(:all) {subject.hosts = {}}
 

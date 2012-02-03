@@ -18,6 +18,14 @@ class RestModel
       @convert_input_keys = converter
     end
 
+    def custom_headers_resolver
+      @custom_headers_resolver || proc {{}}
+    end
+
+    def custom_headers_resolver=(custom_headers_resolver)
+      @custom_headers_resolver = custom_headers_resolver
+    end
+
     def true_value
       @true || true
     end

@@ -48,6 +48,31 @@ describe RestModel::Configuration do
     end
   end
 
+  describe "#logger" do
+    after(:all) {Logger.handler = Logger.default_handler}
+
+    context "when no custom logger is set" do
+      before do
+        if Logger.instance_variable_defined?(:@handler)
+          Logger.send(:remove_instance_variable, :@handler)
+        end
+      end
+
+      it "returns default handler" do
+        subject.logger.should == Logger.default_handler
+      end
+    end
+
+    context "when custom logger is set" do
+      let(:logger) {mock(:logger)}
+      before {subject.logger = logger}
+
+      it "returns custom set logger" do
+        subject.logger.should == logger
+      end
+    end
+  end
+
   describe "#hosts" do
     after(:all) {subject.hosts = {}}
 

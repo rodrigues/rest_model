@@ -26,6 +26,14 @@ class RestModel
       @custom_headers_resolver = custom_headers_resolver
     end
 
+    def logger
+      Logger.handler
+    end
+
+    def logger=(handler)
+      Logger.handler = handler
+    end
+
     def true_value
       @true || true
     end

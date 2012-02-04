@@ -29,5 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency "i18n",          ">= 0.5"
   s.add_dependency "rest-client",   "~> 1.6.7"
   s.add_dependency "multi_json",    "~> 1.0.4"
+  s.add_dependency "slogger",       "~> 0.0.7"
   s.add_development_dependency "rspec", "~> 2.6"
 end

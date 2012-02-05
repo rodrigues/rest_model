@@ -49,17 +49,17 @@ describe RestModel::Configuration do
   end
 
   describe "#logger" do
-    after(:all) {Logger.handler = Logger.default_handler}
+    after(:all) {RestModel::Logger.handler = RestModel::Logger.default_handler}
 
     context "when no custom logger is set" do
       before do
-        if Logger.instance_variable_defined?(:@handler)
-          Logger.send(:remove_instance_variable, :@handler)
+        if RestModel::Logger.instance_variable_defined?(:@handler)
+          RestModel::Logger.send(:remove_instance_variable, :@handler)
         end
       end
 
       it "returns default handler" do
-        subject.logger.should == Logger.default_handler
+        subject.logger.should == RestModel::Logger.default_handler
       end
     end
 

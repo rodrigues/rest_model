@@ -1,12 +1,12 @@
 require "spec_helper"
 
-describe Logger do
-  subject {Logger}
+describe RestModel::Logger do
+  subject {RestModel::Logger}
 
   let(:logger_mock) {mock(:logger)}
 
-  before {Logger.handler = logger_mock}
-  after  {Logger.handler = nil}
+  before {RestModel::Logger.handler = logger_mock}
+  after  {RestModel::Logger.handler = nil}
 
   describe "#new_log_id" do
     it "returns a random string" do
@@ -18,7 +18,7 @@ describe Logger do
     end
   end
 
-  Logger::SEVERITIES.each do |severity|
+  RestModel::Logger::SEVERITIES.each do |severity|
     context "when not running in verbose mode" do
       before do
         @old_verbose = ENV["VERBOSE"]

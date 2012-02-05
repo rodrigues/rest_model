@@ -27,11 +27,11 @@ class RestModel
     end
 
     def logger
-      Logger.handler
+      RestModel::Logger.handler
     end
 
     def logger=(handler)
-      Logger.handler = handler
+      RestModel::Logger.handler = handler
     end
 
     def true_value

@@ -7,6 +7,7 @@ module HeadersResolver
 end
 
 RestModel::Configuration.configure do |c|
+  c.host = "http://example.com"
   c.custom_headers_resolver = HeadersResolver
 end
 

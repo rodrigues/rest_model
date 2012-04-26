@@ -21,7 +21,7 @@ class RestModel
                                   : one? ? embeds_one_source(value, options)
                                          : embeds_many_source(value, options)
         else
-          source.merge!(value.to_source(options))
+          source.merge!(value.to_source!(options))
         end
 
         source
@@ -39,7 +39,7 @@ class RestModel
       end
 
       def embeds_one_source(value, options)
-        value.to_source(options)
+        value.to_source!(options)
       end
 
       def embeds_many_source(value, options)
@@ -47,7 +47,7 @@ class RestModel
 
         source = value.each_with_index.map do |item, index|
           begin
-            item.to_source(options)
+            item.to_source!(options)
           rescue RestModel::SourceError => e
             errors[self.name] ||= {}
             errors[self.name][index] = e.message

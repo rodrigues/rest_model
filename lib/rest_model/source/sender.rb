@@ -2,7 +2,7 @@ class RestModel
   module Source
     module Sender
       def to_source!(options = {})
-        to_source(options.merge(fail: true))
+        to_source({fail: true}.merge(options))
       end
 
       def to_source(options = {})

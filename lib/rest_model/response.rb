@@ -18,7 +18,7 @@ class RestModel
     end
 
     def build_links
-      self.class.relations.map {|key| key.to_relation(self)}.reject(&:nil?)
+      self.class.relations.map {|key| key.to_relation(self)}.compact
     end
 
     def resource_keys(options)

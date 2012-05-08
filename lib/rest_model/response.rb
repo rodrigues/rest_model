@@ -10,9 +10,8 @@ class RestModel
           buffer.merge!(key.to_resource(self))
         end
 
-        if root and self.class.relations.any? and !options[:summarize]
-          links = build_links
-          resource.merge!({link: links}) if links.any?
+        if (links = build_links).any? && !options[:summarize]
+          resource.merge!(link: links)
         end
       end
     end

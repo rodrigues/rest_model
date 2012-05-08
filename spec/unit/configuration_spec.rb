@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RestModel::Configuration do
-  after(:all) do
+  after :all do
     RestModel::Configuration.convert_input_keys = nil
   end
 

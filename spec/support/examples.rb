@@ -1,9 +1,9 @@
 module Examples
   extend RSpec::Core::Hooks
 
-  CONSTANTS = [:Root, :Item, :Customer, :Entry, :Phone,
-               :Service, :Billing, :Developer, :Upcasing,
-               :Camelizing, :Product, :Address]
+  CONSTANTS = %w(Root       Item     Customer  Entry
+                 Service    Billing  Developer Upcasing
+                 Camelizing Product  Address   Phone)
 
   def describe_example(file, tags = {}, &block)
     describe "example #{file}", tags do

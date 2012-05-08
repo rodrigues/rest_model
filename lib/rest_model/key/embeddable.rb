@@ -19,7 +19,7 @@ class RestModel
     end
 
     def raw?
-      [Hash, Array].include?(resource_class)
+      %w(Hash Array).include?(@class_name.to_s.camelize)
     end
 
     def from_hash(attrs, resource = nil)

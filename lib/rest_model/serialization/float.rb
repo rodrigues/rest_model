@@ -1,13 +1,13 @@
 class RestModel
   module Serialization
     class Float
-      def self.serialize(value)
+      def self.serialize(value, options = {})
         Float(value)
       rescue
         raise SerializationError, "value '#{value}' is not a float"
       end
 
-      def self.desserialize(value)
+      def self.desserialize(value, options = {})
         Float(value)
       rescue
         raise SerializationError, "value '#{value}' is not a float"

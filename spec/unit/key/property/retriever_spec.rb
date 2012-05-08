@@ -11,7 +11,7 @@ describe RestModel::Property::Retriever do
   end
 
   it "tries to serialize value" do
-    serializer_mock.should_receive(:serialize).with(item[:login]).and_return(item[:login])
+    serializer_mock.should_receive(:serialize).with(item[:login], instance_of(Hash)).and_return(item[:login])
     subject.from_source(item)
   end
 

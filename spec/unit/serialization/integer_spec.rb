@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe RestModel::Serialization::Integer do
+  it "adds leading zeros from options while desserializing" do
+    subject.class.desserialize('1200', padding_zeros: 12).should == "000000001200"
+  end
+
   it "converts to integer" do
     subject.class.serialize('1200').should == 1200
   end

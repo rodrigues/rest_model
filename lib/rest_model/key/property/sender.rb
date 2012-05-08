@@ -4,7 +4,7 @@ class RestModel
       def to_source!(value, resource, options = {})
         source_value = begin
           translation.translates_to_source? ? translation.translate_to_source(value, resource)
-                                            : serializer.desserialize(value)
+                                            : serializer.desserialize(value, self.options)
 
         rescue TranslationError, SerializationError => error
           raise error if options[:fail] and validates?(value)

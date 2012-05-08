@@ -4,7 +4,7 @@ class RestModel
       def from_source(item, resource = nil)
         value = digg(item)
         translation.translates_from_source? ? translation.translate_from_source(value, resource)
-                                            : serializer.serialize(value)
+                                            : serializer.serialize(value, self.options)
       end
 
       def digg(input)

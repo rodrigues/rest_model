@@ -96,7 +96,7 @@ class RestModel
   end
 
   def self.relations
-    @keys.find_all {|k| k.kind_of?(Relation)}
+    keys.find_all(&:relation?)
   end
 
   def self.resource_name(custom_name = nil)

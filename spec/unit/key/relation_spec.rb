@@ -5,67 +5,28 @@ describe RestModel::Relation do
     RestModel::Relation.superclass.should == RestModel::Association
   end
 
-  describe "#has?" do
+  describe "#has? and #belongs?" do
     context "when it has one resource" do
-      subject do
-        RestModel::Relation.new(:service, many: false, has: true)
-      end
-
-      it "returns true" do
-        subject.has?.should be_true
-      end
+      subject        {RestModel::Relation.new(:service, many: false, has: true)}
+      its(:has?)     {should be_true}
+      its(:belongs?) {should be_false}
     end
 
     context "when it has many resources" do
-      subject do
-        RestModel::Relation.new(:service, many: true, has: true)
-      end
-
-      it "returns true" do
-        subject.has?.should be_true
-      end
+      subject        {RestModel::Relation.new(:service, many: true, has: true)}
+      its(:has?)     {should be_true}
+      its(:belongs?) {should be_false}
     end
 
     context "when it belongs to a resource" do
-      subject do
-        RestModel::Relation.new(:service, many: false, has: false)
-      end
-
-      it "returns true" do
-        subject.has?.should be_false
-      end
+      subject        {RestModel::Relation.new(:service, many: false, has: false)}
+      its(:has?)     {should be_false}
+      its(:belongs?) {should be_true}
     end
   end
 
-  describe "#belongs?" do
-    context "when it belongs to a resource" do
-      subject do
-        RestModel::Relation.new(:service, many: false, has: false)
-      end
-
-      it "returns true" do
-        subject.belongs?.should be_true
-      end
-    end
-
-    context "when it has one resource" do
-      subject do
-        RestModel::Relation.new(:service, many: false, has: true)
-      end
-
-      it "returns true" do
-        subject.belongs?.should be_false
-      end
-    end
-
-    context "when it has many resources" do
-      subject do
-        RestModel::Relation.new(:service, many: true, has: true)
-      end
-
-      it "returns true" do
-        subject.belongs?.should be_false
-      end
-    end
+  context "#relation?" do
+    subject {RestModel::Relation.new(:example)}
+    its(:relation?) {should be_true}
   end
 end

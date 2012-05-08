@@ -98,4 +98,8 @@ describe RestModel::Key do
       end
     end
   end
+
+  describe "#relation?" do
+    its(:relation?) {should be_false}
+  end
 end

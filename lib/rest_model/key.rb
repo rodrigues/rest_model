@@ -40,5 +40,9 @@ class RestModel
                                     else visible
                                     end
     end
+
+    def relation?
+      false
+    end
   end
 end

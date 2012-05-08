@@ -20,6 +20,10 @@ class RestModel
       nil
     end
 
+    def relation?
+      true
+    end
+
     alias :parse  :from_source
   end
 end

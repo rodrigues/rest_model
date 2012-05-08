@@ -6,6 +6,10 @@ class RestModel
 
     DefaultHandler = proc {|keys| keys}
 
+    def configure
+      yield self if block_given?
+    end
+
     def convert_input_keys
       @convert_input_keys || DefaultHandler
     end
@@ -44,10 +48,6 @@ class RestModel
 
     def date_time_format=(format)
       @date_time_format = format
-    end
-
-    def configure
-      yield self if block_given?
     end
   end
 end

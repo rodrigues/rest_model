@@ -7,11 +7,11 @@ describe RestModel::Property::Retriever do
   let(:serializer_mock) {mock :serializer}
 
   before do
-    subject.stub!(:serializer).and_return serializer_mock
+    subject.stub!(:serializer) {serializer_mock}
   end
 
   it "tries to serialize value" do
-    serializer_mock.should_receive(:serialize).with(item[:login], instance_of(Hash)).and_return(item[:login])
+    serializer_mock.should_receive(:serialize).with(item[:login], instance_of(Hash)) {item[:login]}
     subject.from_source(item)
   end
 

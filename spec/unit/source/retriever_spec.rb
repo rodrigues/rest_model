@@ -7,7 +7,7 @@ describe RestModel::Source::Retriever do
         property :login
       end
 
-      models = Example.parse({login: 'jackiechan2010'})
+      models = Example.parse(login: 'jackiechan2010')
       models.should be_an(Array)
       models.first.login.should == 'jackiechan2010'
     end
@@ -17,7 +17,7 @@ describe RestModel::Source::Retriever do
         property :login, field: :customer_login
       end
 
-      models = Example.parse({customer_login: 'jackiechan2010'})
+      models = Example.parse(customer_login: 'jackiechan2010')
       models.should be_an(Array)
       models.first.login.should == 'jackiechan2010'
     end
@@ -31,12 +31,12 @@ describe RestModel::Source::Retriever do
         end
 
         it "returns true when value is 'X'" do
-          models = Example.parse({can_merge: 'X'})
+          models = Example.parse(can_merge: 'X')
           models.first.can_merge.should be_true
         end
 
         it "returns false when value isn't 'X'" do
-          models = Example.parse({can_merge: ''})
+          models = Example.parse(can_merge: '')
           models.first.can_merge.should be_false
         end
       end
@@ -47,7 +47,7 @@ describe RestModel::Source::Retriever do
             property :issue_date, type: Date
           end
 
-          models = Example.parse({issue_date: '2011-01-01'})
+          models = Example.parse(issue_date: '2011-01-01')
           models.first.issue_date.should == Date.parse('2011-01-01')
         end
       end
@@ -58,7 +58,7 @@ describe RestModel::Source::Retriever do
             property :amount, type: Float
           end
 
-          models = Example.parse({amount: '1234.5'})
+          models = Example.parse(amount: '1234.5')
           models.first.amount.should == 1234.5
         end
       end
@@ -72,20 +72,20 @@ describe RestModel::Source::Retriever do
       end
 
       it "returns key when value was mapped" do
-        models = Example.from_source!({status: '02'})
+        models = Example.from_source!(status: '02')
         models.first.status.should == :unpaid
       end
 
       context "when calling from_source" do
         it "returns nil when value wasn't mapped" do
-          models = Example.from_source({status: '03'})
+          models = Example.from_source(status: '03')
           models.first.status.should be_nil
         end
       end
 
       context "when calling from_source!" do
         it "fails when value wasn't mapped" do
-          expect {Example.from_source!({status: '03'})}.to raise_error
+          expect {Example.from_source!(status: '03')}.to raise_error
         end
       end
     end

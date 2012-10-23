@@ -1,24 +1,22 @@
 require 'spec_helper'
 
 describe RestModel::Configuration do
-  after :all do
-    RestModel::Configuration.convert_input_keys = nil
-  end
+  after(:all) {subject.convert_input_keys = nil}
 
   context "when no custom input keys converter is set" do
     it "returns default key converter" do
       default_handler = RestModel::Configuration::DefaultHandler
-      RestModel::Configuration.convert_input_keys.should == default_handler
+      subject.convert_input_keys.should == default_handler
     end
   end
 
   context "when a custom input keys converter is set" do
     let(:custom_convert_input_keys) {lambda {|keys| keys}}
 
-    before {RestModel::Configuration.convert_input_keys = custom_convert_input_keys}
+    before {subject.convert_input_keys = custom_convert_input_keys}
 
     it "returns custom key converter" do
-      RestModel::Configuration.convert_input_keys.should == custom_convert_input_keys
+      subject.convert_input_keys.should == custom_convert_input_keys
     end
   end
 end

@@ -19,7 +19,7 @@ describe RestModel::Embeddable::Response do
 
     context "when this key shouldn't be visible on resource" do
       it "returns an empty hash" do
-        subject.should_receive(:visible?).and_return false
+        subject.should_receive(:visible?) {false}
         subject.to_resource(example).should == {}
       end
     end

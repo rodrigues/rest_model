@@ -19,7 +19,6 @@ RSpec.configure do |config|
 end
 
 include Output
-include Examples
 
 RestModel::Configuration.configure do |c|
   c.host = 'http://example.com'

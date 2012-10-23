@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 $:.push 'examples'; require 'helper'
 
 class Item < RestModel

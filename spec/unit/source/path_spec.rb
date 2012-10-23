@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Upcasing
+module InputKeysConverterStrategy
   def self.call(keys)
     keys.map {|key| key.to_s.upcase}
   end
@@ -21,7 +21,7 @@ describe RestModel::Source::Path do
     end
 
     context "and there is a custom keys input converter" do
-      subject {RestModel::Key.new(:name, convert_input_keys: Upcasing)}
+      subject {RestModel::Key.new(:name, convert_input_keys: InputKeysConverterStrategy)}
       let(:path) {['NAME']}
       it_behaves_like "an input path"
     end
@@ -53,7 +53,7 @@ describe RestModel::Source::Path do
     end
 
     context "and there is a custom keys input converter" do
-      let(:options) {{start_key: 'yay.upcase.path', convert_input_keys: Upcasing}}
+      let(:options) {{start_key: 'yay.upcase.path', convert_input_keys: InputKeysConverterStrategy}}
       subject {RestModel::Key.new(:name, options)}
       let(:path) {['YAY', 'UPCASE', 'PATH']}
       it_behaves_like "an input path"

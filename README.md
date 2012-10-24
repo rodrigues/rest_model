@@ -1,4 +1,4 @@
-# RestModel
+# RestModel [![Build Status](https://secure.travis-ci.org/rodrigues/rest_model.png)](http://travis-ci.org/rodrigues/rest_model)
 
             [ THE INTERNETS ]
 

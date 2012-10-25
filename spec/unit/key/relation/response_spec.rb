@@ -21,10 +21,6 @@ describe RestModel::Response do
           subject.to_resource(example).should == {}
         end
       end
-
-      context "otherwise" do
-
-      end
     end
   end
 
@@ -44,7 +40,7 @@ describe RestModel::Response do
     subject {Example.keys[1]}
 
     let(:example) {Example.new(id: 100)}
-    let(:result)  {{rel: :example_child, href: "http://example.com/examples/100/example_child"}}
+    let(:result)  {{rel: :example_child, href: "/examples/100/example_child"}}
 
     it_behaves_like "a relation"
   end
@@ -65,7 +61,7 @@ describe RestModel::Response do
     subject {Example.keys[1]}
 
     let(:example) {Example.new(id: 200)}
-    let(:result)  {{rel: :example_children, href: "http://example.com/examples/200/example_children"}}
+    let(:result)  {{rel: :example_children, href: "/examples/200/example_children"}}
 
     it_behaves_like "a relation"
   end
@@ -86,7 +82,7 @@ describe RestModel::Response do
     subject {ExampleChild.keys[1]}
 
     let(:example) {ExampleChild.new(id: 200, example_id: 123)}
-    let(:result)  {{rel: :example, href: "http://example.com/examples/123"}}
+    let(:result)  {{rel: :example, href: "/examples/123"}}
 
     it_behaves_like "a relation"
   end

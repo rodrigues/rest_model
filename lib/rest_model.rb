@@ -8,7 +8,11 @@ require "active_support/core_ext/array/wrap"
 require "active_support/core_ext/array/access"
 require "active_support/core_ext/hash/slice"
 require "active_support/core_ext/hash/indifferent_access"
+require "curb"
+require "slogger"
+require "multi_json"
 
+require "rest_model/logger"
 require "rest_model/source/path"
 require "rest_model/source/translation"
 require "rest_model/source/retriever"
@@ -32,7 +36,12 @@ require "rest_model/key/embeddable"
 require "rest_model/key/embeddable/builder"
 require "rest_model/key/href"
 require "rest_model/key/builder"
+require "rest_model/configuration/client"
+require "rest_model/configuration/keys"
+require "rest_model/configuration/logger"
 require "rest_model/configuration"
+require "rest_model/client/http"
+require "rest_model/client"
 require "rest_model/errors"
 
 class RestModel
@@ -115,7 +124,7 @@ class RestModel
   private
 
   def assign_non_keys_attrs(attrs)
-    key_names = self.class.keys.map {|k| k.name}
+    key_names = self.class.keys.map(&:name)
     non_keys = attrs.reject {|k, v| key_names.member?(k.to_sym)}
 
     non_keys.each do |key, value|

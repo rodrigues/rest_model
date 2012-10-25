@@ -24,7 +24,6 @@ class Product < RestModel
   property :created_at, type: DateTime
 end
 
-
 products = [
   {
     value: 100.00,
@@ -61,5 +60,4 @@ root = {
 }
 
 @root = Root.new(root)
-
 inspect_rest_model(@root)

@@ -21,10 +21,6 @@ describe RestModel::Response do
           subject.to_resource(example).should == {}
         end
       end
-
-      context "otherwise" do
-
-      end
     end
   end
 

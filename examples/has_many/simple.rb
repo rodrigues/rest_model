@@ -23,6 +23,5 @@ class Customer < RestModel
   has_one :devops, class_name: :developer
 end
 
-@root = Customer.from_source!({customer_id: 123, login: 'jackiechan2010'}).first
-
+@root = Customer.from_source!(customer_id: 123, login: 'jackiechan2010').first
 inspect_rest_model(@root)

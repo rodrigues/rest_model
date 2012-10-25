@@ -11,6 +11,5 @@ class Customer < RestModel
   has_many :services, href: proc {"http://external.service.com/customers/#{id}/services"}
 end
 
-@root = Customer.from_source!({customer_id: 123, login: 'jackiechan2010'}).first
-
+@root = Customer.from_source!(customer_id: 123, login: 'jackiechan2010').first
 inspect_rest_model(@root)

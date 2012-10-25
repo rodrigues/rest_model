@@ -85,6 +85,7 @@ describe RestModel::Configuration do
 
       context "but a default host was set" do
         before {subject.host = "http://example.com"}
+        after  {subject.host = nil}
 
         it "returns a hash with default host only" do
           subject.hosts.should == {default: "http://example.com"}

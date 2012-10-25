@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_dependency "curb",          "~> 0.8.1"
   s.add_dependency "multi_json",    "~> 1.3.6"
   s.add_development_dependency "rspec", "~> 2.6"
+  s.add_development_dependency "rake",  ">= 0.9.2.2"
 end

@@ -49,6 +49,31 @@ describe RestModel::Response do
     it_behaves_like "a relation"
   end
 
+  context "when has one (with :href option)" do
+    before do
+      class ExampleChild < RestModel
+        id
+        belongs_to :example
+      end
+
+      class Example < RestModel
+        id
+        has_one  :example_child, href: proc {example_child_link}
+
+        def example_child_link
+          "http://example.com/examples/#{id}/example_custom_child"
+        end
+      end
+    end
+
+    subject {Example.keys[1]}
+
+    let(:example) {Example.new(id: 100)}
+    let(:result)  {{rel: :example_child, href: "http://example.com/examples/100/example_custom_child"}}
+
+    it_behaves_like "a relation"
+  end
+
   context "when has many" do
     before do
       class ExampleChild < RestModel
@@ -70,6 +95,31 @@ describe RestModel::Response do
     it_behaves_like "a relation"
   end
 
+  context "when has many (with :href option)" do
+    before do
+      class ExampleChild < RestModel
+        id
+        belongs_to :example
+      end
+
+      class Example < RestModel
+        id
+        has_many :example_children, href: proc {example_child_link}
+
+        def example_child_link
+          "http://example.com/api/examples/#{id}/example_custom_children"
+        end
+      end
+    end
+
+    subject {Example.keys[1]}
+
+    let(:example) {Example.new(id: 200)}
+    let(:result)  {{rel: :example_children, href: "http://example.com/api/examples/200/example_custom_children"}}
+
+    it_behaves_like "a relation"
+  end
+
   context "when belongs to one" do
     before do
       class ExampleChild < RestModel
@@ -87,6 +137,52 @@ describe RestModel::Response do
 
     let(:example) {ExampleChild.new(id: 200, example_id: 123)}
     let(:result)  {{rel: :example, href: "http://example.com/examples/123"}}
+
+    it_behaves_like "a relation"
+  end
+
+  context "when belongs to one (with :href option)" do
+    before do
+      class ExampleChild < RestModel
+        id
+        belongs_to :example, href: proc {example_link}
+
+        def example_link
+          "http://example.com/api/examples/#{example_id}"
+        end
+      end
+
+      class Example < RestModel
+        id
+        has_many :example_children
+      end
+    end
+
+    subject {ExampleChild.keys[1]}
+
+    let(:example) {ExampleChild.new(id: 200, example_id: 123)}
+    let(:result)  {{rel: :example, href: "http://example.com/api/examples/123"}}
+
+    it_behaves_like "a relation"
+  end
+
+  context "escaped href" do
+    before do
+      class ExampleChild < RestModel
+        id
+        belongs_to :example
+      end
+
+      class Example < RestModel
+        id
+        has_many :example_children
+      end
+    end
+
+    subject {ExampleChild.keys[1]}
+
+    let(:example) {ExampleChild.new(id: 200, example_id: "Some Id")}
+    let(:result)  {{rel: :example, href: "http://example.com/examples/Some%20Id"}}
 
     it_behaves_like "a relation"
   end

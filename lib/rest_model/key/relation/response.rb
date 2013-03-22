@@ -12,7 +12,7 @@ class RestModel
         return nil unless visible?(parent)
 
         href = href(parent)
-        href ? {rel: name, href: href} : nil
+        href ? {rel: name, href: URI.escape(href)} : nil
       end
 
       private

@@ -12,6 +12,14 @@ describe RestModel::Response do
       property   :street
       property   :city
     end
+
+    class SummarizeExample < RestModel
+      id
+      property :name
+      property :login
+
+      summarizes :id, :name, :login
+    end
   end
 
   let(:input) do
@@ -34,10 +42,40 @@ describe RestModel::Response do
     end
 
     context "when a list of resources is received" do
-      it "returns some resources in an entries array" do
-        model = 3.times.map {Example.parse(input).first}
-        result = {entries: 3.times.map {input}}
-        Example.normalize(model).with_indifferent_access.should == result.with_indifferent_access
+      context "with sumarize options" do
+        it "returns some resources in an entries array" do
+          model = 3.times.map {Example.parse(input).first}
+          result = {entries: 3.times.map {input}}
+          Example.normalize(model).with_indifferent_access.should == result.with_indifferent_access
+        end
+      end
+
+      context "without sumarize options" do
+        let(:input) do
+          {
+            id:    "Escape This",
+            name:  "My name is",
+            login: "my_login"
+          }
+        end
+
+        let(:expected) do
+          {
+            entries: [
+              {
+                id:    "Escape This",
+                name:  "My name is",
+                login: "my_login",
+                href: "http://example.com/summarize_examples/Escape%20This"
+              }
+            ]
+          }
+        end
+
+        it "returns some resources in an entries array" do
+          model = SummarizeExample.parse(input)
+          SummarizeExample.normalize(model).with_indifferent_access.should == expected.with_indifferent_access
+        end
       end
     end
   end

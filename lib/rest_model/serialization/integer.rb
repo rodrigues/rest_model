@@ -4,7 +4,7 @@ class RestModel
       def self.serialize(value, options = {})
         case value
         when ::String
-          if value =~ /^\d+$/
+          if value =~ /^\-?\d+$/
             value.to_i
           else
             raise

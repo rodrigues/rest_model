@@ -4,10 +4,10 @@ describe RestModel::Property::Retriever do
   subject {RestModel::Property.new(:login)}
 
   let(:item)            {{login: "jackiechan2010"}}
-  let(:serializer_mock) {mock :serializer}
+  let(:serializer_mock) {double :serializer}
 
   before do
-    subject.stub!(:serializer) {serializer_mock}
+    allow(subject).to receive(:serializer) {serializer_mock}
   end
 
   it "tries to serialize value" do

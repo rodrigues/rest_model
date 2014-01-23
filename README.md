@@ -1,4 +1,4 @@
-# RestModel [![Build Status](https://secure.travis-ci.org/rodrigues/rest_model.png)](http://travis-ci.org/rodrigues/rest_model)
+# RestModel [![Build Status](https://secure.travis-ci.org/rodrigues/rest_model.png)](http://travis-ci.org/rodrigues/rest_model) ![](https://badge.fury.io/rb/rest_model.png)
 
             [ THE INTERNETS ]
 

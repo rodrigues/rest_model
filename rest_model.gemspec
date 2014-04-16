@@ -18,13 +18,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
 
-  if RUBY_VERSION == '1.9.2'
-    s.add_dependency "activesupport", "~> 3.2"
-  else
-    s.add_dependency "activesupport", ">= 3.2"
-  end
-
-  s.add_dependency "i18n",              ">= 0.6"
+  s.add_dependency "activesupport"
+  s.add_dependency "i18n"
   s.add_development_dependency "rspec", "~> 2.14.1"
   s.add_development_dependency "rake"
 end
